@@ -1,23 +1,25 @@
-import logo from './logo.svg';
+import QuoteBlock from './Components/QuoteBlock';
+import FavoriteQuotesCards from './Components/FavoriteQuotesCards';
+import Filter from './Components/Filter';
 import './App.css';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="app">
+      <div className="wrapper">
+        <div className="content">
+          <section className="quotes">
+            <div className="container">
+              <div className="quotes-title">
+                <h1 className="quotes-title-title">Цитаты Джейсона Стэтхэма</h1>
+              </div>
+              <QuoteBlock />
+              <Filter />
+              <FavoriteQuotesCards className="favorites-qoutes" />
+            </div>
+          </section>
+        </div>
+      </div>
     </div>
   );
 }

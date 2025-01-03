@@ -1,0 +1,4 @@
+export const ADD_QUOTE = 'ADD_QUOTE';
+export const DELETE_QUOTE = 'DELETE_QUOTE';
+export const DELETE_ALL_QUOTE = 'DELETE_ALL_QUOTE';
+export const TOGGLE_FAVORITES = 'TOGGLE_FAVORITES';

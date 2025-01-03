@@ -1,38 +1,208 @@
-.App {
+body {
+  background-color: rgb(26, 26, 26);
+  color: #fff;
+  font-family: Tahoma;
+}
+.container {
+  max-width: 600px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+.quotes-title-title {
+  font-size: 35px;
   text-align: center;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.quotes-content-text {
+  font-size: 20px;
+  font-style: italic;
+}
+.quotes-content-author {
+  font-size: 16px;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.quotes-btn {
   display: flex;
-  flex-direction: column;
+}
+
+.btn {
+  text-align: center;
+  display: block;
+  padding: 20px;
+  font-size: 28px;
+  color: #fff;
+  text-decoration: none;
+  border-radius: 20px;
+  margin-right: 20px;
+}
+.generate-btn {
+  background-color: blue;
+}
+
+.api-btn {
+  background-color: rgb(197, 255, 6);
+}
+
+.own-api-btn {
+  background-color: rgb(6, 255, 60);
+}
+
+.delete-btn {
+  background-color: rgb(255, 55, 0);
+}
+
+.favorites-qoutes-title {
+  font-size: 20px;
+  font-style: normal;
+}
+
+.favorites-qoutes-text {
+  font-size: 18px;
+  font-style: italic;
+}
+
+.favorites-btn {
+  font-size: 50px;
+  color: #ffd700; /* Желтый цвет */
+  cursor: pointer;
+  transition: color 0.3s;
+}
+
+.active {
+  color: #ff0000;
+}
+
+.favorites-btn:hover {
+  color: #ffa500; /* Цвет при наведении */
+}
+
+.favorites-qoutes-item {
+  display: flex;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  height: 100%;
+}
+.favorites-qoute {
+  background-color: rgb(255, 255, 246);
+  width: 200px;
+  color: black;
+  font-size: 18px;
+  margin: 20px;
+  border-radius: 10px;
+  padding: 20px;
+}
+
+.favorites-qoute .highlight {
+	background-color: #ff0;
+}
+
+.remove-btn {
+  cursor: pointer;
+  color: #ffa500;
+  font-size: 30px;
+  font-weight: bold;
+}
+.remove-btn:hover {
+  color: darkred;
+}
+
+/* Основной контейнер */
+.filter {
+  display: flex;
   align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  gap: 20px;
+  font-family: Arial, sans-serif;
+  margin-top: 40px;
 }
 
-.App-link {
-  color: #61dafb;
+/* Обёртка для поля ввода */
+.filter-input-wrapper {
+  position: relative;
+  display: flex;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+/* Поле ввода */
+.filter-input {
+  width: 250px;
+  height: 36px;
+  padding: 0 40px 0 12px;
+  font-size: 14px;
+  border: 1px solid #ccc;
+  border-radius: 18px;
+  outline: none;
+  transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+.filter-input:focus {
+  border-color: #007bff;
+  box-shadow: 0 0 4px rgba(0, 123, 255, 0.5);
+}
+
+/* Кнопка "Очистить" */
+.filter-clear-btn {
+  position: absolute;
+  right: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  font-size: 18px;
+  color: #888;
+  cursor: pointer;
+  padding: 0;
+  transition: color 0.3s;
+}
+
+.filter-clear-btn:hover {
+  color: #007bff;
+}
+
+/* Чекбокс и текст */
+.filter-checkbox-label {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 14px;
+  color: #555;
+  cursor: pointer;
+}
+
+/* Скрытие стандартного чекбокса */
+.filter-checkbox {
+  display: none;
+}
+
+/* Кастомный чекбокс */
+.checkbox-custom {
+  display: inline-block;
+  width: 18px;
+  height: 18px;
+  border: 2px solid #ccc;
+  border-radius: 4px;
+  background: #fff;
+  position: relative;
+  transition: border-color 0.3s, background-color 0.3s;
+}
+
+.filter-checkbox:checked + .checkbox-custom {
+  background-color: #007bff;
+  border-color: #007bff;
+}
+
+.filter-checkbox:checked + .checkbox-custom::after {
+  content: '';
+  position: absolute;
+  top: 3px;
+  left: 6px;
+  width: 5px;
+  height: 10px;
+  border: solid #fff;
+  border-width: 0 2px 2px 0;
+  transform: rotate(45deg);
+}
+
+/* Чекбокс при наведении */
+.filter-checkbox-label:hover .checkbox-custom {
+  border-color: #007bff;
 }
