@@ -94,7 +94,7 @@ body {
 }
 
 .favorites-qoute .highlight {
-	background-color: #ff0;
+  background-color: #ff0;
 }
 
 .remove-btn {
@@ -205,4 +205,19 @@ body {
 /* Чекбокс при наведении */
 .filter-checkbox-label:hover .checkbox-custom {
   border-color: #007bff;
+}
+
+.spinner {
+  animation: spinner 1s infinite linear;
+  margin-left: 10px;
+}
+
+@keyframes spinner {
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
 }

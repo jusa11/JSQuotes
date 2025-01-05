@@ -1,6 +1,7 @@
 import QuoteBlock from './Components/QuoteBlock';
 import FavoriteQuotesCards from './Components/FavoriteQuotesCards';
 import Filter from './Components/Filter';
+import Error from './Components/Error';
 import './App.css';
 
 function App() {
@@ -20,6 +21,7 @@ function App() {
           </section>
         </div>
       </div>
+      <Error />
     </div>
   );
 }
