@@ -1,0 +1,64 @@
+.share__qoute_form-container {
+  border-radius: 80px;
+  margin: 70px 0 0 0;
+  align-items: center;
+  background: #222222;
+  padding: 10px 15px;
+}
+.share__qoute-form-icon {
+  margin: 0 20px 0 0;
+  font-size: 18px;
+}
+.share__qoute-form {
+  display: flex;
+  align-items: center;
+  width: 100%;
+}
+.your-message {
+  resize: none;
+  width: 100%;
+  height: 100%;
+  background: #222222;
+  font-size: 14px;
+  color: #fff;
+}
+
+.form__handler {
+  display: flex;
+  align-items: center;
+}
+.fa-face-smile {
+  margin: 0 10px 0 9px;
+  font-size: 18px;
+}
+
+.form-btn {
+  color: $color-main;
+  background-color: rgba(53, 53, 53, 0.5);
+  padding: 12px 15px;
+  border-radius: 50%;
+  transition: all 0.3s ease;
+  &:hover {
+    background-color: rgba(200, 200, 200, 0.4);
+    color: #ffffff;
+  }
+}
+
+@include mediaTablet {
+  .share__qoute_form-container {
+    padding: 7px 12px;
+  }
+  .share__qoute-form-icon {
+    margin: 0 5px 0 0;
+    font-size: 15px;
+  }
+  .your-message {
+    font-size: 12px;
+  }
+  .fa-face-smile {
+    font-size: 15px;
+  }
+  .form-btn {
+    padding: 8px 13px;
+  }
+}

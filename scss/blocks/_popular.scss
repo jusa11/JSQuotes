@@ -1,0 +1,61 @@
+.popular {
+  margin: 110px 0 0 0;
+
+}
+.popular__title {
+  font-size: 60px;
+  line-height: 86px;
+}
+
+.popular__card {
+  background-image: url('./img/bg-cards-popular.png');
+  background-position: right bottom;
+}
+.popular__content {
+  margin: 50px 0 0 0;
+}
+
+.swiper-container {
+  overflow: hidden; /* Ограничиваем область Swiper */
+}
+
+.popular__content {
+  position: relative;
+  z-index: 1; /* Убедитесь, что Swiper не перекрывает другие элементы */
+}
+
+@include mediaTablet {
+  .popular {
+    margin: 90px 0 0 0;
+  }
+  .popular__title {
+    font-size: 50px;
+    line-height: 50px;
+  }
+}
+@include mediaBigMobile {
+  .popular__title {
+    font-size: 45px;
+  }
+}
+@include mediaMediumMobile {
+  .popular {
+    margin: 80px 0 0 0;
+  }
+  .popular__title {
+    font-size: 40px;
+    line-height: 50px;
+  }
+  .popular__content {
+    margin: 30px 0 0 0;
+  }
+}
+@include mediaSmallMobile {
+  .popular {
+    margin: 60px 0 0 0;
+  }
+  .popular__title {
+    font-size: 30px;
+    line-height: 30px;
+  }
+}

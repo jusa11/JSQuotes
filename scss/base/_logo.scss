@@ -1,0 +1,32 @@
+.logo {
+  display: flex;
+  align-items: center;
+  height: 26px;
+}
+
+.logo img {
+  height: 100%;
+}
+
+.logo-text__header {
+  display: none;
+}
+
+.logo-text {
+  font-size: 18px;
+  margin: 0 0 0 10px;
+  font-weight: bold;
+  letter-spacing: -0.2px;
+  background: linear-gradient(
+    to right,
+    rgba(255, 255, 255, 1) 65%,
+    rgba(255, 255, 255, 0.48) 100%
+  );
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+@include mediaBigMobile {
+  .logo-text__header {
+    display: inline-block;
+  }
+}

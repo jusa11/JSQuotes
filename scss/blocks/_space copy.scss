@@ -1,0 +1,61 @@
+.space__content {
+  position: relative;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  transform: translate(27%, 7%);
+  will-change: transform, opacity;
+}
+
+.orbit-1 img,
+.orbit-2 img,
+.orbit-3 img,
+.orbit-4 img,
+.orbit-5 img,
+.orbit-6 img {
+  position: absolute;
+}
+.orbit-1 img {
+  max-width: 200px;
+  top: 269px;
+  left: 245px;
+}
+.orbit-2 img {
+  max-width: 300px;
+  top: 218px;
+  left: 195px;
+}
+.orbit-3 img {
+  max-width: 400px;
+  top: 163px;
+  left: 147px;
+}
+.orbit-4 img {
+  max-width: 500px;
+  top: 109px;
+  left: 97px;
+}
+.orbit-5 img {
+  max-width: 600px;
+  top: 55px;
+  left: 50px;
+}
+.orbit-6 img {
+  max-width: 700px;
+  top: 0;
+  left: 0;
+}
+
+.planet__quote {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.planet__quote img {
+  max-width: 150px;
+}
+
+.space__content-center {
+  max-width: ;
+}

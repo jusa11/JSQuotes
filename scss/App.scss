@@ -1,0 +1,21 @@
+// base
+@import './base/base';
+@import './base/normalize';
+@import './base/vars';
+@import './base/stars';
+@import './base/burger';
+@import './base/logo';
+@import './base/mixins';
+@import './base/swiper';
+
+// blocks
+@import './blocks/header';
+@import './blocks/nav';
+@import './blocks/space';
+@import './blocks/quotes-action';
+@import './blocks/main-cards.scss';
+@import './blocks/share-form';
+@import './blocks/last-list-quotes.scss';
+@import './blocks/popular';
+@import './blocks/popular-card';
+@import './blocks/footer';
