@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/front/static/css/main.535ea07c.css",
+    "main.js": "/front/static/js/main.119d540e.js",
+    "static/media/bg-cards-quote_action.png": "/front/static/media/bg-cards-quote_action.79036f006c0cb5ff1137.png",
+    "static/media/bg-cards-popular.png": "/front/static/media/bg-cards-popular.8e1efccbdda12c6acb80.png",
+    "index.html": "/front/index.html",
+    "main.535ea07c.css.map": "/front/static/css/main.535ea07c.css.map",
+    "main.119d540e.js.map": "/front/static/js/main.119d540e.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.535ea07c.css",
+    "static/js/main.119d540e.js"
+  ]
+}
