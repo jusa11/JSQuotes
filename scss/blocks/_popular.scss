@@ -1,29 +1,36 @@
 .popular {
   margin: 110px 0 0 0;
-
 }
 .popular__title {
   font-size: 60px;
   line-height: 86px;
 }
-
+.popular__row {
+  display: flex;
+  margin: -15px -15px;
+  flex-direction: column;
+}
+.popular__column {
+  padding: 15px 15px;
+  display: flex;
+  flex: 1 1 33%;
+}
 .popular__card {
-  background-image: url('./img/bg-cards-popular.png');
+  background-image: url('/src/img/bg-cards-popular.png');
   background-position: right bottom;
+  width: 100%;
 }
 .popular__content {
   margin: 50px 0 0 0;
 }
 
-.swiper-container {
-  overflow: hidden; /* Ограничиваем область Swiper */
+// Стрелки слайдера
+.splide__arrow svg {
+  fill: #8d1ea2;
 }
-
-.popular__content {
-  position: relative;
-  z-index: 1; /* Убедитесь, что Swiper не перекрывает другие элементы */
+.splide__arrow:hover svg {
+  fill: #090edb;
 }
-
 @include mediaTablet {
   .popular {
     margin: 90px 0 0 0;
@@ -36,6 +43,9 @@
 @include mediaBigMobile {
   .popular__title {
     font-size: 45px;
+  }
+  .popular__column {
+    padding: 30px 15px;
   }
 }
 @include mediaMediumMobile {

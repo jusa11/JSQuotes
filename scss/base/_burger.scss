@@ -1,69 +1,53 @@
 @import './mixins';
 
-.burger {
+.bm-burger-button {
   display: none;
 }
 
 @include mediaBigMobile {
-  .burger {
+  .bm-burger-button {
     display: block;
-    position: relative;
-    width: 30px;
-    height: 20px;
-    z-index: 20;
+    position: absolute;
+    width: 36px;
+    height: 25px;
+    top: 25%;
+    left: 90%;
   }
 
-  .burger span {
-    position: absolute;
-    background-color: #fff;
-    position: absolute;
-    left: 0;
-    width: 100%;
-    height: 2px;
-    top: 9px;
-    -webkit-transition: all 0.3s ease 0s;
-    -o-transition: all 0.3s ease 0s;
-    transition: all 0.3s ease 0s;
+  .bm-burger-bars {
+    background: #eaeaea;
   }
 
-  .burger:before,
-  .burger:after {
-    content: '';
-    background-color: #fff;
-    position: absolute;
-    width: 100%;
-    height: 2px;
-    left: 0;
-    -webkit-transition: all 0.3s ease 0s;
-    -o-transition: all 0.3s ease 0s;
-    transition: all 0.3s ease 0s;
+  .bm-cross-button {
+    height: 24px;
+    width: 24px;
   }
 
-  .burger:before {
+  .bm-cross {
+    background: #bdc3c7;
+  }
+  .bm-menu-wrap {
     top: 0;
   }
 
-  .burger:after {
-    bottom: 0;
+  .bm-menu {
+    background: #1b1b1bee;
+    padding: 2.5em 1.5em 0;
+    font-size: 1.15em;
   }
 
-  .burger.active span {
-    -webkit-transform: scale(0);
-    -ms-transform: scale(0);
-    transform: scale(0);
+  .bm-item-list {
+    color: #b8b7ad;
+    padding: 0.8em;
   }
 
-  .burger.active:before {
-    -webkit-transform: rotate(45deg);
-    -ms-transform: rotate(45deg);
-    transform: rotate(45deg);
-    top: 9px;
+  .bm-item {
+    display: inline-block;
+    padding: 0.5em;
   }
-
-  .burger.active:after {
-    -webkit-transform: rotate(-45deg);
-    -ms-transform: rotate(-45deg);
-    transform: rotate(-45deg);
-    bottom: 9px;
+}
+@include mediaMediumMobile {
+  .bm-burger-button {
+    left: 85%;
   }
 }

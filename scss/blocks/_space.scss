@@ -58,14 +58,14 @@
 @include mediaFirstBrakePoint {
   .space {
     height: 70vh;
-    margin: 50px 0 -350px 0;
+    margin: 50px 0 300px 0;
   }
 }
 
 @include mediaTablet {
   .space {
     height: 60vh;
-    margin: 50px 0 -250px 0;
+    margin: 50px 0 100px 0;
   }
   .orbit-1 svg {
     width: 500px;
@@ -113,13 +113,13 @@
     top: 200px;
     left: 300px;
   }
-  .orbit-6 {
+  .orbit-center {
     position: absolute;
     top: 250px;
     left: 350px;
   }
 
-  .orbit-6 img {
+  .orbit-center img {
     position: absolute;
     top: -50px;
     left: -50px;
@@ -183,13 +183,13 @@
     top: 100px;
     left: 300px;
   }
-  .orbit-6 {
+  .orbit-center {
     position: absolute;
     top: 125px;
     left: 325px;
   }
 
-  .orbit-6 img {
+  .orbit-center img {
     position: absolute;
     top: -25px;
     left: -25px;

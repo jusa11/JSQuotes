@@ -3,7 +3,6 @@ import { gsap } from 'gsap';
 import { MotionPathPlugin } from 'gsap/MotionPathPlugin';
 import Orbit from './Orbit';
 import Planet from './Planet';
-import qoutes from '../../../data/qoutes';
 
 gsap.registerPlugin(MotionPathPlugin);
 
@@ -48,26 +47,30 @@ const Space = () => {
   const randomPosition = () => Math.random() * (0.9 - 0.1) + 0.1;
 
   useEffect(() => {
-    // Перезапуск анимаций GSAP после монтирования Swiper
-    planetRef.current.forEach((planet, index) => {
-      const path = orbitRef.current[index];
-      if (path && planet) {
-        gsap
-          .to(planet, {
-            duration: randomSpeed(),
-            repeat: -1,
-            ease: 'linear',
-            rotation: 360,
-            motionPath: {
-              path: path,
-              align: path,
-              alignOrigin: [0.5, 0.5],
-            },
-          })
-          .progress(randomPosition());
-      }
+    const ctx = gsap.context(() => {
+      planetRef.current.forEach((planet, index) => {
+        const path = orbitRef.current[index];
+        if (path && planet) {
+          gsap
+            .to(planet, {
+              duration: randomSpeed(),
+              repeat: -1,
+              ease: 'linear',
+              rotation: 360,
+              force3D: true,
+              motionPath: {
+                path: path,
+                align: path,
+                alignOrigin: [0.5, 0.5],
+              },
+            })
+            .progress(randomPosition());
+        }
+      });
     });
-  }, [qoutes]); // Зависимость от quotes, чтобы анимации перезапускались при изменении данных
+
+    return () => ctx.revert(); // Очистка анимаций
+  }, []);
 
   return (
     <section className="space">

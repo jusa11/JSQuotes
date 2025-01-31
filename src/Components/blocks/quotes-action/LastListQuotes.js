@@ -6,17 +6,17 @@ import { useEffect, useRef } from 'react';
 const MAX_QUOTES = 4;
 const MAX_TEXT_LENGTH = 100;
 
-const limitTextLength = (text) => {
-  if (text.length > MAX_TEXT_LENGTH) {
-    return `${text.slice(0, MAX_TEXT_LENGTH)}...`;
-  }
-  return text;
-};
-
 const LastListQuotes = () => {
   const lastQuotes = useSelector(selectShareQuote);
   const quoteLimit = lastQuotes.slice(0, MAX_QUOTES);
   const listRef = useRef(null);
+
+  const limitTextLength = (text) => {
+    if (text.length > MAX_TEXT_LENGTH) {
+      return `${text.slice(0, MAX_TEXT_LENGTH)}...`;
+    }
+    return text;
+  };
 
   useEffect(() => {
     if (lastQuotes.length > 0) {

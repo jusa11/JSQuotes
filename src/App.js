@@ -19,7 +19,9 @@ function App() {
         <div className="content">
           <Space />
           <QuotesAction />
-          <Popular />
+          <div className="swiper-container">
+            <Popular />
+          </div>
         </div>
       </div>
       <Footer />

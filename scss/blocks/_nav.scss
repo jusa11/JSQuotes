@@ -12,6 +12,9 @@
   color: $white;
   transition: color 0.3s ease;
 }
+.nav-menu {
+  position: relative;
+}
 
 .menu__link:hover {
   color: $color-hover;
@@ -19,7 +22,7 @@
 
 @media (max-width: $big-mobile) {
   .menu__link {
-    font-size: 22px;
+    font-size: 28px;
   }
   .nav-menu {
     height: 50px;
@@ -43,6 +46,9 @@
 
   .main-menu.active {
     top: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
 
   .menu__list {
@@ -50,6 +56,6 @@
   }
 
   .menu__list li {
-    margin: 40px 0 0 0;
+    margin: 50px 0 0 0;
   }
 }

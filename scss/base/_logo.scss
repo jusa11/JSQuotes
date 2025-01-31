@@ -1,3 +1,4 @@
+@import './mixins';
 .logo {
   display: flex;
   align-items: center;
@@ -25,8 +26,24 @@
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
+@include mediaTablet {
+  .logo-text {
+    display: none;
+  }
+}
 @include mediaBigMobile {
   .logo-text__header {
     display: inline-block;
+  }
+  .logo-text {
+    display: block;
+    font-size: 16px;
+    margin: 0 5px 0 5px;
+  }
+}
+
+@include mediaSmallMobile {
+  .logo-text {
+    display: none;
   }
 }

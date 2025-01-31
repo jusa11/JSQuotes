@@ -35,3 +35,9 @@
   font-size: 12px;
   padding: 7px 15px;
 }
+
+@include mediaBigMobile {
+  .popular__card {
+    max-height: 350px;
+  }
+}
