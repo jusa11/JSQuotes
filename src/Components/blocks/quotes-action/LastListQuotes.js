@@ -10,6 +10,7 @@ import { setError } from '../../redux/slices/errorSlice';
 
 const MAX_TEXT_LENGTH = 100;
 
+// возник конфликт 
 const LastListQuotes = () => {
   const lastQuotes = useSelector(selectShareQuote);
   console.log(lastQuotes);
