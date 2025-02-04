@@ -1,3 +1,6 @@
+import { FaTelegram } from 'react-icons/fa6';
+import { FaGithub } from 'react-icons/fa';
+
 const FooterBottom = () => {
   return (
     <div className="footer__bottom">
@@ -9,12 +12,12 @@ const FooterBottom = () => {
       <div className="footer-bottom__social">
         <div className="footer-social__telegram">
           <a href="t.me" className="tg-link">
-            <i className="fa-brands fa-telegram"></i>
+            <FaTelegram className="fa-brands" />
           </a>
         </div>
         <div className="footer-social__github">
           <a href="github.com" className="gh-link">
-            <i className="fa-brands fa-github"></i>
+            <FaGithub className="fa-brands" />
           </a>
         </div>
       </div>

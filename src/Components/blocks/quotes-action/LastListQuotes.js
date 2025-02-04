@@ -1,15 +1,20 @@
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import { gsap } from 'gsap';
-import { selectShareQuote } from '../../redux/slices/shareQuotesSlice';
+import {
+  selectShareQuote,
+  setLastQuotes,
+} from '../../redux/slices/shareQuotesSlice';
 import { useEffect, useRef } from 'react';
+import axios from 'axios';
+import { setError } from '../../redux/slices/errorSlice';
 
-const MAX_QUOTES = 4;
 const MAX_TEXT_LENGTH = 100;
 
 const LastListQuotes = () => {
   const lastQuotes = useSelector(selectShareQuote);
-  const quoteLimit = lastQuotes.slice(0, MAX_QUOTES);
+  console.log(lastQuotes);
   const listRef = useRef(null);
+  const dispatch = useDispatch();
 
   const limitTextLength = (text) => {
     if (text.length > MAX_TEXT_LENGTH) {
@@ -19,15 +24,25 @@ const LastListQuotes = () => {
   };
 
   useEffect(() => {
-    if (lastQuotes.length > 0) {
-      const firstElement = listRef.current?.firstElementChild;
-      if (firstElement) {
-        gsap.fromTo(
-          firstElement,
-          { opacity: 0, x: -100 }, // Начальное состояние
-          { opacity: 1, x: 0, duration: 1, ease: 'power2.out' } // Конечное состояние
-        );
+    (async () => {
+      try {
+        const res = await axios('http://localhost:5000/last-quotes');
+        console.log(res.data);
+        dispatch(setLastQuotes(res.data));
+      } catch (error) {
+        console.error('Ошибка при загрузке цитат', error);
+        dispatch(setError('Ошибка при загрузке цитат'));
       }
+    })();
+  }, [dispatch]);
+
+  useEffect(() => {
+    if (listRef.current?.firstElementChild) {
+      gsap.fromTo(
+        listRef.current.firstElementChild,
+        { opacity: 0, x: -100 }, // Начальное состояние
+        { opacity: 1, x: 0, duration: 1, ease: 'power2.out' } // Конечное состояние
+      );
     }
   }, [lastQuotes]);
 
@@ -39,9 +54,12 @@ const LastListQuotes = () => {
         </h3>
       </div>
       <ul className="last__list-qoutes" ref={listRef}>
-        {quoteLimit.map((quote, index) => {
+        {lastQuotes.map((quote) => {
           return (
-            <li className="last__list-qoutes_item" key={quote.id}>
+            <li
+              className="last__list-qoutes_item"
+              key={quote._id || quote.text}
+            >
               <div className="quotes-item">
                 <div className="quotes-item__content">
                   <div className="quotes-item__author">
@@ -59,7 +77,9 @@ const LastListQuotes = () => {
                         <i className="fa-regular fa-star icon"></i>
                       </div>
                       <div className="last-quotes__date">
-                        <p>{quote.date}</p>
+                        <p>
+                          {new Date(quote.date).toLocaleDateString('ru-Ru')}
+                        </p>
                       </div>
                     </div>
                   </div>

@@ -1,20 +1,24 @@
 import { createSlice } from '@reduxjs/toolkit';
 
-const initialState = [];
+const initialState = {
+  lastQuotes: [],
+};
 
 const shareQuotesSlice = createSlice({
   name: 'shareQuotes',
   initialState,
   reducers: {
-    setAddShareQuotes: (state, action) => {
-      state.unshift(action.payload);
+    setLastQuotes: (state, action) => {
+      state.lastQuotes = action.payload;
     },
-    resetForm: () => initialState,
+    setAddQuotes: (state, action) => {
+      state.lastQuotes = [action.payload, ...state.lastQuotes];
+    },
   },
 });
 
-export const { setAddShareQuotes, resetForm } = shareQuotesSlice.actions;
+export const { setAddQuotes, setLastQuotes } = shareQuotesSlice.actions;
 
-export const selectShareQuote = (state) => state.shareQuotes;
+export const selectShareQuote = (state) => state.shareQuotes.lastQuotes;
 
 export default shareQuotesSlice.reducer;

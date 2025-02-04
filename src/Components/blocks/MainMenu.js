@@ -11,18 +11,18 @@ const MainMenu = () => {
             </a>
           </li>
           <li className="menu__item">
-            <a href="#planet" className="menu__link">
+            <a href="#space-planet" className="menu__link">
               Поймать
             </a>
           </li>
           <li className="menu__item">
-            <a href="#share-quote" className="menu__link">
+            <a href="#quotes-action" className="menu__link">
               Поделиться
             </a>
           </li>
           <li className="menu__item">
-            <a href="#last-quotes" className="menu__link">
-              Последние
+            <a href="#popular" className="menu__link">
+              Популярные
             </a>
           </li>
         </ul>

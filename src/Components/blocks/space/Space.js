@@ -73,7 +73,7 @@ const Space = () => {
   }, []);
 
   return (
-    <section className="space">
+    <section className="space" id="space-planet">
       <h2 className="visually-hidden">орбиты</h2>
       <div className="space__content">
         <div className="space__orbit">

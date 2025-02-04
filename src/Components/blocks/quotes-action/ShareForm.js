@@ -1,36 +1,31 @@
 import { useState } from 'react';
+import axios from 'axios';
 import { useDispatch } from 'react-redux';
-import { v4 as uuidv4 } from 'uuid';
 import { FaArrowUp } from 'react-icons/fa6';
-import { setAddShareQuotes } from '../../redux/slices/shareQuotesSlice';
+import { setAddQuotes } from '../../redux/slices/shareQuotesSlice';
 import { setError } from '../../redux/slices/errorSlice';
 
 const ShareForm = () => {
   const [message, setMessage] = useState('');
   const dispatch = useDispatch();
 
-  const addQuote = (text) => {
-    const date = new Date();
-    const options = { day: 'numeric', month: 'long', year: 'numeric' };
-    const formattedDate = date.toLocaleDateString('ru-RU', options);
-
-    const newQuote = {
-      text,
-      date: formattedDate,
-      id: uuidv4(),
-    };
-
-    dispatch(setAddShareQuotes(newQuote));
-  };
-
-  const onSubmitHandler = (event) => {
+  const onSubmitHandler = async (event) => {
     event.preventDefault();
-    if (message) {
-      addQuote(message);
-      setMessage('');
-    } else {
+    if (!message.trim()) {
       dispatch(setError('Поле не должно быть пустым'));
+      return;
     }
+    try {
+      const res = await axios.post('http://localhost:5000/add-quote', {
+        text: message,
+        author: 'какой-то ноунейм',
+      });
+      dispatch(setAddQuotes(res.data));
+    } catch (error) {
+      console.error('Ошибка при отправке цитаты:', error);
+      dispatch(setError('При отправке произошла ошибка:'));
+    }
+    setMessage('');
   };
 
   return (

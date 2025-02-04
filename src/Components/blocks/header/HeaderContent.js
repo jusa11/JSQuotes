@@ -7,7 +7,7 @@ import {
   setDeleteQuote,
   selectQuote,
 } from '../../redux/slices/quotesSlice.js';
-import { setError } from '../../redux/slices/errorSlice';
+import { setError } from '../../redux/slices/errorSlice.js';
 import { generateRandomQuoteAPI } from '../../utils/generateRandomQuoteAPI.js';
 
 const HeaderContent = () => {

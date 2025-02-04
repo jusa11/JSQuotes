@@ -894,7 +894,7 @@ li {
     font-size: 13px;
   }
 }
-.popular {
+#popular {
   margin: 110px 0 0 0;
 }
 
@@ -1117,4 +1117,48 @@ li {
     display: flex;
     justify-content: center;
   }
+}
+.registration {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-color: #121212;
+}
+.registration .registration-form {
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+  background: #1e1e1e;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
+  width: 300px;
+}
+.registration .registration-form input {
+  margin-bottom: 15px;
+  padding: 10px;
+  border: 1px solid #444;
+  border-radius: 5px;
+  background: #2a2a2a;
+  color: #fff;
+  font-size: 14px;
+  transition: border 0.2s ease-in-out;
+}
+.registration .registration-form input:focus {
+  outline: none;
+  border-color: #00bcd4;
+  box-shadow: 0 0 5px rgba(0, 188, 212, 0.5);
+}
+.registration .registration-form .registration-form__btn {
+  padding: 10px;
+  background: #00bcd4;
+  border: none;
+  color: #fff;
+  font-size: 16px;
+  cursor: pointer;
+  border-radius: 5px;
+  transition: background 0.3s;
+}
+.registration .registration-form .registration-form__btn:hover {
+  background: #0097a7;
 }
