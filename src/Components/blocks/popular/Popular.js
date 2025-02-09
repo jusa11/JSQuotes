@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import axios from 'axios';
 import PopularCard from './PopularCard';
 import { setError } from '../../redux/slices/errorSlice';
+import { POPULAR_URL } from '../../../config';
 
 const Popular = () => {
   const [popularQuotes, setPopularQuotes] = useState([]);
@@ -9,7 +10,7 @@ const Popular = () => {
   useEffect(() => {
     (async () => {
       try {
-        const res = await axios.get('http://localhost:5000/popular-quotes');
+        const res = await axios.get(`http://localhost:5000/${POPULAR_URL}`);
         setPopularQuotes(res.data);
       } catch (error) {
         console.error('Ошибка при загрузке популярных цитат', error);

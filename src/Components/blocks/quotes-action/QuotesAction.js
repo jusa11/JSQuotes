@@ -1,5 +1,6 @@
 import ShareForm from './ShareForm';
-import LastListQuotes from './LastListQuotes';
+import ListQuotes from './ListQuotes';
+import { LAST_QUOTES_URL } from '../../../config';
 
 const QuotesAction = () => {
   return (
@@ -8,7 +9,7 @@ const QuotesAction = () => {
         <div className="quotes-action__row">
           <div className="quotes-action__column">
             <ShareForm />
-            <LastListQuotes />
+            <ListQuotes url={LAST_QUOTES_URL} />
           </div>
         </div>
       </div>

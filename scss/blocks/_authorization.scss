@@ -1,0 +1,64 @@
+.authorization {
+  background: #000000;
+  border-radius: 30px;
+  max-width: 500px;
+  padding: 60px;
+  box-shadow: 0px 0px 50px rgba(181, 181, 181, 0.1);
+
+  .form-text {
+    font-size: 14px;
+    color: $color-main;
+    padding: 20px 0;
+    line-height: 1.5em;
+  }
+  .authorization-form {
+    display: flex;
+    flex-direction: column;
+    padding: 20px 0 0 0;
+    border-radius: 10px;
+
+    input {
+      margin-bottom: 15px;
+      padding: 10px;
+      border: 1px solid #444;
+      border-radius: 5px;
+      background: #2a2a2a;
+      color: #fff;
+      font-size: 14px;
+      transition: border 0.2s ease-in-out;
+      box-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
+
+      &:focus {
+        outline: none;
+        border-color: #00bcd4;
+        box-shadow: 0 0 5px rgba(0, 188, 212, 0.5);
+      }
+    }
+
+    .form-btn {
+      padding: 10px;
+      background: $color-hover;
+      border: none;
+      color: $white;
+      font-size: 16px;
+      cursor: pointer;
+      border-radius: 5px;
+      transition: background 0.3s;
+
+      &:hover {
+        background: #0097a7;
+      }
+    }
+    .another-form {
+      display: inline-block;
+      font-size: 14px;
+      color: $white;
+      text-align: center;
+      padding: 20px 0 0 0;
+      cursor: pointer;
+      &:hover {
+        color: #0097a7;
+      }
+    }
+  }
+}

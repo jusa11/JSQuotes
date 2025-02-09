@@ -465,7 +465,7 @@ li {
 }
 
 .menu__link:hover {
-  color: #8688f2;
+  color: #8d1ea2;
 }
 
 @media (max-width: 767.98px) {
@@ -1070,7 +1070,7 @@ li {
 }
 
 .fa-brands:hover {
-  color: #8688f2;
+  color: #8d1ea2;
 }
 
 @media (max-width: 479.98px) {
@@ -1110,7 +1110,7 @@ li {
 }
 
 @media (max-width: 767.98px) {
-  .join__btn {
+  .header-join {
     display: none;
   }
   .join-btn__mobile {
@@ -1118,23 +1118,26 @@ li {
     justify-content: center;
   }
 }
-.registration {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
-  background-color: #121212;
+.authorization {
+  background: #000000;
+  border-radius: 30px;
+  max-width: 500px;
+  padding: 60px;
+  box-shadow: 0px 0px 50px rgba(181, 181, 181, 0.1);
 }
-.registration .registration-form {
+.authorization .form-text {
+  font-size: 14px;
+  color: #a9a9a9;
+  padding: 20px 0;
+  line-height: 1.5em;
+}
+.authorization .authorization-form {
   display: flex;
   flex-direction: column;
-  padding: 20px;
-  background: #1e1e1e;
+  padding: 20px 0 0 0;
   border-radius: 10px;
-  box-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
-  width: 300px;
 }
-.registration .registration-form input {
+.authorization .authorization-form input {
   margin-bottom: 15px;
   padding: 10px;
   border: 1px solid #444;
@@ -1143,15 +1146,16 @@ li {
   color: #fff;
   font-size: 14px;
   transition: border 0.2s ease-in-out;
+  box-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
 }
-.registration .registration-form input:focus {
+.authorization .authorization-form input:focus {
   outline: none;
   border-color: #00bcd4;
   box-shadow: 0 0 5px rgba(0, 188, 212, 0.5);
 }
-.registration .registration-form .registration-form__btn {
+.authorization .authorization-form .form-btn {
   padding: 10px;
-  background: #00bcd4;
+  background: #8d1ea2;
   border: none;
   color: #fff;
   font-size: 16px;
@@ -1159,6 +1163,167 @@ li {
   border-radius: 5px;
   transition: background 0.3s;
 }
-.registration .registration-form .registration-form__btn:hover {
+.authorization .authorization-form .form-btn:hover {
   background: #0097a7;
+}
+.authorization .authorization-form .another-form {
+  display: inline-block;
+  font-size: 14px;
+  color: #fff;
+  text-align: center;
+  padding: 20px 0 0 0;
+  cursor: pointer;
+}
+.authorization .authorization-form .another-form:hover {
+  color: #0097a7;
+}
+
+.popup__card {
+  width: 400px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+}
+
+.popup__card_title {
+  display: flex;
+  align-items: center;
+}
+
+.popup__card_logo img {
+  max-height: 52px;
+}
+
+.popup__rang {
+  margin: 0 0 0 10px;
+  font-size: 12px;
+  color: #fff;
+  padding: 10px 15px;
+  background-color: #ff6161;
+  border-radius: 24px;
+}
+
+.popup__card_content {
+  margin: 15px 0 0 0;
+  flex: 1 1 auto;
+}
+
+.popup__card_name {
+  color: #fff;
+}
+
+.popup__card_text {
+  color: #a9a9a9;
+  margin: 15px 0 0 0;
+}
+
+.popup__card_handler {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 20px 0 0 0;
+}
+
+.popup__card_infavorite {
+  font-size: 12px;
+  padding: 7px 15px;
+}
+
+.popup-close {
+  margin: 15px 0 0 0;
+  padding: 10px 0;
+}
+
+@media (max-width: 479.98px) {
+  .card {
+    padding: 30px 15px 30px 15px;
+  }
+}
+@media (max-width: 767.98px) {
+  .popup__card {
+    max-height: 350px;
+  }
+}
+.profile {
+  max-width: 100%;
+  background-color: #262525;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 5% 65% auto;
+  padding: 20px;
+  gap: 20px;
+  border-radius: 24px;
+  font-size: 16px;
+  color: #fff;
+}
+
+.profile-sidebar {
+  border-radius: 20px;
+}
+
+.profile-sidebar__navigation {
+  display: grid;
+  justify-content: center;
+}
+
+.sidebar-navigation__list {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 3fr;
+  justify-content: center;
+  gap: 30px;
+  padding: 20px 0 0 0;
+}
+
+.sidebar-navigation__account {
+  position: relative;
+  width: 30px;
+}
+
+.sidebar-navigation__account img {
+  width: 100%;
+}
+
+.navigation__item-icon {
+  font-size: 25px;
+  color: #fff;
+  transition: color 0.2s ease;
+}
+
+.navigation__item-icon:hover {
+  color: #8d1ea2;
+}
+
+.profile-content {
+  display: grid;
+  gap: 20px;
+}
+
+.profile-content__main {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(auto, 33.33%));
+  grid-template-rows: repeat(2, 1fr);
+  gap: 20px;
+}
+
+.profile-content__bottom {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+}
+
+.profile-card {
+  height: 100%;
+  background-color: rgba(29, 28, 32, 0.7);
+  padding: 10px;
+  border-radius: 20px;
+}
+
+.content-main__card_big {
+  grid-column: span 3;
+}
+
+.profile-rigth {
+  display: grid;
+  grid-template-rows: repeat(2, 1fr);
+  align-self: start;
+  gap: 20px;
 }

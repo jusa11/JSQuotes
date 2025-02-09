@@ -5,9 +5,10 @@ const Role = require('../models/Role.js');
 const jwt = require('jsonwebtoken');
 const secret = process.env.JWT_SECRET;
 
-const generateAccesToken = (id, roles) => {
+const generateAccesToken = (id, username, roles) => {
   const payload = {
-    id,
+    _id: id,
+    username,
     roles,
   };
   return jwt.sign(payload, secret, { expiresIn: '24h' });
@@ -58,7 +59,8 @@ class AuthController {
       if (!validPassword) {
         return res.status(400).json({ message: 'Введен не верный пароль' });
       }
-      const token = generateAccesToken(user._id, user.roles);
+      const token = generateAccesToken(user._id, user.username, user.roles);
+
       return res.json({ token });
     } catch (error) {
       console.error('Ошибка при авторизации:', error);

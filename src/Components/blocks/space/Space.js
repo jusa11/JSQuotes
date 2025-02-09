@@ -1,6 +1,12 @@
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState, useCallback } from 'react';
+import { useDispatch } from 'react-redux';
+import { MdFavorite } from 'react-icons/md';
 import { gsap } from 'gsap';
 import { MotionPathPlugin } from 'gsap/MotionPathPlugin';
+import Popup from 'reactjs-popup';
+import { setError } from '../../redux/slices/errorSlice.js';
+import { generateRandomQuoteAPI } from '../../utils/generateRandomQuoteAPI';
+
 import Orbit from './Orbit';
 import Planet from './Planet';
 
@@ -9,6 +15,9 @@ gsap.registerPlugin(MotionPathPlugin);
 const Space = () => {
   const orbitRef = useRef([]);
   const planetRef = useRef([]);
+  const dispatch = useDispatch();
+  const [currentQuote, setCurrentQuote] = useState({}); // сделать потом состояние в redux
+  const [isPopup, setPopup] = useState(false);
 
   const orbitData = [
     {
@@ -42,15 +51,32 @@ const Space = () => {
       d: 'M151.445 301.961C234.288 301.961 301.445 234.58 301.445 151.461C301.445 68.3423 234.288 0.961182 151.445 0.961182C68.6026 0.961182 1.44531 68.3423 1.44531 151.461C1.44531 234.58 68.6026 301.961 151.445 301.961Z',
     },
   ];
-
   const randomSpeed = () => Math.floor(Math.random() * (10 - 5) + 5);
   const randomPosition = () => Math.random() * (0.9 - 0.1) + 0.1;
+
+  const catchThink = useCallback(async () => {
+    try {
+      const newQuote = await generateRandomQuoteAPI();
+      if (newQuote) {
+        setCurrentQuote(newQuote);
+        setPopup(true);
+      } else {
+        console.error('API вернул невалидное значение');
+      }
+    } catch (error) {
+      setCurrentQuote(false);
+      console.log('error ' + error);
+      dispatch(setError(error.message));
+    }
+  }, [dispatch]);
 
   useEffect(() => {
     const ctx = gsap.context(() => {
       planetRef.current.forEach((planet, index) => {
         const path = orbitRef.current[index];
         if (path && planet) {
+          planet.addEventListener('click', catchThink);
+
           gsap
             .to(planet, {
               duration: randomSpeed(),
@@ -70,7 +96,7 @@ const Space = () => {
     });
 
     return () => ctx.revert(); // Очистка анимаций
-  }, []);
+  }, [catchThink]);
 
   return (
     <section className="space" id="space-planet">
@@ -102,6 +128,49 @@ const Space = () => {
           );
         })}
       </div>
+      {/* Popup */}
+      <Popup
+        open={isPopup}
+        modal
+        overlayStyle={{ background: 'rgba(0, 0, 0, 0.7)' }}
+        onClose={() => setPopup(false)}
+      >
+        <div className="popup__card card">
+          <div className="popup__card_title">
+            <div className="popup__card_logo">
+              <img src="src/img/profile-logo.png" alt="Logo" />
+            </div>
+            <div className="popup__rang">
+              <p>Шестерка</p>
+            </div>
+          </div>
+          <div className="popup__card_content">
+            {currentQuote ? (
+              <>
+                <div className="popup__card_name">{currentQuote.author}</div>
+                <div className="popup__card_text">
+                  <p>
+                    <i>{currentQuote.text}</i>
+                  </p>
+                </div>
+              </>
+            ) : (
+              <p>Загрузка...</p>
+            )}
+          </div>
+          <div className="popup__card_handler">
+            <button className="popup__card_infavorite btn">
+              <MdFavorite />
+            </button>
+            <div className="rating">
+              <button onClick={() => 'click'}>❤️ {currentQuote.likes}</button>
+            </div>
+          </div>
+          <button onClick={() => setPopup(false)} className="popup-close btn">
+            Закрыть
+          </button>
+        </div>
+      </Popup>
     </section>
   );
 };

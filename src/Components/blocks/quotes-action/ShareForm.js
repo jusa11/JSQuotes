@@ -1,13 +1,15 @@
 import { useState } from 'react';
 import axios from 'axios';
-import { useDispatch } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import { FaArrowUp } from 'react-icons/fa6';
-import { setAddQuotes } from '../../redux/slices/shareQuotesSlice';
+import { setAddQuotes } from '../../redux/slices/displayQuotesSlice';
 import { setError } from '../../redux/slices/errorSlice';
+import { selectUser } from '../../redux/slices/userSlice';
 
 const ShareForm = () => {
   const [message, setMessage] = useState('');
   const dispatch = useDispatch();
+  const { username, userId } = useSelector(selectUser);
 
   const onSubmitHandler = async (event) => {
     event.preventDefault();
@@ -15,10 +17,18 @@ const ShareForm = () => {
       dispatch(setError('Поле не должно быть пустым'));
       return;
     }
+
     try {
+      if (!username) {
+        dispatch(
+          setError('Для того, чтобы поделиться мыслями, нужно авторизоваться')
+        );
+        return;
+      }
       const res = await axios.post('http://localhost:5000/add-quote', {
         text: message,
-        author: 'какой-то ноунейм',
+        author: username,
+        userId: userId,
       });
       dispatch(setAddQuotes(res.data));
     } catch (error) {

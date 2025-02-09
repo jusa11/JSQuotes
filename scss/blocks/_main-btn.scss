@@ -18,7 +18,7 @@
 
 .main__btn:hover {
   background: linear-gradient(#222222, #131313) padding-box,
-    linear-gradient(29deg, $color-btn, #090edb) border-box;
+    linear-gradient(29deg, $color-hover, #090edb) border-box;
   color: #8688f2;
 }
 
@@ -27,7 +27,7 @@
 }
 
 @include mediaBigMobile {
-  .join__btn {
+  .header-join {
     display: none;
   }
   .join-btn__mobile {

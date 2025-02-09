@@ -1,0 +1,7 @@
+export const MAX_TEXT_LENGTH = 100;
+export const MAX_QUOTES = 4;
+export const POPULAR_URL = 'popular-quotes';
+export const LAST_QUOTES_URL = 'last-quotes';
+export const QUOTES_URL = 'quotes/:username';
+export const LIKED_QUOTES = 'liked-quotes/:username';
+export const LIKE = 'like/:quoteId';
