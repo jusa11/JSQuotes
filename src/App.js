@@ -1,6 +1,3 @@
-// import QuoteBlock from './Components/QuoteBlock';
-// import FavoriteQuotesCards from './Components/FavoriteQuotesCards';
-// import Filter from './Components/Filter';
 import { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { setUser } from './Components/redux/slices/userSlice';
@@ -24,7 +21,7 @@ function App() {
     if (token) {
       try {
         const decode = jwtDecode(token);
-        dispatch(setUser({ username: decode.username }));
+        dispatch(setUser({ username: decode.username, userId: decode._id }));
       } catch (error) {
         setError('Ошибка декодирования токена');
         console.log(error);
@@ -35,7 +32,7 @@ function App() {
     <div className="app">
       <Router>
         <Stars />
-
+      
         <Routes>
           <Route path="/profile" element={<Profile />} />
           <Route

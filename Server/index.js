@@ -9,16 +9,14 @@ const Quote = require('./models/Quote.js');
 const User = require('./models/User.js');
 const Favorite = require('./models/Favorite.js');
 const authMiddleware = require('./middleware/authMiddleware.js');
+const { header } = require('express-validator');
 
 app.use(cors());
 app.use(express.json());
 app.use('/auth', authRouter);
 
 mongoose
-  .connect(process.env.MONGO_URI, {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-  })
+  .connect(process.env.MONGO_URI)
   .then(() => console.log('MongoDB connected'))
   .catch((err) => console.error('MongoDB connection error', err));
 
@@ -77,6 +75,10 @@ app.get('/last-quotes', async (req, res) => {
 app.post('/add-quote', async (req, res) => {
   const { text, author, userId } = req.body;
 
+  if (!text || !author || !userId) {
+    return res.status(400).json({ message: 'Все поля обязательны' });
+  }
+
   try {
     const newQuote = new Quote({
       text,
@@ -102,7 +104,7 @@ app.get('/quotes/:username', async (req, res) => {
       .limit(4);
 
     if (!userQuotes || userQuotes.length === 0) {
-      return res.status(404).json({ msg: 'No quotes found' }); // Если нет цитат, возвращаем ошибку
+      return res.status(200).json(userQuotes);
     }
     res.json(userQuotes);
   } catch (error) {
@@ -115,15 +117,14 @@ app.get('/quotes/:username', async (req, res) => {
 app.get('/liked-quotes/:username', async (req, res) => {
   try {
     const { username } = req.params;
-    console.log(username);
 
-    const user = await User.findOne({ username })
-      .sort({ date: -1 })
-      .limit(4)
-      .populate('likedQuotes');
+    const user = await User.findOne({ username }).populate({
+      path: 'likedQuotes',
+      options: { sort: { date: -1 }, limit: 4 },
+    });
 
     if (!user) {
-      return res.status(404).json({ message: 'Пользователь не найден' });
+      return res.json({ message: 'Пользователь не найден' });
     }
 
     res.json(user.likedQuotes);
@@ -152,16 +153,16 @@ app.post('/like/:quoteId', authMiddleware, async (req, res) => {
     const isLiked = user.likedQuotes.includes(quoteId);
     if (isLiked) {
       user.likedQuotes = user.likedQuotes.filter(
-        (id) => id.toString() !== quoteId
+        (id) => id.toString() !== quoteId.toString()
       );
       quote.likes -= 1;
     } else {
-      user.likedQuotes.push(quoteId);
+      user.likedQuotes.unshift(quoteId);
       quote.likes += 1;
     }
     await user.save();
     await quote.save();
-    console.log(quote.likes);
+
     res.json({ succes: true, liked: !isLiked, quantity: quote.likes });
   } catch (error) {
     res.status(500).json({ message: 'Ошибка сервера' });
@@ -177,6 +178,42 @@ app.get('/popular-quotes', async (req, res) => {
   } catch (error) {
     console.error(error);
     res.status(500).send('Server error');
+  }
+});
+
+// Поиск
+app.get('/search', async (req, res) => {
+  try {
+    const { query, type, username } = req.query;
+
+    if (!query) {
+      return res.status(400).json({ error: 'Введите поисковый запрос' });
+    }
+    let filter = {};
+
+    if (type === 'all') {
+      filter = { text: { $regex: query, $options: 'i' } };
+    }
+
+    if (type === 'user' && username) {
+      filter = { author: username, text: { $regex: query, $options: 'i' } };
+    }
+
+    if (type === 'liked' && username) {
+      const user = await User.findOne({ username }).populate('likedQuotes');
+      if (!user) {
+        return res.status(404).json({ error: 'Пользователь не найден' });
+      }
+      filter = {
+        _id: { $in: user.likedQuotes },
+        text: { $regex: query, $options: 'i' },
+      };
+    }
+
+    const quotes = await Quote.find(filter);
+    res.json(quotes);
+  } catch (error) {
+    res.status(500).json({ error: 'Ошибка сервера' });
   }
 });
 

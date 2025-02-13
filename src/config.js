@@ -5,3 +5,4 @@ export const LAST_QUOTES_URL = 'last-quotes';
 export const QUOTES_URL = 'quotes/:username';
 export const LIKED_QUOTES = 'liked-quotes/:username';
 export const LIKE = 'like/:quoteId';
+export const SEARCH = 'http://localhost:5000/search';

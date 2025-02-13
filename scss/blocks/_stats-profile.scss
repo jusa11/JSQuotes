@@ -1,0 +1,38 @@
+.stats {
+  position: relative;
+  width: 218px;
+  height: 251px;
+
+}
+
+.stats-decor_1 {
+  position: absolute;
+  width: 221px;
+  height: 200px;
+  top: 0%;
+  left: 11%;
+
+  background-color: #2f847f;
+  transform: rotate(34deg);
+  z-index: 1;
+  border-radius: 36px;
+}
+.stats-decor_2 {
+  position: absolute;
+  transform: rotate(16deg);
+  top: 0%;
+  left: 7%;
+  width: 218px;
+  height: 205px;
+  background-color: #c68e3c;
+  border-radius: 36px;
+  z-index: 2;
+}
+.stats-decor_3 {
+  position: absolute;
+  width: 218px;
+  z-index: 3;
+  height: 251px;
+  background: linear-gradient(138deg, #7b20e2, #2b1043);
+  border-radius: 36px;
+}

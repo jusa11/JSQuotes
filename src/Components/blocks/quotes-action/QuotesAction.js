@@ -9,7 +9,10 @@ const QuotesAction = () => {
         <div className="quotes-action__row">
           <div className="quotes-action__column">
             <ShareForm />
-            <ListQuotes url={LAST_QUOTES_URL} />
+            <ListQuotes
+              url={LAST_QUOTES_URL}
+              title={'Последние мысли Джейсона Стетхема'}
+            />
           </div>
         </div>
       </div>

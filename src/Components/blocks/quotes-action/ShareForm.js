@@ -10,12 +10,13 @@ const ShareForm = () => {
   const [message, setMessage] = useState('');
   const dispatch = useDispatch();
   const { username, userId } = useSelector(selectUser);
+  console.log(userId);
 
   const onSubmitHandler = async (event) => {
     event.preventDefault();
     if (!message.trim()) {
       dispatch(setError('Поле не должно быть пустым'));
-      return;
+      return;	
     }
 
     try {
@@ -30,6 +31,7 @@ const ShareForm = () => {
         author: username,
         userId: userId,
       });
+      console.log(res);
       dispatch(setAddQuotes(res.data));
     } catch (error) {
       console.error('Ошибка при отправке цитаты:', error);

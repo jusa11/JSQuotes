@@ -9,10 +9,6 @@
   border-radius: 32px;
 }
 
-.action__card_text {
-  flex: 1 1 auto;
-}
-
 @include mediaSmallMobile {
   .card {
     padding: 30px 15px 30px 15px;

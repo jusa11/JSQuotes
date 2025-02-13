@@ -29,7 +29,7 @@ import {
   LIKE,
 } from '../../../config';
 
-const ListQuotes = ({ url }) => {
+const ListQuotes = ({ url, title }) => {
   const lastQuotes = useSelector(selectDisplayLastQuotes);
   const popularQuotes = useSelector(selectDisplayPopularQuotes);
   const userQuotes = useSelector(selectDisplayUserQuotes);
@@ -45,14 +45,26 @@ const ListQuotes = ({ url }) => {
       return;
     }
     try {
-      await axios.post(
+      const res = await axios.post(
         `http://localhost:5000/${LIKE.replace(':quoteId', quoteId)}`,
         {},
         {
           headers: { Authorization: `Bearer ${token}` },
         }
       );
-      dispatch(toggleLike(quoteId));
+      const { quantity } = res.data;
+
+      const allQuotes = [
+        ...lastQuotes,
+        ...popularQuotes,
+        ...userQuotes,
+        ...likedQuotes,
+      ];
+      const foundQuote = allQuotes.find((quote) => quote._id === quoteId);
+
+      if (foundQuote) {
+        dispatch(toggleLike({ ...foundQuote, likes: quantity }));
+      }
     } catch (error) {
       dispatch(setError('Ошибка при лайке цитаты'));
       console.error('Ошибка при лайке цитаты:', error);
@@ -68,13 +80,13 @@ const ListQuotes = ({ url }) => {
   }, [url, lastQuotes, popularQuotes, userQuotes, username, likedQuotes]);
 
   const quotes = getQuotes();
-  const limitQuotes = quotes.slice(0, MAX_QUOTES);
+  const limitQuotes = quotes.length > 0 ? quotes.slice(0, MAX_QUOTES) : 'Пусто';
 
   const limitTextLength = (text) => {
-    if (text.length > MAX_TEXT_LENGTH) {
-      return `${text.slice(0, MAX_TEXT_LENGTH)}...`;
-    }
-    return text;
+    if (!text) return '';
+    return text.length > MAX_TEXT_LENGTH
+      ? `${text.slice(0, MAX_TEXT_LENGTH)}...`
+      : text;
   };
 
   useEffect(() => {
@@ -93,14 +105,16 @@ const ListQuotes = ({ url }) => {
           dispatch(setQuotesUser(res.data));
         }
         if (url === LIKED_QUOTES.replace(':username', username)) {
-          dispatch(setLikedQuotes(res.data));
+          if (JSON.stringify(res.data) !== JSON.stringify(likedQuotes)) {
+            dispatch(setLikedQuotes(res.data));
+          }
         }
       } catch (error) {
         console.error('Ошибка при загрузке цитат', error);
         dispatch(setError('Ошибка при загрузке цитат'));
       }
     })();
-  }, [dispatch, url, username]);
+  }, [dispatch, url, username, likedQuotes]);
 
   useEffect(() => {
     if (listRef.current?.firstElementChild) {
@@ -115,45 +129,47 @@ const ListQuotes = ({ url }) => {
   return (
     <div className="quotes-action__last-quotes quotes-action__card card">
       <div className="action__card_text">
-        <h3 className="action__card_title card-title">
-          Последние мысли Джейсона Стетхема
-        </h3>
+        <h3 className="action__card_title card-title">{title}</h3>
       </div>
       <ul className="last__list-qoutes" ref={listRef}>
-        {limitQuotes.map((quote) => {
-          return (
-            <li
-              className="last__list-qoutes_item"
-              key={quote._id || quote.text}
-            >
-              <div className="quotes-item">
-                <div className="quotes-item__content">
-                  <div className="quotes-item__author">
-                    <div className="quotes-author__profile">
-                      <div className="profile__logo">
-                        <img src="src/img/profile-logo.png" alt="Logo" />
+        {typeof limitQuotes === 'string' ? (
+          <p>Пусто</p>
+        ) : (
+          limitQuotes.map((quote, index) => {
+            return (
+              <li
+                className="last__list-qoutes_item"
+                key={quote._id || quote.text}
+              >
+                <div className="quotes-item">
+                  <div className="quotes-item__content">
+                    <div className="quotes-item__author">
+                      <div className="quotes-author__profile">
+                        <div className="profile__logo">
+                          <img src="src/img/profile-logo.png" alt="Logo" />
+                        </div>
                       </div>
                     </div>
-                  </div>
-                  <div className="quotes-item__quote">
-                    <p>{limitTextLength(quote.text)}</p>
-                    <div className="quotes-item__quote_botom">
-                      <div className="last-quotes__handler">
-                        <AiFillLike onClick={() => handleLike(quote._id)} />
-													
-                      </div>
-                      <div className="last-quotes__date">
-                        <p>
-                          {new Date(quote.date).toLocaleDateString('ru-Ru')}
-                        </p>
+                    <div className="quotes-item__quote">
+                      <p>{limitTextLength(quote.text)}</p>
+                      <div className="quotes-item__quote_botom">
+                        <div className="last-quotes__handler">
+                          <AiFillLike onClick={() => handleLike(quote._id)} />
+                          <p>{quote.likes}</p>
+                        </div>
+                        <div className="last-quotes__date">
+                          <p>
+                            {new Date(quote.date).toLocaleDateString('ru-Ru')}
+                          </p>
+                        </div>
                       </div>
                     </div>
                   </div>
                 </div>
-              </div>
-            </li>
-          );
-        })}
+              </li>
+            );
+          })
+        )}
       </ul>
     </div>
   );
