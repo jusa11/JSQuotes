@@ -5,8 +5,8 @@ import { MdFavorite } from 'react-icons/md';
 import { FiShare } from 'react-icons/fi';
 import { ImSwitch } from 'react-icons/im';
 import { IoMdSettings } from 'react-icons/io';
-import ListQuotes from '../quotes-action/ListQuotes';
-import SearchForm from '../../SearchForm';
+import ListQuotes from '../../others/ListQuote';
+import SearchForm from '../../others/SearchForm';
 import StatsProfile from './StatsProfile';
 import { logout, selectUser } from '../../redux/slices/userSlice';
 import {

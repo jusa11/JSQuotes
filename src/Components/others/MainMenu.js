@@ -1,4 +1,4 @@
-import Burger from './Burger';
+import Burger from '../others/Burger';
 
 const MainMenu = () => {
   return (

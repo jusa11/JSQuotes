@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { setError } from '../../redux/slices/errorSlice';
 import axios from 'axios';
-import Logo from '../Logo';
+import Logo from '../../others/Logo';
 
 const Registration = ({ onSwitch, onClose }) => {
   const [form, setForm] = useState({

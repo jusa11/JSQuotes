@@ -3,9 +3,9 @@ import { useDispatch } from 'react-redux';
 import { setUser } from './Components/redux/slices/userSlice';
 import { jwtDecode } from 'jwt-decode';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import Error from './Components/Error';
+import Error from './Components/others/Error';
 import Header from './Components/blocks/header/Header';
-import Stars from './Components/Stars';
+import Stars from './Components/others/Stars';
 import Space from './Components/blocks/space/Space';
 import QuotesAction from './Components/blocks/quotes-action/QuotesAction';
 import Popular from './Components/blocks/popular/Popular';
@@ -32,7 +32,7 @@ function App() {
     <div className="app">
       <Router>
         <Stars />
-      
+
         <Routes>
           <Route path="/profile" element={<Profile />} />
           <Route

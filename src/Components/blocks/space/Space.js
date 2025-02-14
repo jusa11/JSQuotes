@@ -5,7 +5,7 @@ import { gsap } from 'gsap';
 import { MotionPathPlugin } from 'gsap/MotionPathPlugin';
 import Popup from 'reactjs-popup';
 import { setError } from '../../redux/slices/errorSlice.js';
-import { generateRandomQuoteAPI } from '../../utils/generateRandomQuoteAPI';
+import { generateRandomQuoteAPI } from '../../../utils/generateRandomQuoteAPI';
 
 import Orbit from './Orbit';
 import Planet from './Planet';

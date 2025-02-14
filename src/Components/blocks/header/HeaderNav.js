@@ -3,8 +3,8 @@ import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import Popup from 'reactjs-popup';
 import { selectUser } from '../../redux/slices/userSlice';
-import MainMenu from '../MainMenu';
-import Logo from '../Logo';
+import MainMenu from '../../others/MainMenu';
+import Logo from '../../others/Logo';
 import AuthPopup from '../authorization/AuthPopup';
 
 const HeaderNav = () => {

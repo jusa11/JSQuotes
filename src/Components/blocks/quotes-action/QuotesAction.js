@@ -1,5 +1,5 @@
 import ShareForm from './ShareForm';
-import ListQuotes from './ListQuotes';
+import ListQuotes from '../../others/ListQuote';
 import { LAST_QUOTES_URL } from '../../../config';
 
 const QuotesAction = () => {

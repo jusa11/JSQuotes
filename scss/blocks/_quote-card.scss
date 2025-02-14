@@ -1,0 +1,56 @@
+.quotes-block__card_title {
+  display: flex;
+  align-items: center;
+}
+.quotes-block__card_logo img {
+  max-height: 52px;
+}
+
+.quotes-block__card_rang {
+  margin: 0 0 0 10px;
+  font-size: 12px;
+  color: #fff;
+  padding: 10px 15px;
+  background-color: #ff6161;
+  border-radius: 24px;
+}
+.quotes-block__card_content {
+  margin: 15px 0 0 0;
+  flex: 1 1 auto;
+}
+.quotes-block__card_name {
+  color: $white;
+}
+.quotes-block__card_text {
+  color: $color-main;
+  margin: 15px 0 0 0;
+}
+.quotes-block__card_handler {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 40px 0 0 0;
+}
+.quotes-block__card_infavorite {
+  font-size: 12px;
+  padding: 7px 15px;
+}
+
+.quotes-block__row {
+  display: flex;
+  flex-direction: column;
+}
+.quotes-block__column {
+  display: flex;
+}
+.quotes-block__card {
+  background-image: url('/src/img/bg-cards-popular.png');
+  background-position: right bottom;
+  width: 100%;
+}
+
+@include mediaBigMobile {
+  .quotes-block__card {
+    max-height: 350px;
+  }
+}

@@ -5,21 +5,7 @@
   font-size: 60px;
   line-height: 86px;
 }
-.popular__row {
-  display: flex;
-  margin: -15px -15px;
-  flex-direction: column;
-}
-.popular__column {
-  padding: 15px 15px;
-  display: flex;
-  flex: 1 1 33%;
-}
-.popular__card {
-  background-image: url('/src/img/bg-cards-popular.png');
-  background-position: right bottom;
-  width: 100%;
-}
+
 .popular__content {
   margin: 50px 0 0 0;
 }

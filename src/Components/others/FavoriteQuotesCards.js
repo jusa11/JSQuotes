@@ -4,7 +4,7 @@ import {
   setdeleteAllQuote,
   setDeleteQuote,
   selectQuote,
-} from './redux/slices/quotesSlice';
+} from '../redux/slices/quotesSlice';
 import {
   selectTextFilter,
   selectAuthorFilter,

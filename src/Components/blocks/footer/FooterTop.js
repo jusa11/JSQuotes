@@ -1,5 +1,5 @@
-import MainMenu from '../MainMenu';
-import Logo from '../Logo';
+import MainMenu from '../../others/MainMenu';
+import Logo from '../../others/Logo';
 
 const FooterTop = () => {
   return (

@@ -1,5 +1,6 @@
+import { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { selectUser } from './redux/slices/userSlice';
+import { selectUser } from '../redux/slices/userSlice';
 import {
   selectQuery,
   selectResults,
@@ -7,9 +8,9 @@ import {
   setQuery,
   setResult,
   setType,
-} from './redux/slices/searchSlice';
-import { fetchSearch } from './redux/slices/searchSlice';
-import { useState } from 'react';
+} from '../redux/slices/searchSlice';
+import { fetchSearch } from '../redux/slices/searchSlice';
+import QuotesCard from './QuotesCard';
 
 const SearchForm = () => {
   const { username } = useSelector(selectUser);
@@ -86,12 +87,7 @@ const SearchForm = () => {
       </div>
 
       {results.map((quote) => (
-        <div
-          className="quotes-action__last-quotes quotes-action__card card"
-          key={quote._id}
-        >
-          {quote.text}
-        </div>
+        <QuotesCard className="card" quote={quote} key={quote._id} />
       ))}
     </>
   );

@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { ToastContainer, toast } from 'react-toastify';
-import { selectErrorMessage, clearError } from './redux/slices/errorSlice';
+import { selectErrorMessage, clearError } from '../redux/slices/errorSlice';
 
 const Error = () => {
   const dispatch = useDispatch();

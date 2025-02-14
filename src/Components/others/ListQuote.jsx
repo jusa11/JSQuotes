@@ -1,5 +1,6 @@
 import { useSelector, useDispatch } from 'react-redux';
-import { useCallback } from 'react';
+import { useEffect, useRef, useCallback } from 'react';
+import axios from 'axios';
 import { gsap } from 'gsap';
 import { AiFillLike } from 'react-icons/ai';
 import {
@@ -9,25 +10,22 @@ import {
   setLastQuotes,
   setPopularQuotes,
   setQuotesUser,
-} from '../../redux/slices/displayQuotesSlice';
+} from '../redux/slices/displayQuotesSlice';
 import {
   setLikedQuotes,
   selectLikedQuotes,
-  toggleLike,
-} from '../../redux/slices/likedQuotesSlice';
-import { selectUser } from '../../redux/slices/userSlice';
-import { useEffect, useRef } from 'react';
-import axios from 'axios';
-import { setError } from '../../redux/slices/errorSlice';
+} from '../redux/slices/likedQuotesSlice';
+import { selectUser } from '../redux/slices/userSlice';
+import { setError } from '../redux/slices/errorSlice';
 import {
-  MAX_TEXT_LENGTH,
   MAX_QUOTES,
   POPULAR_URL,
   LAST_QUOTES_URL,
   QUOTES_URL,
   LIKED_QUOTES,
-  LIKE,
-} from '../../../config';
+} from '../../config';
+import { limitTextLength } from '../../utils/limitTextLength';
+import useHandleLike from '../../Hooks/useHandleLike';
 
 const ListQuotes = ({ url, title }) => {
   const lastQuotes = useSelector(selectDisplayLastQuotes);
@@ -37,39 +35,7 @@ const ListQuotes = ({ url, title }) => {
   const listRef = useRef(null);
   const dispatch = useDispatch();
   const { username } = useSelector(selectUser);
-
-  const handleLike = async (quoteId) => {
-    const token = localStorage.getItem('token');
-    if (!token) {
-      console.error('Нет токена! Пользователь не авторизован.');
-      return;
-    }
-    try {
-      const res = await axios.post(
-        `http://localhost:5000/${LIKE.replace(':quoteId', quoteId)}`,
-        {},
-        {
-          headers: { Authorization: `Bearer ${token}` },
-        }
-      );
-      const { quantity } = res.data;
-
-      const allQuotes = [
-        ...lastQuotes,
-        ...popularQuotes,
-        ...userQuotes,
-        ...likedQuotes,
-      ];
-      const foundQuote = allQuotes.find((quote) => quote._id === quoteId);
-
-      if (foundQuote) {
-        dispatch(toggleLike({ ...foundQuote, likes: quantity }));
-      }
-    } catch (error) {
-      dispatch(setError('Ошибка при лайке цитаты'));
-      console.error('Ошибка при лайке цитаты:', error);
-    }
-  };
+  const handleLike = useHandleLike();
 
   const getQuotes = useCallback(() => {
     if (url === 'last-quotes') return lastQuotes;
@@ -81,13 +47,6 @@ const ListQuotes = ({ url, title }) => {
 
   const quotes = getQuotes();
   const limitQuotes = quotes.length > 0 ? quotes.slice(0, MAX_QUOTES) : 'Пусто';
-
-  const limitTextLength = (text) => {
-    if (!text) return '';
-    return text.length > MAX_TEXT_LENGTH
-      ? `${text.slice(0, MAX_TEXT_LENGTH)}...`
-      : text;
-  };
 
   useEffect(() => {
     if (!username) return;

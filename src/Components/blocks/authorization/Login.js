@@ -5,7 +5,7 @@ import { jwtDecode } from 'jwt-decode';
 import { useDispatch } from 'react-redux';
 import { setError } from '../../redux/slices/errorSlice';
 import { setUser } from '../../redux/slices/userSlice';
-import Logo from '../Logo';
+import Logo from '../../others/Logo';
 
 const Login = ({ onSwitch, onClose }) => {
   const [form, setForm] = useState({

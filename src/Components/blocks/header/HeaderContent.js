@@ -8,7 +8,7 @@ import {
   selectQuote,
 } from '../../redux/slices/quotesSlice.js';
 import { setError } from '../../redux/slices/errorSlice.js';
-import { generateRandomQuoteAPI } from '../../utils/generateRandomQuoteAPI.js';
+import { generateRandomQuoteAPI } from '../../../utils/generateRandomQuoteAPI.js';
 
 const HeaderContent = () => {
   const [currentQuote, setCurrentQuote] = useState({});
