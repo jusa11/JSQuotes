@@ -5,6 +5,7 @@ import displayQuotesSlice from './slices/displayQuotesSlice';
 import useReducer from './slices/userSlice';
 import likedQuotesSlice from './slices/likedQuotesSlice';
 import searchSlice from './slices/searchSlice';
+import statsBarSlice from './slices/statsBarSlice';
 
 export default configureStore({
   reducer: {
@@ -14,5 +15,6 @@ export default configureStore({
     user: useReducer,
     likedQuotes: likedQuotesSlice,
     search: searchSlice,
+    statsBar: statsBarSlice,
   },
 });

@@ -15,7 +15,7 @@ import Sidebar from './Sidebar';
 import Navbar from './Navbar';
 import StatsProfile from './StatsProfile.jsx';
 
-const Profile = () => {
+const FavoritePage = () => {
   const { username } = useSelector(selectUser);
   const statsBarStatus = useSelector(selectStatsStatus);
 
@@ -61,4 +61,4 @@ const Profile = () => {
   );
 };
 
-export default Profile;
+export default FavoritePage;

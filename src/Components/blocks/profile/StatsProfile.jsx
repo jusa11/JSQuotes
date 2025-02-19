@@ -6,7 +6,7 @@ const StatsProfile = () => {
       <div className="stats-decor_1"></div>
       <div className="stats-decor_2"></div>
       <div className="stats-decor_3">
-        <MyChart />
+        <MyChart  />
       </div>
     </div>
   );

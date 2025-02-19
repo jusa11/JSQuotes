@@ -7,11 +7,11 @@
 @include mediaBigMobile {
   .bm-burger-button {
     display: block;
-    position: absolute;
+    position: relative;
     width: 36px;
     height: 25px;
-    top: 25%;
-    left: 90%;
+    top: 0;
+    left: 0;
   }
 
   .bm-burger-bars {
@@ -46,8 +46,4 @@
     padding: 0.5em;
   }
 }
-@include mediaMediumMobile {
-  .bm-burger-button {
-    left: 85%;
-  }
-}
+

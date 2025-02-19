@@ -11,6 +11,7 @@ import QuotesAction from './Components/blocks/quotes-action/QuotesAction';
 import Popular from './Components/blocks/popular/Popular';
 import Footer from './Components/blocks/footer/Footer';
 import Profile from './Components/blocks/profile/Profile';
+import FavoritePage from './Components/blocks/profile/FavoritePage';
 import './App.css';
 import { setError } from './Components/redux/slices/errorSlice';
 
@@ -35,6 +36,7 @@ function App() {
 
         <Routes>
           <Route path="/profile" element={<Profile />} />
+          <Route path="/favorite-page" element={<FavoritePage />} />
           <Route
             path="/"
             element={

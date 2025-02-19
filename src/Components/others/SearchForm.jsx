@@ -43,7 +43,8 @@ const SearchForm = () => {
 
   return (
     <>
-      <div className="content-main__card_big profile-card search-quote__container">
+      <div className="content-main__card_big search-quote__container card">
+        <h3 className="action__card_title card-title">Найти цитату</h3>
         <div className="search-filter">
           <button
             className={`search-filter__item filter-all ${
@@ -83,7 +84,7 @@ const SearchForm = () => {
           value={query}
           onChange={(e) => handleSearch(e)}
         />
-        <button className="form-reset">X</button>
+        <button className="form-reset"></button>
       </div>
 
       {results.map((quote) => (
