@@ -1,5 +1,5 @@
 import { IoIosNotifications } from 'react-icons/io';
-import Logo from '../../others/Logo';
+import Logo from '../../../others/Logo';
 
 const PersonBlock = () => {
   return (

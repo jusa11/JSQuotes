@@ -5,6 +5,8 @@ const User = new Schema({
   password: { type: String, required: true },
   roles: [{ type: String, ref: 'Role' }],
   likedQuotes: [{ type: Schema.Types.ObjectId, ref: 'Quote' }],
+  countQuote: { type: Number, default: 0 },
+  level: { type: Number, default: 0 },
 });
 
 module.exports = model('User', User);

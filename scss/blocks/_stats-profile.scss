@@ -1,16 +1,15 @@
 .stats {
   position: relative;
-  width: 218px;
-  height: 251px;
+  width: 100%;
+  height: 240px;
 }
 
 .stats-decor_1 {
   position: absolute;
-  width: 221px;
+  width: 250px;
   height: 200px;
   top: 0%;
   left: 11%;
-
   background-color: #2f847f;
   transform: rotate(34deg);
   z-index: 1;
@@ -21,7 +20,7 @@
   transform: rotate(16deg);
   top: 0%;
   left: 7%;
-  width: 218px;
+  width: 250px;
   height: 205px;
   background-color: #c68e3c;
   border-radius: 36px;
@@ -29,11 +28,49 @@
 }
 .stats-decor_3 {
   position: absolute;
-  width: 218px;
+  width: 250px;
   z-index: 3;
-  height: 251px;
+  height: 300px;
   background: linear-gradient(138deg, #7b20e2, #2b1043);
   border-radius: 36px;
+}
+.chart-percent {
+  font-family: $font-stats;
+  font-size: 36px;
+  font-weight: bold;
+  position: absolute;
+  transform: translate(-50%, -40%);
+  top: 50%;
+  left: 50%;
+}
+.chart-wrapper {
+  position: absolute;
+  transform: translate(-50%, -50%);
+  top: 40%;
+  left: 50%;
+}
+
+.stats-info {
+  position: relative;
+  z-index: 10;
+  top: 76%;
+  left: 0;
+  display: flex;
+  font-family: $font-stats;
+  padding: 40px 0 0 0;
+  text-align: center;
+}
+.stats-info__block {
+}
+.stats-total__title {
+  color: #d4d4d4;
+  font-weight: 400;
+  font-size: 12px;
+}
+.stats-total__value {
+  padding: 10px 0 0 0;
+  font-weight: bold;
+  font-size: 25px;
 }
 
 @include mediaFirstBrakePoint {

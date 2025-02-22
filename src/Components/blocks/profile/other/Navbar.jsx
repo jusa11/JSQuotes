@@ -7,11 +7,11 @@ import { FiShare } from 'react-icons/fi';
 import { ImSwitch } from 'react-icons/im';
 import { IoMdSettings } from 'react-icons/io';
 import { IoIosStats } from 'react-icons/io';
-import { logout } from '../../redux/slices/userSlice';
+import { logout } from '../../../redux/slices/userSlice';
 import {
   setStatBar,
   selectStatsStatus,
-} from '../../redux/slices/statsBarSlice';
+} from '../../../redux/slices/statsBarSlice';
 
 const Sidebar = () => {
   const dispatch = useDispatch();

@@ -2,9 +2,9 @@ import { useSelector } from 'react-redux';
 import ListQuotes from '../../others/ListQuote';
 import SearchForm from '../../others/SearchForm';
 import { selectUser } from '../../redux/slices/userSlice';
-import { LIKED_QUOTES } from '../../../config';
+import { QUOTES_URL } from '../../../config';
 
-const FavoritePage = () => {
+const SharePage = () => {
   const { username } = useSelector(selectUser);
 
   return (
@@ -13,12 +13,12 @@ const FavoritePage = () => {
         <SearchForm />
 
         <ListQuotes
-          url={LIKED_QUOTES.replace(':username', username)}
-          title={'Понравившиеся цитаты'}
+          url={QUOTES_URL.replace(':username', username)}
+          title={'Я поделился'}
         />
       </div>
     </>
   );
 };
 
-export default FavoritePage;
+export default SharePage;

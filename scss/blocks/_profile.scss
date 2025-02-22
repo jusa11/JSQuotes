@@ -42,6 +42,7 @@
   background-color: rgba(29, 28, 32, 70%);
   padding: 10px;
   border-radius: 20px;
+  margin: 60px 0 0 0;
 }
 
 .content-main__card_big {
@@ -53,6 +54,13 @@
   align-self: start;
   gap: 20px;
   grid-area: right;
+}
+
+// Favorite
+.profile-content__secondary {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 20px;
 }
 
 @include mediaFirstBrakePoint {

@@ -7,9 +7,9 @@ const app = express();
 const PORT = process.env.PORT || 5000;
 const Quote = require('./models/Quote.js');
 const User = require('./models/User.js');
-const Favorite = require('./models/Favorite.js');
 const authMiddleware = require('./middleware/authMiddleware.js');
-const { header } = require('express-validator');
+const checkUserLevel = require('./utils/checkUserLevel.js');
+const userLevels = require('./utils/userLevels.js');
 
 app.use(cors());
 app.use(express.json());
@@ -80,29 +80,69 @@ app.post('/add-quote', async (req, res) => {
   }
 
   try {
+    const user = await User.findById(userId);
+    if (!user) {
+      return res.status(404).json({ message: 'Пользователь не найден' });
+    }
+    user.countQuote += 1;
+
+    await user.save();
+
     const newQuote = new Quote({
       text,
-      author,
+      author: user.username,
       userId,
       date: new Date().toISOString(),
     });
     await newQuote.save();
-    res.json(newQuote);
+
+    res.json(newQuote); // отправлять не только цитату а и username, кол-во цитат и level
   } catch (error) {
     console.error(error);
     res.status(500).send('Server Error');
   }
 });
 
-// Последние цитаты пользователя
+// Левел пользователя
+app.get('/users/level/:username', async (req, res) => {
+  try {
+    const { username } = req.params;
+    const user = await User.findOne({ username });
+
+    if (!user) {
+      return res.status(404).json({ message: 'Пользователь не найден' });
+    }
+    const currentCountQuotes = user.countQuote; // всего циатат у пользователя
+    const levels = checkUserLevel(currentCountQuotes);
+    const currentLevel = levels.currentLevel; // текущий левел пользователя
+    const nextLevelCount = levels.nextLevelCount; // сколько всего цитат нужно для след. левела
+    const needQuoteForNextLevel = nextLevelCount - currentCountQuotes; // сколько осталось цитат до след. левела
+    const skolkoNaEtomUrovne =
+      userLevels[currentLevel + 1].amount - userLevels[currentLevel].amount; // сколько цитат на текущем левеле нужно добавить
+
+    console.log(currentLevel);
+
+    res.json({
+      currentLevel,
+      nextLevelCount,
+      currentCountQuotes,
+      needQuoteForNextLevel,
+      skolkoNaEtomUrovne,
+    });
+  } catch (error) {
+    console.error(error);
+    res.status(500).send('Server error');
+  }
+});
+
+// Цитаты пользователя
 app.get('/quotes/:username', async (req, res) => {
   try {
     const { username } = req.params;
 
-    const userQuotes = await Quote.find({ author: username })
-      .sort({ date: -1 })
-      .limit(4);
-
+    const userQuotes = await Quote.find({ author: username }).sort({
+      date: -1,
+    });
     if (!userQuotes || userQuotes.length === 0) {
       return res.status(200).json(userQuotes);
     }
@@ -136,6 +176,7 @@ app.get('/liked-quotes/:username', async (req, res) => {
 
 // лайк
 app.post('/like/:quoteId', authMiddleware, async (req, res) => {
+  console.log(req.headers);
   try {
     const { quoteId } = req.params;
     const userId = req.user._id;

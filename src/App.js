@@ -12,8 +12,11 @@ import Popular from './Components/blocks/popular/Popular';
 import Footer from './Components/blocks/footer/Footer';
 import Profile from './Components/blocks/profile/Profile';
 import FavoritePage from './Components/blocks/profile/FavoritePage';
+import SharePage from './Components/blocks/profile/SharePage';
+import SettingsPage from './Components/blocks/profile/SettingsPage';
 import './App.css';
 import { setError } from './Components/redux/slices/errorSlice';
+import Layout from './Components/others/Layout';
 
 function App() {
   const dispatch = useDispatch();
@@ -35,10 +38,15 @@ function App() {
         <Stars />
 
         <Routes>
-          <Route path="/profile" element={<Profile />} />
-          <Route path="/favorite-page" element={<FavoritePage />} />
+          <Route path="/profile" element={<Layout />}>
+            <Route index element={<Profile />} />
+            <Route path="favorite" element={<FavoritePage />} />
+            <Route path="share" element={<SharePage />} />
+            <Route path="settings" element={<SettingsPage />} />
+          </Route>
+
           <Route
-            path="/"
+            index
             element={
               <>
                 <Header />
