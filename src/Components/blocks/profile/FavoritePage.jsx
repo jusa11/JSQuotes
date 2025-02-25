@@ -1,24 +1,5 @@
-import { useSelector } from 'react-redux';
-import ListQuotes from '../../others/ListQuote';
-import SearchForm from '../../others/SearchForm';
-import { selectUser } from '../../redux/slices/userSlice';
-import { LIKED_QUOTES } from '../../../config';
-
 const FavoritePage = () => {
-  const { username } = useSelector(selectUser);
-
-  return (
-    <>
-      <div className="profile-content__secondary">
-        <SearchForm />
-
-        <ListQuotes
-          url={LIKED_QUOTES.replace(':username', username)}
-          title={'Понравившиеся цитаты'}
-        />
-      </div>
-    </>
-  );
+  return <div className="dev-yet">В разработке</div>;
 };
 
 export default FavoritePage;

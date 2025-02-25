@@ -28,17 +28,23 @@ const StatsProfile = () => {
           <MyChart dataLevel={data} />
         </div>
       </div>
-      <div className="stats-info">
-        <div className="stats-info__block">
-          <div className="stats-total__title">Всего поделился</div>
-          <div className="stats-total__value">
-            {statsInfo?.currentCountQuotes}
-          </div>
+      <div className="stats-userinfo">
+        <div className="stats-user">
+          <div className="stats-user__username">User20</div>
+          <div className="stats-user__level">Приближенный</div>
         </div>
-        <div className="stats-info__block">
-          <div className="stats-total__title">До следующего уровня</div>
-          <div className="stats-total__value">
-            {statsInfo?.needQuoteForNextLevel}
+        <div className="stats-info">
+          <div className="stats-info__block">
+            <div className="stats-total__title">Всего поделился</div>
+            <div className="stats-total__value">
+              {statsInfo?.currentCountQuotes}
+            </div>
+          </div>
+          <div className="stats-info__block">
+            <div className="stats-total__title">До следующего уровня</div>
+            <div className="stats-total__value">
+              {statsInfo?.needQuoteForNextLevel}
+            </div>
           </div>
         </div>
       </div>

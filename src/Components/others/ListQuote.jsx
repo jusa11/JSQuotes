@@ -86,7 +86,7 @@ const ListQuotes = ({ url, title }) => {
   }, [quotes]);
 
   return (
-    <div className="quotes-action__card card">
+    <div className="quotes-action__card card secondary__card">
       <div className="action__card_text">
         <h3 className="action__card_title card-title">{title}</h3>
       </div>
