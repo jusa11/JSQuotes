@@ -2,15 +2,25 @@ import { useSelector } from 'react-redux';
 import MyChart from './MyChart';
 import { selectUser } from '../../../redux/slices/userSlice';
 import { useGetQuotesCountQuery } from '../../../redux/api/countQuotesApi';
+import { useEffect, useRef } from 'react';
+import { useOutletRef } from '../../../../Hooks/useOutletRef';
 
 const StatsProfile = () => {
+  const ref = useRef(null);
+  const outletRef = useOutletRef();
   const user = useSelector(selectUser);
+
+  useEffect(() => {
+    if (ref.current && !outletRef.current.includes(ref.current)) {
+      outletRef.current.push(ref.current);
+    }
+  }, [outletRef]);
+
   const { data, error, isLoading } = useGetQuotesCountQuery(user.username, {
     skip: !user?.username,
   });
 
   if (isLoading) {
-    console.log('Загрузка...');
     return <p>Загрузка...</p>;
   }
   if (error) {
@@ -18,9 +28,9 @@ const StatsProfile = () => {
     return <p>Ошибка загрузки данных</p>;
   }
   const statsInfo = data;
-  console.log(statsInfo?.currentCountQuotes);
+
   return (
-    <div className="stats">
+    <div className="stats" ref={ref}>
       <div className="decor-wrapper">
         <div className="stats-decor_1"></div>
         <div className="stats-decor_2"></div>
@@ -30,8 +40,8 @@ const StatsProfile = () => {
       </div>
       <div className="stats-userinfo">
         <div className="stats-user">
-          <div className="stats-user__username">User20</div>
-          <div className="stats-user__level">Приближенный</div>
+          <div className="stats-user__username">{user.username}</div>
+          <div className="stats-user__level">{statsInfo?.titleLevel}</div>
         </div>
         <div className="stats-info">
           <div className="stats-info__block">

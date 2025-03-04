@@ -1,4 +1,5 @@
 import Burger from '../others/Burger';
+import { Link } from 'react-scroll';
 
 const MainMenu = () => {
   return (
@@ -6,24 +7,44 @@ const MainMenu = () => {
       <div className="main-menu">
         <ul className="menu__list">
           <li className="menu__item">
-            <a href="#generator" className="menu__link">
+            <Link
+              to="generator"
+              className="menu__link"
+              smooth={true}
+              duration={800}
+            >
               Генератор
-            </a>
+            </Link>
           </li>
           <li className="menu__item">
-            <a href="#space-planet" className="menu__link">
+            <Link
+              to="space-planet"
+              className="menu__link"
+              smooth={true}
+              duration={800}
+            >
               Поймать
-            </a>
+            </Link>
           </li>
           <li className="menu__item">
-            <a href="#quotes-action" className="menu__link">
+            <Link
+              to="quotes-action"
+              className="menu__link"
+              smooth={true}
+              duration={800}
+            >
               Поделиться
-            </a>
+            </Link>
           </li>
           <li className="menu__item">
-            <a href="#popular" className="menu__link">
+            <Link
+              to="popular"
+              className="menu__link"
+              smooth={true}
+              duration={800}
+            >
               Популярные
-            </a>
+            </Link>
           </li>
         </ul>
       </div>

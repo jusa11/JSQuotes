@@ -1,16 +1,29 @@
+import { useEffect, useRef } from 'react';
 import { useSelector } from 'react-redux';
+import gsap from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { useGetQuotesCountQuery } from '../../../redux/api/countQuotesApi';
 import { selectUser } from '../../../redux/slices/userSlice';
 import steps from '../../../../utils/steps';
+import { useOutletRef } from '../../../../Hooks/useOutletRef';
+
+gsap.registerPlugin(ScrollTrigger);
 
 const Stepper = () => {
   const user = useSelector(selectUser);
+  const ref = useRef(null);
+  const outletRef = useOutletRef();
   const { data, error, isLoading } = useGetQuotesCountQuery(user.username, {
     skip: !user?.username,
   });
 
+  useEffect(() => {
+    if (ref.current && !outletRef.current.includes(ref.current)) {
+      outletRef.current.push(ref.current);
+    }
+  }, [outletRef]);
+
   if (isLoading) {
-    console.log('Загрузка...');
     return <p>Загрузка...</p>;
   }
   if (error) {
@@ -19,9 +32,9 @@ const Stepper = () => {
   }
 
   const level = data?.currentLevel;
-	
+
   return (
-    <div className="stepper content-right__card profile-card">
+    <div ref={ref} className="stepper content-right__card card">
       <div className="stepper-wrapper">
         <ul className="stepper-list">
           {steps.map((step, index) => {

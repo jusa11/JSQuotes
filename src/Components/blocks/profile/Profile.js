@@ -15,6 +15,7 @@ const Profile = () => {
   return (
     <>
       <div className="profile-content__main">
+        <SearchForm />
         <ListQuotes
           url={QUOTES_URL.replace(':username', username)}
           title={'Я поделился'}
@@ -23,8 +24,6 @@ const Profile = () => {
           url={LIKED_QUOTES.replace(':username', username)}
           title={'Понравившиеся цитаты'}
         />
-
-        <SearchForm />
       </div>
       <div className="profile-content__bottom">
         <ListQuotes

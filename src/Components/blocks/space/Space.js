@@ -1,18 +1,18 @@
 import { useEffect, useRef, useState, useCallback } from 'react';
 import { useDispatch } from 'react-redux';
-import { MdFavorite } from 'react-icons/md';
 import { gsap } from 'gsap';
 import { MotionPathPlugin } from 'gsap/MotionPathPlugin';
 import Popup from 'reactjs-popup';
 import { setError } from '../../redux/slices/errorSlice.js';
 import { generateRandomQuoteAPI } from '../../../utils/generateRandomQuoteAPI';
-
 import Orbit from './Orbit';
 import Planet from './Planet';
+import QuotesCard from '../../others/QuotesCard.js';
 
 gsap.registerPlugin(MotionPathPlugin);
 
 const Space = () => {
+  const spaceRef = useRef(null);
   const orbitRef = useRef([]);
   const planetRef = useRef([]);
   const dispatch = useDispatch();
@@ -71,6 +71,28 @@ const Space = () => {
   }, [dispatch]);
 
   useEffect(() => {
+    if (spaceRef.current) {
+      gsap.fromTo(
+        spaceRef.current,
+        { opacity: 0, y: 100, scale: 0.8 },
+        {
+          opacity: 1,
+          y: 0,
+          scale: 1,
+          duration: 1,
+          delay: 0.3,
+          ease: 'power1.out',
+          scrollTrigger: {
+            trigger: spaceRef.current,
+            start: 'top 95%',
+            end: 'top 50%',
+          },
+        }
+      );
+    }
+  }, []);
+
+  useEffect(() => {
     const ctx = gsap.context(() => {
       planetRef.current.forEach((planet, index) => {
         const path = orbitRef.current[index];
@@ -99,7 +121,7 @@ const Space = () => {
   }, [catchThink]);
 
   return (
-    <section className="space" id="space-planet">
+    <section ref={spaceRef} className="space" id="space-planet">
       <h2 className="visually-hidden">орбиты</h2>
       <div className="space__content">
         <div className="space__orbit">
@@ -135,41 +157,7 @@ const Space = () => {
         overlayStyle={{ background: 'rgba(0, 0, 0, 0.7)' }}
         onClose={() => setPopup(false)}
       >
-        <div className="popup__card card">
-          <div className="popup__card_title">
-            <div className="popup__card_logo">
-              <img src="src/img/profile-logo.png" alt="Logo" />
-            </div>
-            <div className="popup__rang">
-              <p>Шестерка</p>
-            </div>
-          </div>
-          <div className="popup__card_content">
-            {currentQuote ? (
-              <>
-                <div className="popup__card_name">{currentQuote.author}</div>
-                <div className="popup__card_text">
-                  <p>
-                    <i>{currentQuote.text}</i>
-                  </p>
-                </div>
-              </>
-            ) : (
-              <p>Загрузка...</p>
-            )}
-          </div>
-          <div className="popup__card_handler">
-            <button className="popup__card_infavorite btn">
-              <MdFavorite />
-            </button>
-            <div className="rating">
-              <button onClick={() => 'click'}>❤️ {currentQuote.likes}</button>
-            </div>
-          </div>
-          <button onClick={() => setPopup(false)} className="popup-close btn">
-            Закрыть
-          </button>
-        </div>
+        <QuotesCard className="card" quote={currentQuote} />
       </Popup>
     </section>
   );

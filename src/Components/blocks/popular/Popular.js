@@ -13,6 +13,7 @@ import {
 import { selectUser } from '../../redux/slices/userSlice';
 import { POPULAR_URL } from '../../../config';
 
+
 const Popular = () => {
   const dispatch = useDispatch();
   const { username } = useSelector(selectUser);
@@ -30,7 +31,7 @@ const Popular = () => {
       }
     })();
   }, [dispatch, username]);
-  console.log(popularQuotes);
+
 
   return (
     <section id="popular">

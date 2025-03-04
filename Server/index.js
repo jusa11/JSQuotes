@@ -29,12 +29,14 @@ function getRandomQuote(quotes) {
 // Генерация цитаты
 app.get('/random-quote', async (req, res) => {
   try {
-    const quotes = await Quote.find();
+    const quotes = await Quote.find().populate('userId');
     if (!quotes || quotes.length === 0) {
-      return res.status(404).json({ msg: 'No quotes found' }); // Если нет цитат, возвращаем ошибку
+      return res.status(404).json({ msg: 'No quotes found' });
     }
     const randomQuote = getRandomQuote(quotes);
-    res.json(randomQuote);
+    setTimeout(() => {
+      res.json(randomQuote);
+    }, 200);
   } catch (error) {
     console.error(error);
     res.status(500).send('Server error');
@@ -85,6 +87,8 @@ app.post('/add-quote', async (req, res) => {
       return res.status(404).json({ message: 'Пользователь не найден' });
     }
     user.countQuote += 1;
+    const levels = checkUserLevel(user.countQuote); // Считаем новый уровень
+    user.level = levels.currentLevel; // Обновляем уровень в БД
 
     await user.save();
 
@@ -116,18 +120,18 @@ app.get('/users/level/:username', async (req, res) => {
     const levels = checkUserLevel(currentCountQuotes);
     const currentLevel = levels.currentLevel; // текущий левел пользователя
     const nextLevelCount = levels.nextLevelCount; // сколько всего цитат нужно для след. левела
+    const titleLevel = levels.titleLevel;
     const needQuoteForNextLevel = nextLevelCount - currentCountQuotes; // сколько осталось цитат до след. левела
-    const skolkoNaEtomUrovne =
+    const needQuoteForCurrnetLevel =
       userLevels[currentLevel + 1].amount - userLevels[currentLevel].amount; // сколько цитат на текущем левеле нужно добавить
-
-    console.log(currentLevel);
 
     res.json({
       currentLevel,
       nextLevelCount,
       currentCountQuotes,
       needQuoteForNextLevel,
-      skolkoNaEtomUrovne,
+      needQuoteForCurrnetLevel,
+      titleLevel,
     });
   } catch (error) {
     console.error(error);
@@ -176,7 +180,6 @@ app.get('/liked-quotes/:username', async (req, res) => {
 
 // лайк
 app.post('/like/:quoteId', authMiddleware, async (req, res) => {
-  console.log(req.headers);
   try {
     const { quoteId } = req.params;
     const userId = req.user._id;
@@ -251,7 +254,11 @@ app.get('/search', async (req, res) => {
       };
     }
 
-    const quotes = await Quote.find(filter);
+    const quotes = await Quote.find(filter).populate({
+      path: 'userId',
+      select: 'username level', // Забираем username и level из User
+    });
+
     res.json(quotes);
   } catch (error) {
     res.status(500).json({ error: 'Ошибка сервера' });

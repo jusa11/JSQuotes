@@ -35,7 +35,6 @@ const Login = ({ onSwitch, onClose }) => {
       localStorage.setItem('token', token);
       dispatch(setError('Авторизация прошла успешно'));
       const decode = jwtDecode(token);
-      console.log(decode);
       dispatch(setUser({ username: decode.username, userId: decode._id }));
       navigate('/profile');
       onClose();

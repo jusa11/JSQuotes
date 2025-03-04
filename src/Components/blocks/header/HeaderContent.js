@@ -2,6 +2,8 @@ import { useCallback, useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { FaSpinner } from 'react-icons/fa';
 import { FaQuoteLeft, FaStar } from 'react-icons/fa6';
+import { gsap } from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import {
   setAddQuote,
   setDeleteQuote,
@@ -10,11 +12,40 @@ import {
 import { setError } from '../../redux/slices/errorSlice.js';
 import { generateRandomQuoteAPI } from '../../../utils/generateRandomQuoteAPI.js';
 
+gsap.registerPlugin(ScrollTrigger);
+
 const HeaderContent = () => {
   const [currentQuote, setCurrentQuote] = useState({});
   const [isLoading, setIsLoading] = useState(false);
   const favoriteQuotes = useSelector(selectQuote);
   const dispatch = useDispatch();
+
+  useEffect(() => {
+    if (!ScrollTrigger.isTouch) {
+      gsap.from('.header__content', {
+        opacity: 0,
+        y: 400,
+        duration: 1,
+        scrollTrigger: {
+          trigger: '.header__content',
+        },
+      });
+
+      gsap.fromTo(
+        '.header__content',
+        { opacity: 1 },
+        {
+          opacity: 0,
+          scrollTrigger: {
+            trigger: '.header__content',
+            start: 'top%', //
+            end: '1000',
+            scrub: true,
+          },
+        }
+      );
+    }
+  }, []);
 
   const handleGetApiQuote = useCallback(async () => {
     try {
@@ -66,10 +97,12 @@ const HeaderContent = () => {
       <div className="header__quote">
         <div className="header__quote_content">
           {isLoading ? (
-            <FaSpinner className="spinner" />
+            <FaSpinner className="spinner isloading-quote" />
           ) : currentQuote.text ? (
             <>
-              <p className="quote__text">{currentQuote.text}</p>
+              <p className="quote__text" style={{ opacity: isLoading ? 0 : 1 }}>
+                {currentQuote.text}{' '}
+              </p>
               <p className="quote__author">{`(Поделился: ${currentQuote.author})`}</p>
             </>
           ) : (

@@ -1,5 +1,7 @@
+.stepper {
+  margin: 110px 0 0 0;
+}
 .stepper-list {
-  padding: 30px 20px;
   display: flex;
   flex-direction: column;
   gap: 40px;
@@ -81,12 +83,15 @@
 }
 
 @include mediaFirstBrakePoint {
+  .stepper {
+    margin: 0;
+  }
   .stepper-wrapper {
     display: flex;
     max-width: 100%;
     overflow-x: auto;
     white-space: nowrap;
-    padding: 0;
+    padding: 0 15px;
     scrollbar-width: none;
   }
   .stepper-list {

@@ -1,4 +1,4 @@
-.quotes-block__card_title {
+.quotes-block__card_person {
   display: flex;
   align-items: center;
 }
@@ -27,13 +27,19 @@
 }
 .quotes-block__card_handler {
   display: flex;
-  justify-content: space-between;
+  gap: 20px;
   align-items: center;
   margin: 40px 0 0 0;
 }
-.quotes-block__card_infavorite {
-  font-size: 12px;
-  padding: 7px 15px;
+.card-handler {
+  display: flex;
+  gap: 5px;
+  font-size: 14px;
+  align-items: flex-end;
+  color: $color-main;
+}
+.handler-icon {
+  font-size: 20px;
 }
 
 .quotes-block__row {
@@ -42,6 +48,7 @@
 }
 .quotes-block__column {
   display: flex;
+  min-width: 390px;
 }
 .quotes-block__card {
   background-image: url('/src/img/bg-cards-popular.png');
@@ -52,5 +59,11 @@
 @include mediaBigMobile {
   .quotes-block__card {
     max-height: 350px;
+  }
+}
+
+@include mediaSmallMobile {
+  .quotes-block__column {
+    min-width: 250px;
   }
 }

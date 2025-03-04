@@ -2,17 +2,16 @@ import { PieChart, Pie, Cell } from 'recharts';
 
 const MyChart = ({ dataLevel }) => {
   const needQuoteForNextLevel = dataLevel?.needQuoteForNextLevel ?? 1;
-  const skolkoNaEtomUrovne = dataLevel?.skolkoNaEtomUrovne ?? 1;
+  const needQuoteForCurrnetLevel = dataLevel?.needQuoteForCurrnetLevel ?? 1;
 
   // Считаем правильный процент (сколько уже набрано)
-  const collectedOnCurrentLevel = skolkoNaEtomUrovne - needQuoteForNextLevel;
+  const collectedOnCurrentLevel =
+    needQuoteForCurrnetLevel - needQuoteForNextLevel;
   const progress = Math.min(
-    (collectedOnCurrentLevel / skolkoNaEtomUrovne) * 100,
+    (collectedOnCurrentLevel / needQuoteForCurrnetLevel) * 100,
     100
   );
   const difference = 100 - progress;
-
-  console.log(progress, difference);
 
   const data = [
     { name: 'Used', value: progress },

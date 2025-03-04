@@ -140,11 +140,7 @@
     transform: translateY(200px);
     visibility: hidden;
   }
-  .profile-rigth:not(.stats-active) .profile-card {
-    background-color: rgba(29, 28, 32, 70%);
-    padding: 10px;
-    border-radius: 20px;
-  }
+
   .profile-content__secondary {
     grid-template-columns: 1fr;
   }

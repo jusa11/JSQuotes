@@ -14,12 +14,15 @@ import Profile from './Components/blocks/profile/Profile';
 import FavoritePage from './Components/blocks/profile/FavoritePage';
 import SharePage from './Components/blocks/profile/SharePage';
 import SettingsPage from './Components/blocks/profile/SettingsPage';
-import './App.css';
 import { setError } from './Components/redux/slices/errorSlice';
 import Layout from './Components/others/Layout';
+import { RefProvider } from './Hooks/useOutletRef';
+import ScrollToTopButton from './Components/others/ScrollToTopButton';
+import './App.css';
 
 function App() {
   const dispatch = useDispatch();
+
   useEffect(() => {
     const token = localStorage.getItem('token');
     if (token) {
@@ -32,41 +35,44 @@ function App() {
       }
     }
   }, [dispatch]);
+
   return (
     <div className="app">
-      <Router>
-        <Stars />
+      <RefProvider>
+        <Router>
+          <Stars />
 
-        <Routes>
-          <Route path="/profile" element={<Layout />}>
-            <Route index element={<Profile />} />
-            <Route path="favorite" element={<FavoritePage />} />
-            <Route path="share" element={<SharePage />} />
-            <Route path="settings" element={<SettingsPage />} />
-          </Route>
+          <Routes>
+            <Route path="/profile" element={<Layout />}>
+              <Route index element={<Profile />} />
+              <Route path="favorite" element={<FavoritePage />} />
+              <Route path="share" element={<SharePage />} />
+              <Route path="settings" element={<SettingsPage />} />
+            </Route>
 
-          <Route
-            index
-            element={
-              <>
-                <Header />
-                <div className="wrapper">
-                  <div className="content">
-                    <Space />
-                    <QuotesAction />
-                    <div className="swiper-container">
-                      <Popular />
+            <Route
+              index
+              element={
+                <>
+                  <Header />
+                  <div className="wrapper">
+                    <div className="content">
+                      <Space />
+                      <QuotesAction />
+                      <div className="swiper-container">
+                        <Popular />
+                      </div>
                     </div>
                   </div>
-                </div>
-                <Footer />
-              </>
-            }
-          />
-        </Routes>
-
-        <Error />
-      </Router>
+                  <Footer />
+                </>
+              }
+            />
+          </Routes>
+          <ScrollToTopButton />
+          <Error />
+        </Router>
+      </RefProvider>
     </div>
   );
 }

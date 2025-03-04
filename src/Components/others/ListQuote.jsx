@@ -26,6 +26,7 @@ import {
 } from '../../config';
 import { limitTextLength } from '../../utils/limitTextLength';
 import useHandleLike from '../../Hooks/useHandleLike';
+import { useOutletRef } from '../../Hooks/useOutletRef';
 
 const ListQuotes = ({ url, title }) => {
   const lastQuotes = useSelector(selectDisplayLastQuotes);
@@ -36,6 +37,8 @@ const ListQuotes = ({ url, title }) => {
   const dispatch = useDispatch();
   const { username } = useSelector(selectUser);
   const handleLike = useHandleLike();
+  const ref = useRef(null);
+  const outletRef = useOutletRef();
 
   const getQuotes = useCallback(() => {
     if (url === 'last-quotes') return lastQuotes;
@@ -85,8 +88,14 @@ const ListQuotes = ({ url, title }) => {
     }
   }, [quotes]);
 
+  useEffect(() => {
+    if (ref.current && !outletRef.current.includes(ref.current)) {
+      outletRef.current.push(ref.current);
+    }
+  }, [outletRef]);
+
   return (
-    <div className="quotes-action__card card secondary__card">
+    <div className="quotes-action__card card right-card" ref={ref}>
       <div className="action__card_text">
         <h3 className="action__card_title card-title">{title}</h3>
       </div>
