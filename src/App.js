@@ -14,7 +14,7 @@ import Profile from './Components/blocks/profile/Profile';
 import FavoritePage from './Components/blocks/profile/FavoritePage';
 import SharePage from './Components/blocks/profile/SharePage';
 import SettingsPage from './Components/blocks/profile/SettingsPage';
-import { setError } from './Components/redux/slices/errorSlice';
+import { setError } from './Components/redux/slices/notificationsSlice';
 import Layout from './Components/others/Layout';
 import { RefProvider } from './Hooks/useOutletRef';
 import ScrollToTopButton from './Components/others/ScrollToTopButton';

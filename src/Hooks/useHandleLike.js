@@ -4,7 +4,7 @@ import {
   selectDisplayLastQuotes,
   selectDisplayPopularQuotes,
 } from '../Components/redux/slices/displayQuotesSlice';
-import { setError } from '../Components/redux/slices/errorSlice';
+import { setError } from '../Components/redux/slices/notificationsSlice';
 import { selectDisplayUserQuotes } from '../Components/redux/slices/displayQuotesSlice';
 import {
   toggleLike,

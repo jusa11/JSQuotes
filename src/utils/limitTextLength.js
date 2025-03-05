@@ -1,9 +1,4 @@
-import { MAX_TEXT_LENGTH } from '../config';
-
-export const limitTextLength = (text) => {
+export const limitTextLength = (text, max) => {
   if (!text) return '';
-  return text.length > MAX_TEXT_LENGTH
-    ? `${text.slice(0, MAX_TEXT_LENGTH)}...`
-    : text;
+  return text.length > max ? `${text.slice(0, max)}...` : text;
 };
-

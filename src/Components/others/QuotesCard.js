@@ -5,6 +5,7 @@ import { IoIosShareAlt } from 'react-icons/io';
 import { limitTextLength } from '../../utils/limitTextLength.js';
 import useHandleLike from '../../Hooks/useHandleLike.js';
 import steps from '../../utils/steps.js';
+import { MAX_TEXT_LENGTH } from '../../config.js';
 
 const QuotesCard = forwardRef(({ quote }, ref) => {
   const handleLike = useHandleLike();
@@ -28,7 +29,7 @@ const QuotesCard = forwardRef(({ quote }, ref) => {
           <div className="quotes-block__card_name">{quote.author}</div>
           <div className="quotes-block__card_text">
             <p>
-              <i>{`«${limitTextLength(quote.text)}»`}</i>
+              <i>{`«${limitTextLength(quote.text, MAX_TEXT_LENGTH)}»`}</i>
             </p>
           </div>
         </div>

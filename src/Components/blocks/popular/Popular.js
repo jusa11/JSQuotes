@@ -5,22 +5,18 @@ import { Splide, SplideSlide } from '@splidejs/react-splide';
 import '@splidejs/react-splide/css';
 import '@splidejs/react-splide/css/skyblue';
 import QuotesCard from '../../others/QuotesCard';
-import { setError } from '../../redux/slices/errorSlice';
+import { setError } from '../../redux/slices/notificationsSlice';
 import {
   setPopularQuotes,
   selectDisplayPopularQuotes,
 } from '../../redux/slices/displayQuotesSlice';
-import { selectUser } from '../../redux/slices/userSlice';
 import { POPULAR_URL } from '../../../config';
-
 
 const Popular = () => {
   const dispatch = useDispatch();
-  const { username } = useSelector(selectUser);
   const popularQuotes = useSelector(selectDisplayPopularQuotes);
 
   useEffect(() => {
-    if (!username) return;
     (async () => {
       try {
         const res = await axios(`http://localhost:5000/${POPULAR_URL}`);
@@ -30,8 +26,7 @@ const Popular = () => {
         dispatch(setError('Ошибка при загрузке цитат'));
       }
     })();
-  }, [dispatch, username]);
-
+  }, [dispatch]);
 
   return (
     <section id="popular">

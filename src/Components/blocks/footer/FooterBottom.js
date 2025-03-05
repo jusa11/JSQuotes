@@ -11,12 +11,12 @@ const FooterBottom = () => {
       </div>
       <div className="footer-bottom__social">
         <div className="footer-social__telegram">
-          <a href="t.me" className="tg-link">
+          <a href="https://t.me/jusaa28" className="tg-link">
             <FaTelegram className="fa-brands" />
           </a>
         </div>
         <div className="footer-social__github">
-          <a href="github.com" className="gh-link">
+          <a href="https://github.com/jusa11/JSQuotes" className="gh-link">
             <FaGithub className="fa-brands" />
           </a>
         </div>

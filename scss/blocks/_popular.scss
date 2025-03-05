@@ -8,11 +8,17 @@
 
 .popular__content {
   margin: 50px 0 0 0;
+  display: flex;
+  flex-direction: column;
 }
 
 // Стрелки слайдера
 .splide__arrow svg {
   fill: #8d1ea2;
+  height: 200px;
+}
+.splide__arrow  {
+  height: 200px;
 }
 .splide__arrow:hover svg {
   fill: #090edb;

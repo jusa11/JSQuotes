@@ -12,7 +12,19 @@
 .share__qoute-form {
   display: flex;
   align-items: center;
+}
+.your-message-wrapper {
+  position: relative;
   width: 100%;
+}
+.your-message-wrapper::before {
+  content: '';
+  background-image: url('/src/img/icon/share-form-icon.png');
+  position: absolute;
+  height: 20px;
+  width: 20px;
+  top: -15%;
+  left: 1%;
 }
 .your-message {
   resize: none;
@@ -21,6 +33,7 @@
   background: #222222;
   font-size: 14px;
   color: #fff;
+  padding: 0 35px;
 }
 
 .form__handler {

@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { jwtDecode } from 'jwt-decode';
 import { useDispatch } from 'react-redux';
-import { setError } from '../../redux/slices/errorSlice';
+import { setError, setSuccess } from '../../redux/slices/notificationsSlice';
 import { setUser } from '../../redux/slices/userSlice';
 import Logo from '../../others/Logo';
 
@@ -33,7 +33,7 @@ const Login = ({ onSwitch, onClose }) => {
       const { token } = res.data;
 
       localStorage.setItem('token', token);
-      dispatch(setError('Авторизация прошла успешно'));
+      dispatch(setSuccess('Авторизация прошла успешно'));
       const decode = jwtDecode(token);
       dispatch(setUser({ username: decode.username, userId: decode._id }));
       navigate('/profile');

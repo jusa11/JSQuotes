@@ -16,7 +16,6 @@
 }
 .quotes-block__card_content {
   margin: 15px 0 0 0;
-  flex: 1 1 auto;
 }
 .quotes-block__card_name {
   color: $white;
@@ -41,19 +40,24 @@
 .handler-icon {
   font-size: 20px;
 }
-
-.quotes-block__row {
-  display: flex;
-  flex-direction: column;
+.handler-icon:hover {
+  color: $color-hover;
 }
+.popup-content {
+  max-width: 500px;
+}
+
 .quotes-block__column {
   display: flex;
   min-width: 390px;
+  height: 100%;
 }
 .quotes-block__card {
   background-image: url('/src/img/bg-cards-popular.png');
   background-position: right bottom;
   width: 100%;
+  flex-direction: column;
+  justify-content: space-between;
 }
 
 @include mediaBigMobile {

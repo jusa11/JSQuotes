@@ -1,6 +1,6 @@
 import { configureStore } from '@reduxjs/toolkit';
 import quotesReducer from './slices/quotesSlice';
-import errorReducer from './slices/errorSlice';
+import notificationsSlice from './slices/notificationsSlice';
 import displayQuotesSlice from './slices/displayQuotesSlice';
 import useReducer from './slices/userSlice';
 import likedQuotesSlice from './slices/likedQuotesSlice';
@@ -13,7 +13,7 @@ export default configureStore({
   reducer: {
     [countQuotesApi.reducerPath]: countQuotesApi.reducer,
     quote: quotesReducer,
-    error: errorReducer,
+    notifications: notificationsSlice,
     displayQuotes: displayQuotesSlice,
     user: useReducer,
     likedQuotes: likedQuotesSlice,
