@@ -1,14 +1,11 @@
 import { forwardRef } from 'react';
-import { AiFillLike } from 'react-icons/ai';
-import { FaComment } from 'react-icons/fa';
-import { IoIosShareAlt } from 'react-icons/io';
 import { limitTextLength } from '../../utils/limitTextLength.js';
-import useHandleLike from '../../Hooks/useHandleLike.js';
+import HandleIcon from './HandleIcon.jsx';
 import steps from '../../utils/steps.js';
 import { MAX_TEXT_LENGTH } from '../../config.js';
 
 const QuotesCard = forwardRef(({ quote }, ref) => {
-  const handleLike = useHandleLike();
+  
   const userLevel = quote?.userId?.level;
   console.log(quote);
   return (
@@ -33,21 +30,7 @@ const QuotesCard = forwardRef(({ quote }, ref) => {
             </p>
           </div>
         </div>
-        <div className="quotes-block__card_handler">
-          <div className="card-handler">
-            <AiFillLike
-              onClick={() => handleLike(quote._id)}
-              className="handler-icon"
-            />
-            <p>{quote.likes}</p>
-          </div>
-          <div className="card-handler">
-            <FaComment className="handler-icon" />2
-          </div>
-          <div className="card-handler">
-            <IoIosShareAlt className="handler-icon" />
-          </div>
-        </div>
+        <HandleIcon quote={quote} />
       </div>
     </div>
   );

@@ -26,6 +26,21 @@
   display: none;
 }
 
+.burger-btn {
+  display: block;
+  width: 100%;
+  padding: 12px 0;
+  background: linear-gradient(135deg, #6c01b4, #48069e);
+  box-shadow: 0 6px 10px rgba(133, 3, 208, 0.281);
+  color: white;
+  font-size: 16px;
+  font-weight: bold;
+  text-align: center;
+  border-radius: 8px;
+  transition: all 0.3s ease;
+  margin: 0 0 60px 0;
+}
+
 @include mediaBigMobile {
   .header-join {
     display: none;
@@ -33,5 +48,8 @@
   .join-btn__mobile {
     display: flex;
     justify-content: center;
+  }
+  .join__btn {
+    display: none;
   }
 }

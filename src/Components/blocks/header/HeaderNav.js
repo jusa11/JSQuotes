@@ -6,6 +6,8 @@ import { selectUser } from '../../redux/slices/userSlice';
 import MainMenu from '../../others/MainMenu';
 import Logo from '../../others/Logo';
 import AuthPopup from '../authorization/AuthPopup';
+import UserCard from '../../others/UserCard';
+import Burger from '../../others/Burger';
 
 const HeaderNav = () => {
   const { isAuth } = useSelector(selectUser);
@@ -14,18 +16,16 @@ const HeaderNav = () => {
   return (
     <nav className="header__nav nav-menu">
       <Logo />
-      <MainMenu />
+      <div className="main-menu">
+        <MainMenu />
+      </div>
+      <Burger />
 
       <div className="header-join">
         {isAuth ? (
           <>
             <Link to="/profile">
-              <img
-                alt="Сменить лого"
-                src="../../../../src/img/profile-logo.png"
-                className="navigation__item-icon profile-account"
-                width={'40px'}
-              />
+              <UserCard hidden={true} />
             </Link>
           </>
         ) : (

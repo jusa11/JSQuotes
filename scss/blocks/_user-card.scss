@@ -1,0 +1,96 @@
+.user-card {
+  display: flex;
+  align-items: center;
+  background: transparent;
+  padding: 0;
+  border-radius: 12px;
+  gap: 10px;
+  margin: 0;
+  max-width: 240px;
+  &.user-card_profile {
+    background: transparent;
+    padding: 0;
+    gap: 10px;
+    margin: 0;
+  }
+}
+
+.user-card__avatar {
+  img {
+    width: 50px;
+    height: 50px;
+  }
+
+  &.user-card__avatar_profile {
+    img {
+      width: 40px;
+      height: 40px;
+    }
+  }
+}
+
+.user-card__info {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.user-card__top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.user-card__name {
+  font-size: 20px;
+  font-weight: bold;
+  color: #fff;
+}
+
+.user-card__notifications {
+  font-size: 20px;
+  color: #e3a404;
+  cursor: pointer;
+  margin: 0 0 0 3px;
+}
+
+.user-card__level {
+  font-size: 12px;
+  padding: 4px 0 0 0;
+  color: #aaa;
+}
+
+.user-card__logout {
+  &.user-card__logout_profile {
+    display: none;
+  }
+}
+
+@include mediaBigMobile {
+  .user-card {
+    background: #1e1e1e;
+    padding: 12px;
+    margin: 0 0 60px 0;
+  }
+
+  .user-card__avatar img {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    box-shadow: 0 0 5px rgba(255, 255, 255, 0.3);
+  }
+
+  .user-card__logout {
+    display: block;
+    font-size: 16px;
+    color: #ff4081;
+    cursor: pointer;
+    text-decoration: none;
+    transition: color 0.2s ease-in-out;
+    padding: 6px 0 0 0;
+  }
+
+  .user-card__logout:hover {
+    color: #ff80ab;
+  }
+}

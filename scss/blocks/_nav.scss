@@ -16,6 +16,9 @@
 .nav-menu {
   position: relative;
 }
+.logout-btn {
+  display: none;
+}
 
 .menu__link:hover {
   color: $color-hover;
@@ -57,6 +60,20 @@
   }
 
   .menu__list li {
-    margin: 50px 0 0 0;
+    margin: 40px 0 0 0;
+  }
+
+  .menu__item {
+    margin-bottom: 15px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1); /* Легкий разделитель */
+    padding-bottom: 10px;
+  }
+  .logout-btn {
+    display: flex;
+    justify-content: center;
+    padding: 20px 0 0 0;
+    color: #ff4d4d;
+    font-size: 18px;
+    font-weight: 100;
   }
 }

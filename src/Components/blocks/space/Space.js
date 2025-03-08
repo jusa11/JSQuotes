@@ -3,7 +3,7 @@ import { useDispatch } from 'react-redux';
 import { gsap } from 'gsap';
 import { MotionPathPlugin } from 'gsap/MotionPathPlugin';
 import Popup from 'reactjs-popup';
-import { setError } from '../../redux/slices/notificationsSlice';
+import { setError } from '../../redux/slices/notificationsSlice.js';
 import { generateRandomQuoteAPI } from '../../../utils/generateRandomQuoteAPI';
 import Orbit from './Orbit';
 import Planet from './Planet';
@@ -97,7 +97,24 @@ const Space = () => {
       planetRef.current.forEach((planet, index) => {
         const path = orbitRef.current[index];
         if (path && planet) {
+          const handleMouseEnter = () => {
+            gsap.to(planet, {
+              scale: 0.9,
+              filter: 'drop-shadow(0px 0px 10px rgba(255, 255, 255, 0.8))',
+              duration: 0.3,
+            });
+          };
+          const handleMouseLeave = () => {
+            gsap.to(planet, {
+              scale: 0.7,
+              filter: 'drop-shadow(0px 0px 0px rgba(255, 255, 255, 0))',
+              duration: 0.3,
+            });
+          };
+
           planet.addEventListener('click', catchThink);
+          planet.addEventListener('mouseenter', handleMouseEnter);
+          planet.addEventListener('mouseleave', handleMouseLeave);
 
           gsap
             .to(planet, {
@@ -117,7 +134,7 @@ const Space = () => {
       });
     });
 
-    return () => ctx.revert(); // Очистка анимаций
+    return () => ctx.revert();
   }, [catchThink]);
 
   return (

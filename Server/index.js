@@ -30,6 +30,7 @@ function getRandomQuote(quotes) {
 app.get('/random-quote', async (req, res) => {
   try {
     const quotes = await Quote.find().populate('userId');
+
     if (!quotes || quotes.length === 0) {
       return res.status(404).json({ msg: 'No quotes found' });
     }
