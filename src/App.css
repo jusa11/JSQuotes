@@ -1925,13 +1925,14 @@ li {
     box-shadow: 0 0 5px rgba(255, 255, 255, 0.3);
   }
   .user-card__logout {
-    display: block;
+    display: flex;
     font-size: 16px;
     color: #ff4081;
     cursor: pointer;
     text-decoration: none;
     transition: color 0.2s ease-in-out;
     padding: 6px 0 0 0;
+    background-color: transparent;
   }
   .user-card__logout:hover {
     color: #ff80ab;

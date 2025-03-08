@@ -101,7 +101,10 @@ const ListQuotes = ({ url, title }) => {
   }, [outletRef]);
 
   const showQuote = (index) => {
-    setSelectedQuote(limitQuotes[index]);
+    setSelectedQuote(null);
+    setTimeout(() => {
+      setSelectedQuote(limitQuotes[index]);
+    }, 0);
   };
 
   useEffect(() => {
@@ -122,11 +125,7 @@ const ListQuotes = ({ url, title }) => {
           ) : (
             limitQuotes.map((quote, index) => {
               return (
-                <li
-                  className="last__list-qoutes_item"
-                  key={quote._id}
-                  onClick={() => showQuote(index)}
-                >
+                <li className="last__list-qoutes_item" key={quote._id}>
                   <div className="quotes-item">
                     <div className="quotes-item__content">
                       <div className="quotes-item__author">
@@ -137,7 +136,7 @@ const ListQuotes = ({ url, title }) => {
                         </div>
                       </div>
                       <div className="quotes-item__quote">
-                        <p>
+                        <p onClick={() => showQuote(index)}>
                           {limitTextLength(quote.text, MAX_TEXT_LENGTH_ITEM)}
                         </p>
                         <div className="quotes-item__quote_botom">

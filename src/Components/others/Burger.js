@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import Popup from 'reactjs-popup';
-import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import UserCard from './UserCard';
 import { slide as Menu } from 'react-burger-menu';
 import { selectUser } from '../redux/slices/userSlice';
@@ -12,12 +12,13 @@ const Burger = () => {
   const { isAuth } = useSelector(selectUser);
   const [isAuthPopupOpen, setAuthPopupOpen] = useState(false);
   const [isMenuOpen, setMenuOpen] = useState(false);
+  const navigate = useNavigate();
 
   const closeMenu = () => setMenuOpen(false);
 
   useEffect(() => {
     const handleClickOutSide = (event) => {
-      if (isMenuOpen && !event.target.closest('bm-menu-wrap')) {
+      if (isMenuOpen && !event.target.closest('.bm-menu-wrap')) {
         closeMenu();
       }
     };
@@ -33,27 +34,31 @@ const Burger = () => {
         isOpen={isMenuOpen}
         onStateChange={({ isOpen }) => setMenuOpen(isOpen)}
       >
-       
-          {isAuth ? (
-            <>
-              <Link to="/profile" onClick={closeMenu}>
-                <UserCard closeMenu={closeMenu} menuOpen={isMenuOpen} />
-              </Link>
-            </>
-          ) : (
-            <>
-              <button
-                onClick={() => {
-                  setAuthPopupOpen(true);
-                  closeMenu();
-                }}
-                className="burger-btn"
-              >
-                Присоединиться
-              </button>
-            </>
-          )}
-        
+        {isAuth ? (
+          <>
+            <div
+              onClick={() => {
+                closeMenu();
+                navigate('/profile');
+              }}
+            >
+              <UserCard closeMenu={closeMenu} menuOpen={isMenuOpen} />
+            </div>
+          </>
+        ) : (
+          <>
+            <button
+              onClick={() => {
+                setAuthPopupOpen(true);
+                closeMenu();
+              }}
+              className="burger-btn"
+            >
+              Присоединиться
+            </button>
+          </>
+        )}
+
         <MainMenu closeMenu={closeMenu} />
       </Menu>
       <Popup

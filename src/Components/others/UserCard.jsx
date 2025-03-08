@@ -1,5 +1,4 @@
 import { useSelector } from 'react-redux';
-import { Link } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { IoIosNotifications } from 'react-icons/io';
@@ -27,7 +26,7 @@ const UserCard = ({ closeMenu, menuOpen }) => {
           <IoIosNotifications className="user-card__notifications" />
         </div>
         <div className="user-card__level">{statsInfo?.titleLevel}</div>
-        <Link
+        <button
           className={`user-card__logout ${
             menuOpen ? '' : 'user-card__logout_profile'
           }`}
@@ -38,7 +37,7 @@ const UserCard = ({ closeMenu, menuOpen }) => {
           }}
         >
           Выйти
-        </Link>
+        </button>
       </div>
     </div>
   );
