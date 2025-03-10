@@ -1,4 +1,4 @@
-export const MAX_TEXT_LENGTH = 500;
+export const MAX_TEXT_LENGTH = 200;
 export const MAX_TEXT_LENGTH_ITEM = 60;
 export const MAX_QUOTES = 4;
 export const POPULAR_URL = 'popular-quotes';

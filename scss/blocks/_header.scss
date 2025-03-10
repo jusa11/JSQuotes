@@ -1,5 +1,9 @@
 .header {
   padding: 25px 0 80px 0;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between; // Убедимся, что контент равномерно распределяется
 }
 
 // header__nav
@@ -16,8 +20,16 @@
 // header__content
 .main-title {
   font-size: 75px;
-  padding: 130px 0 0 0;
+  padding: 100px 0 0 0;
   line-height: 86px;
+}
+.header__quote {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  min-height: 250px; // Минимальная высота, чтобы кнопки не поднимались
+  position: relative;
 }
 .header__quote_content {
   color: #bdbdc0;
@@ -26,27 +38,42 @@
   font-weight: medium;
   font-style: italic;
   text-align: center;
-  max-width: 550px;
+  max-width: 700px;
   margin: 0 auto;
-  padding: 75px 0 0 0;
   word-wrap: break-word;
   overflow-wrap: break-word;
+  min-height: 90px; // Минимальная высота для предотвращения скачков
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
   position: relative;
-  min-height: 100px;
+  padding: 70px 0 30px 0;
 }
+
+.quote__text,
+.quote__author {
+  opacity: 1;
+  transition: opacity 0.3s ease-in-out;
+}
+
+.quote__text.loading,
+.quote__author.loading {
+  opacity: 0;
+}
+
 .isloading-quote {
   position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
 }
-
 // buttons
 .header__quote_btn {
   display: flex;
   justify-content: center;
-  gap: 40px;
-  padding: 55px 0 0 0;
+  gap: 30px;
+  margin-top: auto; // Гарантированно прижимаем к низу
 }
 
 .button-quote__btn_icon {
@@ -56,9 +83,9 @@
 .button-quote {
   display: flex;
   align-items: center;
-  gap: 5px;
+  gap: 10px;
   font-size: 14px;
-  padding: 15px 30px;
+  padding: 15px 15px;
 }
 
 .quote__author {

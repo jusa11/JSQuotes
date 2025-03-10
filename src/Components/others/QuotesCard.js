@@ -5,9 +5,8 @@ import steps from '../../utils/steps.js';
 import { MAX_TEXT_LENGTH } from '../../config.js';
 
 const QuotesCard = forwardRef(({ quote }, ref) => {
-  
   const userLevel = quote?.userId?.level;
-  console.log(quote);
+
   return (
     <div className="quotes-block__column">
       <div className="quotes-block__card card" ref={ref}>

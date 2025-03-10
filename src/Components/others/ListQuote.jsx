@@ -3,7 +3,6 @@ import { useEffect, useRef, useCallback, useState } from 'react';
 import axios from 'axios';
 import { gsap } from 'gsap';
 import Popup from 'reactjs-popup';
-import { AiFillLike } from 'react-icons/ai';
 import {
   selectDisplayLastQuotes,
   selectDisplayPopularQuotes,
@@ -27,9 +26,9 @@ import {
   MAX_TEXT_LENGTH_ITEM,
 } from '../../config';
 import { limitTextLength } from '../../utils/limitTextLength';
-import useHandleLike from '../../Hooks/useHandleLike';
 import { useOutletRef } from '../../Hooks/useOutletRef';
 import QuotesCard from './QuotesCard';
+import HandleIcon from './HandleIcon';
 
 const ListQuotes = ({ url, title }) => {
   const lastQuotes = useSelector(selectDisplayLastQuotes);
@@ -39,7 +38,6 @@ const ListQuotes = ({ url, title }) => {
   const listRef = useRef(null);
   const dispatch = useDispatch();
   const { username } = useSelector(selectUser);
-  const handleLike = useHandleLike();
   const ref = useRef(null);
   const outletRef = useOutletRef();
   const [selectedQuote, setSelectedQuote] = useState(null);
@@ -141,11 +139,7 @@ const ListQuotes = ({ url, title }) => {
                         </p>
                         <div className="quotes-item__quote_botom">
                           <div className="last-quotes__handler">
-                            <AiFillLike
-                              onClick={() => handleLike(quote._id)}
-                              className="handler-icon"
-                            />
-                            <p>{quote.likes}</p>
+                            <HandleIcon quote={quote} />
                           </div>
                           <div className="last-quotes__date">
                             <p>

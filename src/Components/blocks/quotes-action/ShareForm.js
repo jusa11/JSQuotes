@@ -71,7 +71,7 @@ const ShareForm = () => {
                 placeholder="Отправь мысль во вселенную"
                 onChange={(e) => setMessage(e.target.value)}
                 value={message}
-                maxLength={500}
+                maxLength={200}
               />
             </div>
 

@@ -41,6 +41,11 @@
   margin: 0 0 60px 0;
 }
 
+.btn-like {
+  background-color: transparent;
+  font-size: 35px;
+}
+
 @include mediaBigMobile {
   .header-join {
     display: none;

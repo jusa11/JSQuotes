@@ -356,6 +356,10 @@ li {
 }
 .header {
   padding: 25px 0 80px 0;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 
 .header__nav {
@@ -370,8 +374,17 @@ li {
 
 .main-title {
   font-size: 75px;
-  padding: 130px 0 0 0;
+  padding: 100px 0 0 0;
   line-height: 86px;
+}
+
+.header__quote {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  min-height: 250px;
+  position: relative;
 }
 
 .header__quote_content {
@@ -381,13 +394,28 @@ li {
   font-weight: medium;
   font-style: italic;
   text-align: center;
-  max-width: 550px;
+  max-width: 700px;
   margin: 0 auto;
-  padding: 75px 0 0 0;
   word-wrap: break-word;
   overflow-wrap: break-word;
+  min-height: 90px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
   position: relative;
-  min-height: 100px;
+  padding: 70px 0 30px 0;
+}
+
+.quote__text,
+.quote__author {
+  opacity: 1;
+  transition: opacity 0.3s ease-in-out;
+}
+
+.quote__text.loading,
+.quote__author.loading {
+  opacity: 0;
 }
 
 .isloading-quote {
@@ -400,8 +428,8 @@ li {
 .header__quote_btn {
   display: flex;
   justify-content: center;
-  gap: 40px;
-  padding: 55px 0 0 0;
+  gap: 30px;
+  margin-top: auto;
 }
 
 .button-quote__btn_icon {
@@ -411,9 +439,9 @@ li {
 .button-quote {
   display: flex;
   align-items: center;
-  gap: 5px;
+  gap: 10px;
   font-size: 14px;
-  padding: 15px 30px;
+  padding: 15px 15px;
 }
 
 .quote__author {
@@ -1067,7 +1095,7 @@ li {
 }
 
 .quotes-block__card_content {
-  margin: 15px 0 0 0;
+  margin: 15px 0 0;
 }
 
 .quotes-block__card_name {
@@ -1076,14 +1104,13 @@ li {
 
 .quotes-block__card_text {
   color: #a9a9a9;
-  margin: 15px 0 0 0;
+  margin: 15px 0 20px 0;
 }
 
 .quotes-block__card_handler {
   display: flex;
   gap: 20px;
   align-items: center;
-  margin: 40px 0 0 0;
 }
 
 .card-handler {
@@ -1232,6 +1259,11 @@ li {
   border-radius: 8px;
   transition: all 0.3s ease;
   margin: 0 0 60px 0;
+}
+
+.btn-like {
+  background-color: transparent;
+  font-size: 35px;
 }
 
 @media (max-width: 767.98px) {
@@ -1532,6 +1564,7 @@ li {
   position: relative;
   width: 100%;
   height: 240px;
+  margin: 50px 0 0 0;
 }
 
 .stats-decor_1 {
@@ -1569,7 +1602,7 @@ li {
 
 .chart-percent {
   font-family: "Montserrat", serif;
-  font-size: 36px;
+  font-size: 30px;
   font-weight: bold;
   position: absolute;
   transform: translate(-50%, -40%);
@@ -1668,7 +1701,7 @@ li {
   }
   .chart-percent {
     font-family: "Montserrat", serif;
-    font-size: 36px;
+    font-size: 25px;
     font-weight: bold;
     position: absolute;
     transform: translate(-50%, -40%);
@@ -2085,6 +2118,9 @@ li {
   }
 }
 @media (max-width: 767.98px) {
+  .stepper {
+    margin: 50px 0 0 0;
+  }
   .stepper-wrapper {
     background-color: rgba(29, 28, 32, 0.7);
     border-radius: 32px;

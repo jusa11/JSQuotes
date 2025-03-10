@@ -1,51 +1,67 @@
-import { useCallback, useEffect, useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useCallback, useEffect, useRef, useState } from 'react';
+import { useDispatch } from 'react-redux';
 import { FaSpinner } from 'react-icons/fa';
-import { FaQuoteLeft, FaStar } from 'react-icons/fa6';
+import { FcLike } from 'react-icons/fc';
+import { FaQuoteLeft } from 'react-icons/fa6';
 import { gsap } from 'gsap';
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import {
-  setAddQuote,
-  setDeleteQuote,
-  selectQuote,
-} from '../../redux/slices/quotesSlice.js';
 import { setError } from '../../redux/slices/notificationsSlice';
 import { generateRandomQuoteAPI } from '../../../utils/generateRandomQuoteAPI.js';
-
-gsap.registerPlugin(ScrollTrigger);
+import useHandleLike from '../../../Hooks/useHandleLike';
 
 const HeaderContent = () => {
-  const [currentQuote, setCurrentQuote] = useState({});
+  const [currentQuote, setCurrentQuote] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
-  const favoriteQuotes = useSelector(selectQuote);
   const dispatch = useDispatch();
+  const quoteRef = useRef(null);
+  const authorRef = useRef(null);
+  const handleLike = useHandleLike();
+  const likeRef = useRef(null);
 
   useEffect(() => {
-    if (!ScrollTrigger.isTouch) {
-      gsap.from('.header__content', {
-        opacity: 0,
-        y: 400,
-        duration: 1,
-        scrollTrigger: {
-          trigger: '.header__content',
-        },
-      });
-
-      gsap.fromTo(
-        '.header__content',
-        { opacity: 1 },
-        {
-          opacity: 0,
-          scrollTrigger: {
-            trigger: '.header__content',
-            start: 'top%', //
-            end: '1000',
-            scrub: true,
-          },
-        }
-      );
-    }
+    gsap.from('.header__content', {
+      opacity: 0,
+      y: 400,
+      duration: 1,
+    });
   }, []);
+
+  const likeAnimation = () => {
+    gsap.killTweensOf(likeRef.current);
+    gsap.set(likeRef.current, { rotate: 0 }); // Сбрасываем поворот
+    gsap.fromTo(
+      likeRef.current,
+      { scale: 0.5, opacity: 0 },
+      {
+        rotate: 720,
+        opacity: 1,
+        scale: 1,
+        duration: 1.5,
+        ease: 'power2.out',
+      }
+    );
+  };
+
+  const typingQuoteEffect = (text, ref, onComplete) => {
+    if (!ref.current) return;
+
+    gsap.killTweensOf(ref.current);
+    ref.current.innerHTML = '';
+
+    const chars = text.split('');
+    const tl = gsap.timeline({ onComplete }); // Создаём Timeline
+
+    chars.forEach((char, i) => {
+      const span = document.createElement('span');
+      span.textContent = char;
+      span.style.opacity = 0;
+      ref.current.appendChild(span);
+
+      tl.to(span, {
+        opacity: 1,
+        duration: 0.04,
+      });
+    });
+  };
 
   const handleGetApiQuote = useCallback(async () => {
     try {
@@ -57,36 +73,27 @@ const HeaderContent = () => {
         console.error('API вернул невалидное значение');
       }
     } catch (error) {
-      setCurrentQuote(false);
-      console.log('error ' + error);
+      setCurrentQuote(null);
+      console.log('Ошибка: ' + error);
       dispatch(setError(error.message));
     } finally {
       setIsLoading(false);
     }
   }, [dispatch]);
 
-  const isFavorite = favoriteQuotes.some(
-    (quote) =>
-      quote.text === currentQuote.text && quote.author === currentQuote.author
-  );
-
-  const handleAddToFavorites = () => {
-    if (!isFavorite) {
-      dispatch(setAddQuote(currentQuote));
-    }
-    if (isFavorite) {
-      dispatch(setDeleteQuote(currentQuote.id));
-    }
-    if (!currentQuote.text) {
-      console.log('err');
-    }
-  };
+  useEffect(() => {
+    handleGetApiQuote();
+  }, [handleGetApiQuote]);
 
   useEffect(() => {
-    (async () => {
-      await handleGetApiQuote();
-    })();
-  }, [handleGetApiQuote]);
+    if (currentQuote) {
+      typingQuoteEffect(currentQuote.text, quoteRef, () => {
+        if (currentQuote.author) {
+          typingQuoteEffect(`(Поделился: ${currentQuote.author})`, authorRef);
+        }
+      });
+    }
+  }, [currentQuote]);
 
   return (
     <div className="header__content">
@@ -98,16 +105,10 @@ const HeaderContent = () => {
         <div className="header__quote_content">
           {isLoading ? (
             <FaSpinner className="spinner isloading-quote" />
-          ) : currentQuote.text ? (
-            <>
-              <p className="quote__text" style={{ opacity: isLoading ? 0 : 1 }}>
-                {currentQuote.text}{' '}
-              </p>
-              <p className="quote__author">{`(Поделился: ${currentQuote.author})`}</p>
-            </>
           ) : (
             <>
-              <p className="quote__text">Произошла ошибка</p>
+              <p ref={quoteRef} className="quote__text"></p>
+              <p ref={authorRef} className="quote__author"></p>
             </>
           )}
         </div>
@@ -120,8 +121,15 @@ const HeaderContent = () => {
             <FaQuoteLeft />
             Сгенерировать
           </button>
-          <button className="button-quote btn" onClick={handleAddToFavorites}>
-            <FaStar />В избранное
+          <button
+            className=" btn-like"
+            onClick={() => {
+              likeAnimation();
+              handleLike(currentQuote._id);
+            }}
+            ref={likeRef}
+          >
+            <FcLike />
           </button>
         </div>
       </div>

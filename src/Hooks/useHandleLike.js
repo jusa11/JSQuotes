@@ -21,7 +21,7 @@ const useHandleLike = () => {
 
   const handleLike = async (quoteId) => {
     const token = localStorage.getItem('token');
-
+    console.log('like');
     if (!token) {
       console.error('Нет токена! Пользователь не авторизован.');
       return;

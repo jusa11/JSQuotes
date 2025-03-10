@@ -138,6 +138,9 @@
 }
 
 @include mediaBigMobile {
+  .stepper {
+    margin: 50px 0 0 0;
+  }
   .stepper-wrapper {
     background-color: rgba(29, 28, 32, 0.7);
     border-radius: 32px;
