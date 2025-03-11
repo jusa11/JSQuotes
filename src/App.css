@@ -376,6 +376,7 @@ li {
   font-size: 75px;
   padding: 100px 0 0 0;
   line-height: 86px;
+  text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
 }
 
 .header__quote {
@@ -388,11 +389,9 @@ li {
 }
 
 .header__quote_content {
-  color: #bdbdc0;
   line-height: 1.5em;
   font-size: 20px;
   font-weight: medium;
-  font-style: italic;
   text-align: center;
   max-width: 700px;
   margin: 0 auto;
@@ -411,6 +410,9 @@ li {
 .quote__author {
   opacity: 1;
   transition: opacity 0.3s ease-in-out;
+  color: #33ff33;
+  font-family: "Courier New", monospace;
+  text-shadow: 0 0 5px rgba(0, 255, 0, 0.8), 0 0 10px rgba(0, 255, 0, 0.5);
 }
 
 .quote__text.loading,
@@ -432,16 +434,23 @@ li {
   margin-top: auto;
 }
 
-.button-quote__btn_icon {
-  margin: 0 10px 0 0;
-}
-
 .button-quote {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  font-size: 14px;
-  padding: 15px 15px;
+  background: #111;
+  color: #fff;
+  padding: 12px 24px;
+  font-size: 18px;
+  border: 2px solid rgba(255, 255, 255, 0.2);
+  border-radius: 12px;
+  box-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
+  transition: all 0.3s ease;
+}
+.button-quote:hover {
+  box-shadow: 0 0 15px rgba(255, 255, 255, 0.3);
+  transform: scale(1.05);
+}
+.button-quote:active {
+  transform: scale(0.95);
+  box-shadow: 0 0 5px rgba(255, 255, 255, 0.5);
 }
 
 .quote__author {
@@ -858,6 +867,7 @@ li {
 .your-message-wrapper {
   position: relative;
   width: 100%;
+  height: 30px;
 }
 
 .your-message-wrapper::before {
@@ -866,7 +876,7 @@ li {
   position: absolute;
   height: 20px;
   width: 20px;
-  top: -15%;
+  top: 14%;
   left: 1%;
 }
 
@@ -1025,17 +1035,27 @@ li {
   flex-direction: column;
 }
 
-.splide__arrow svg {
-  fill: #8d1ea2;
-  height: 200px;
+.splide__arrow {
+  height: 70px;
+  width: 70px;
 }
 
-.splide__arrow {
-  height: 200px;
+.splide__arrow svg {
+  fill: #8c1ea2;
+  width: 100%;
+  height: 100%;
 }
 
 .splide__arrow:hover svg {
   fill: #090edb;
+}
+
+.splide__arrow--prev {
+  left: 60px;
+}
+
+.splide__arrow--next {
+  right: 60px;
 }
 
 @media (max-width: 992.98px) {
@@ -1261,9 +1281,61 @@ li {
   margin: 0 0 60px 0;
 }
 
+.button-quote {
+  background: rgba(0, 0, 0, 0.8);
+  color: #0ff;
+  padding: 14px 28px;
+  font-size: 16px;
+  font-family: "Fira Code", monospace;
+  text-transform: uppercase;
+  border: 2px solid rgba(0, 255, 255, 0.5);
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 255, 255, 0.2);
+  transition: all 0.3s ease-in-out;
+}
+.button-quote:hover {
+  background: rgba(0, 255, 255, 0.1);
+  box-shadow: 0 0 15px rgba(0, 255, 255, 0.5);
+}
+
 .btn-like {
-  background-color: transparent;
-  font-size: 35px;
+  width: 50px;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(255, 0, 0, 0.1);
+  border-radius: 10px;
+  border: 2px solid rgba(255, 0, 0, 0.5);
+  transition: all 0.3s ease-in-out;
+  font-size: 22px;
+}
+.btn-like svg {
+  fill: rgba(255, 0, 0, 0.8);
+  transition: all 0.2s ease;
+}
+.btn-like:hover {
+  background: rgba(255, 0, 0, 0.2);
+  box-shadow: 0 0 8px rgba(255, 0, 0, 0.8);
+}
+
+.btn-copy {
+  width: 50px;
+  height: 50px;
+  border-radius: 10px;
+  border: 2px solid #4caf50;
+  background: transparent;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-size: 22px;
+  color: #4caf50;
+}
+.btn-copy:hover {
+  background: #4caf50;
+  color: #000;
 }
 
 @media (max-width: 767.98px) {

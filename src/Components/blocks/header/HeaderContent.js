@@ -1,12 +1,13 @@
 import { useCallback, useEffect, useRef, useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { FaSpinner } from 'react-icons/fa';
-import { FcLike } from 'react-icons/fc';
+import { FaRegHeart } from 'react-icons/fa';
+import { IoCopyOutline } from 'react-icons/io5';
 import { FaQuoteLeft } from 'react-icons/fa6';
 import { gsap } from 'gsap';
-import { setError } from '../../redux/slices/notificationsSlice';
+import { setError, setSuccess } from '../../redux/slices/notificationsSlice';
 import { generateRandomQuoteAPI } from '../../../utils/generateRandomQuoteAPI.js';
 import useHandleLike from '../../../Hooks/useHandleLike';
+import RetroLoading from './RetroLoading.js';
 
 const HeaderContent = () => {
   const [currentQuote, setCurrentQuote] = useState(null);
@@ -15,7 +16,6 @@ const HeaderContent = () => {
   const quoteRef = useRef(null);
   const authorRef = useRef(null);
   const handleLike = useHandleLike();
-  const likeRef = useRef(null);
 
   useEffect(() => {
     gsap.from('.header__content', {
@@ -25,14 +25,20 @@ const HeaderContent = () => {
     });
   }, []);
 
-  const likeAnimation = () => {
-    gsap.killTweensOf(likeRef.current);
-    gsap.set(likeRef.current, { rotate: 0 }); // Сбрасываем поворот
+  const handleCopy = () => {
+    navigator.clipboard.writeText(currentQuote.text);
+    dispatch(setSuccess('Цитата скопирована!'));
+  };
+
+  const likeAnimation = (e) => {
+    gsap.killTweensOf(e);
+
+    gsap.set(e, { rotate: 0 });
     gsap.fromTo(
-      likeRef.current,
+      e,
       { scale: 0.5, opacity: 0 },
       {
-        rotate: 720,
+        rotate: 360,
         opacity: 1,
         scale: 1,
         duration: 1.5,
@@ -104,7 +110,7 @@ const HeaderContent = () => {
       <div className="header__quote">
         <div className="header__quote_content">
           {isLoading ? (
-            <FaSpinner className="spinner isloading-quote" />
+            <RetroLoading />
           ) : (
             <>
               <p ref={quoteRef} className="quote__text"></p>
@@ -114,7 +120,7 @@ const HeaderContent = () => {
         </div>
         <div className="header__quote_btn">
           <button
-            className="button-quote btn"
+            className="button-quote"
             onClick={handleGetApiQuote}
             disabled={isLoading}
           >
@@ -122,14 +128,22 @@ const HeaderContent = () => {
             Сгенерировать
           </button>
           <button
-            className=" btn-like"
-            onClick={() => {
-              likeAnimation();
+            className="btn-like"
+            onClick={(e) => {
+              likeAnimation(e.currentTarget.children[0]);
               handleLike(currentQuote._id);
             }}
-            ref={likeRef}
           >
-            <FcLike />
+            <FaRegHeart />
+          </button>
+          <button
+            className="btn-copy"
+            onClick={(e) => {
+              handleCopy();
+              likeAnimation(likeAnimation(e.currentTarget.children[0]));
+            }}
+          >
+            <IoCopyOutline />
           </button>
         </div>
       </div>

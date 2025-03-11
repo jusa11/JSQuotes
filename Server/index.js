@@ -37,7 +37,7 @@ app.get('/random-quote', async (req, res) => {
     const randomQuote = getRandomQuote(quotes);
     setTimeout(() => {
       res.json(randomQuote);
-    }, 200);
+    }, 2000);
   } catch (error) {
     console.error(error);
     res.status(500).send('Server error');

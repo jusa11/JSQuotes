@@ -41,9 +41,66 @@
   margin: 0 0 60px 0;
 }
 
+.button-quote {
+  background: rgba(0, 0, 0, 0.8);
+  color: #0ff;
+  padding: 14px 28px;
+  font-size: 16px;
+  font-family: 'Fira Code', monospace;
+  text-transform: uppercase;
+  border: 2px solid rgba(0, 255, 255, 0.5);
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 255, 255, 0.2);
+  transition: all 0.3s ease-in-out;
+
+  &:hover {
+    background: rgba(0, 255, 255, 0.1);
+    box-shadow: 0 0 15px rgba(0, 255, 255, 0.5);
+  }
+}
+
 .btn-like {
-  background-color: transparent;
-  font-size: 35px;
+  width: 50px;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(255, 0, 0, 0.1);
+  border-radius: 10px;
+  border: 2px solid rgba(255, 0, 0, 0.5);
+  transition: all 0.3s ease-in-out;
+  font-size: 22px;
+
+  svg {
+    fill: rgba(255, 0, 0, 0.8);
+    transition: all 0.2s ease;
+  }
+
+  &:hover {
+    background: rgba(255, 0, 0, 0.2);
+    box-shadow: 0 0 8px rgba(255, 0, 0, 0.8);
+  }
+	
+}
+
+.btn-copy {
+  width: 50px;
+  height: 50px;
+  border-radius: 10px;
+  border: 2px solid #4caf50; // Зеленый контур
+  background: transparent;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-size: 22px;
+  color: #4caf50; // Цвет иконки
+
+  &:hover {
+    background: #4caf50;
+    color: #000;
+  }
 }
 
 @include mediaBigMobile {

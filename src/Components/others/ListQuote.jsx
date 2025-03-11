@@ -83,9 +83,9 @@ const ListQuotes = ({ url, title }) => {
   }, [dispatch, url, username, likedQuotes]);
 
   useEffect(() => {
-    if (listRef.current?.firstElementChild) {
+    if (listRef.current) {
       gsap.fromTo(
-        listRef.current.firstElementChild,
+        listRef.current,
         { opacity: 0, x: -100 },
         { opacity: 1, x: 0, duration: 1, ease: 'power2.out' }
       );
@@ -113,17 +113,21 @@ const ListQuotes = ({ url, title }) => {
 
   return (
     <>
-      <div className="quotes-action__card card right-card" ref={ref}>
+      <div className="quotes-action__card card right-card">
         <div className="action__card_text">
           <h3 className="action__card_title card-title">{title}</h3>
         </div>
-        <ul className="last__list-qoutes" ref={listRef}>
+        <ul className="last__list-qoutes">
           {typeof limitQuotes === 'string' ? (
             <p>Пусто</p>
           ) : (
             limitQuotes.map((quote, index) => {
               return (
-                <li className="last__list-qoutes_item" key={quote._id}>
+                <li
+                  ref={listRef}
+                  className="last__list-qoutes_item"
+                  key={quote._id}
+                >
                   <div className="quotes-item">
                     <div className="quotes-item__content">
                       <div className="quotes-item__author">

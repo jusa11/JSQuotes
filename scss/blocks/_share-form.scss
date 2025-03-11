@@ -16,6 +16,7 @@
 .your-message-wrapper {
   position: relative;
   width: 100%;
+  height: 30px;
 }
 .your-message-wrapper::before {
   content: '';
@@ -23,7 +24,7 @@
   position: absolute;
   height: 20px;
   width: 20px;
-  top: -15%;
+  top: 14%;
   left: 1%;
 }
 .your-message {
