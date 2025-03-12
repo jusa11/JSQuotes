@@ -117,7 +117,7 @@ app.get('/users/level/:username', async (req, res) => {
     if (!user) {
       return res.status(404).json({ message: 'Пользователь не найден' });
     }
-    const currentCountQuotes = user.countQuote; // всего циатат у пользовател
+    const currentCountQuotes = user.countQuote; // всего циатат у пользователя
     const levels = checkUserLevel(currentCountQuotes);
     const currentLevel = levels.currentLevel; // текущий левел пользователя
     const nextLevelCount = levels.nextLevelCount; // сколько всего цитат нужно для след. левела
