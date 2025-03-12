@@ -24,7 +24,7 @@ const Login = ({ onSwitch, onClose }) => {
     event.preventDefault();
 
     if (!form.username || !form.password) {
-      dispatch(setError('Заполните все поля'));
+      dispatch(setError('Заполни все поля, сынок'));
       return;
     }
 
@@ -33,7 +33,7 @@ const Login = ({ onSwitch, onClose }) => {
       const { token } = res.data;
 
       localStorage.setItem('token', token);
-      dispatch(setSuccess('Авторизация прошла успешно'));
+      dispatch(setSuccess('Приветствуем тебя, брат!'));
       const decode = jwtDecode(token);
       dispatch(setUser({ username: decode.username, userId: decode._id }));
       navigate('/profile');
@@ -47,36 +47,29 @@ const Login = ({ onSwitch, onClose }) => {
   };
 
   return (
-    <div className="authorization">
+    <>
       <Logo />
-      <form
-        className="login-form authorization-form"
-        onSubmit={onSubmitHandler}
-      >
+      <form className="auth-form" onSubmit={onSubmitHandler}>
         <input
-          className="login-form__username form-login"
           name="username"
-          placeholder="Укажите логин"
+          placeholder="Скажи своё погоняло"
           type="text"
           onChange={handleChange}
           value={form.username}
         />
         <input
-          className="login-form__password form-password"
           name="password"
-          placeholder="Укажите пароль"
+          placeholder="Скажи шифр"
           type="password"
           onChange={handleChange}
           value={form.password}
         />
-        <button className="login-form__btn form-btn" type="submit">
-          Войти
-        </button>
-        <span className="another-form" onClick={onSwitch}>
+        <button className="popup-btn_active">Войти</button>
+        <span className="auth-form__bottom-link" onClick={onSwitch}>
           Еще нет аккаунта
         </span>
       </form>
-    </div>
+    </>
   );
 };
 

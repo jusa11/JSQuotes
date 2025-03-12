@@ -5,7 +5,7 @@ import { IoIosNotifications } from 'react-icons/io';
 import { selectUser, logout } from '../redux/slices/userSlice';
 import useGetQuotesCount from '../../Hooks/useGetQuotesCount';
 
-const UserCard = ({ closeMenu, menuOpen }) => {
+const UserCard = ({ menuOpen }) => {
   const user = useSelector(selectUser);
   const statsInfo = useGetQuotesCount();
   const dispatch = useDispatch();
@@ -14,6 +14,9 @@ const UserCard = ({ closeMenu, menuOpen }) => {
   return (
     <div className={`user-card ${menuOpen ? '' : 'user-card_profile'}`}>
       <div
+        onClick={() => {
+          navigate('/profile');
+        }}
         className={`user-card__avatar ${
           menuOpen ? '' : 'user-card__avatar_profile'
         }`}
@@ -21,7 +24,12 @@ const UserCard = ({ closeMenu, menuOpen }) => {
         <img src="/src/img/profile-logo.png" alt={user.username} />
       </div>
       <div className="user-card__info">
-        <div className="user-card__top">
+        <div
+          className="user-card__top"
+          onClick={() => {
+            navigate('/profile');
+          }}
+        >
           <span className="user-card__name">{user.username}</span>
           <IoIosNotifications className="user-card__notifications" />
         </div>
@@ -33,7 +41,6 @@ const UserCard = ({ closeMenu, menuOpen }) => {
           onClick={() => {
             dispatch(logout());
             navigate('/');
-            closeMenu();
           }}
         >
           Выйти

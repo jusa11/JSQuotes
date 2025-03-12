@@ -1,7 +1,5 @@
 import { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
-import Popup from 'reactjs-popup';
-import { useNavigate } from 'react-router-dom';
 import UserCard from './UserCard';
 import { slide as Menu } from 'react-burger-menu';
 import { selectUser } from '../redux/slices/userSlice';
@@ -10,9 +8,8 @@ import MainMenu from './MainMenu';
 
 const Burger = () => {
   const { isAuth } = useSelector(selectUser);
-  const [isAuthPopupOpen, setAuthPopupOpen] = useState(false);
+  const [isPopup, setPopup] = useState();
   const [isMenuOpen, setMenuOpen] = useState(false);
-  const navigate = useNavigate();
 
   const closeMenu = () => setMenuOpen(false);
 
@@ -35,43 +32,23 @@ const Burger = () => {
         onStateChange={({ isOpen }) => setMenuOpen(isOpen)}
       >
         {isAuth ? (
-          <>
-            <div
-              onClick={() => {
-                closeMenu();
-                navigate('/profile');
-              }}
-            >
-              <UserCard closeMenu={closeMenu} menuOpen={isMenuOpen} />
-            </div>
-          </>
+          <UserCard menuOpen={isMenuOpen} />
         ) : (
-          <>
-            <button
-              onClick={() => {
-                setAuthPopupOpen(true);
-                closeMenu();
-              }}
-              className="burger-btn"
-            >
-              Присоединиться
-            </button>
-          </>
+          <button
+            onClick={() => {
+              setPopup(true);
+              closeMenu();
+            }}
+            className="burger-btn"
+          >
+            Присоединиться
+          </button>
         )}
 
         <MainMenu closeMenu={closeMenu} />
       </Menu>
-      <Popup
-        open={isAuthPopupOpen}
-        modal
-        overlayStyle={{ background: 'rgba(0, 0, 0, 0.7)' }}
-        onClose={() => setAuthPopupOpen(false)}
-      >
-        <AuthPopup
-          isOpen={isAuthPopupOpen}
-          onClose={() => setAuthPopupOpen(false)}
-        />
-      </Popup>
+
+      <AuthPopup isPopup={isPopup} setPopup={setPopup} />
     </>
   );
 };

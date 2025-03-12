@@ -53,6 +53,16 @@ body.lock {
   background: #555;
 }
 
+.main-popup {
+  background: rgba(0, 0, 0, 0.833); /* Чуть темнее фон */
+  border-radius: 30px;
+  border: 2px solid rgba(255, 255, 255, 0.2); /* Светлая граница */
+  max-width: 500px;
+  padding: 40px 60px;
+  box-shadow: 0px 0px 50px rgba(181, 181, 181, 0.1);
+  min-width: 300px; /* Увеличить минимальную ширину */
+}
+
 .wrapper {
   width: 100%;
   min-height: 100%;
@@ -1340,6 +1350,35 @@ li {
   color: #000;
 }
 
+.popup-btn_active {
+  padding: 10px;
+  background: #8d1ea2;
+  border: none;
+  color: #fff;
+  font-size: 16px;
+  cursor: pointer;
+  border-radius: 5px;
+  transition: background 0.3s;
+}
+.popup-btn_active:hover {
+  background: #0097a7;
+}
+
+.popup-btn {
+  background: rgba(255, 255, 255, 0.1);
+  color: #fff;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 8px;
+  font-size: 16px;
+  cursor: pointer;
+  margin-left: 10px;
+  transition: background 0.3s ease;
+}
+.popup-btn:hover {
+  background: rgba(255, 255, 255, 0.2);
+}
+
 @media (max-width: 767.98px) {
   .header-join {
     display: none;
@@ -1358,55 +1397,36 @@ li {
     font-size: 14;
   }
 }
-.authorization {
-  background: #000000;
-  border-radius: 30px;
-  max-width: 500px;
-  padding: 60px;
-  box-shadow: 0px 0px 50px rgba(181, 181, 181, 0.1);
-}
-.authorization .form-text {
+.auth-form__text {
   font-size: 14px;
   color: #a9a9a9;
   padding: 20px 0;
   line-height: 1.5em;
 }
-.authorization .authorization-form {
+
+.auth-form {
   display: flex;
   flex-direction: column;
   padding: 20px 0 0 0;
   border-radius: 10px;
 }
-.authorization .authorization-form input {
+.auth-form input {
   margin-bottom: 15px;
   padding: 10px;
   border: 1px solid #444;
   border-radius: 5px;
-  background: #2a2a2a;
+  background: rgba(42, 42, 42, 0.4784313725);
   color: #fff;
   font-size: 14px;
   transition: border 0.2s ease-in-out;
   box-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
 }
-.authorization .authorization-form input:focus {
+.auth-form input:focus {
   outline: none;
   border-color: #00bcd4;
   box-shadow: 0 0 5px rgba(0, 188, 212, 0.5);
 }
-.authorization .authorization-form .form-btn {
-  padding: 10px;
-  background: #8d1ea2;
-  border: none;
-  color: #fff;
-  font-size: 16px;
-  cursor: pointer;
-  border-radius: 5px;
-  transition: background 0.3s;
-}
-.authorization .authorization-form .form-btn:hover {
-  background: #0097a7;
-}
-.authorization .authorization-form .another-form {
+.auth-form .auth-form__bottom-link {
   display: inline-block;
   font-size: 14px;
   color: #fff;
@@ -1414,8 +1434,23 @@ li {
   padding: 20px 0 0 0;
   cursor: pointer;
 }
-.authorization .authorization-form .another-form:hover {
+.auth-form .auth-form__bottom-link:hover {
   color: #0097a7;
+}
+
+.loguot-title {
+  font-size: 22px;
+  font-weight: 600;
+  margin-bottom: 20px;
+  color: #fff;
+}
+
+.loguot-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  padding: 20px 0 0 0;
+  width: 200px;
 }
 
 .popup__card {

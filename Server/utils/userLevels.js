@@ -1,5 +1,5 @@
 const userLevels = [
-  { title: 'Новичок', amount: 0 },
+  { title: 'Сынок', amount: 0 },
   {
     title: 'Браток',
     amount: 4,

@@ -42,10 +42,9 @@ const Registration = ({ onSwitch, onClose }) => {
   };
 
   return (
-    <div className="authorization">
+    <>
       <Logo />
-
-      <p className="registration-form__text form-text">
+      <p className="auth-form__text">
         Присоединяйся к сообществу ценителей пацанских цитат Джейсона Стетхэма!
         Если у тебя есть мудрые мысли или жизненные принципы, которыми ты хочешь
         поделиться — добро пожаловать. Здесь каждый может внести свою лепту в
@@ -56,42 +55,36 @@ const Registration = ({ onSwitch, onClose }) => {
         Делись мудростью с единомышленниками. Войди в круг избранных —
         регистрируйся прямо сейчас! 🚀
       </p>
-      <form
-        className="registration-form authorization-form"
-        onSubmit={onSubmitHandler}
-      >
+      <form className="auth-form " onSubmit={onSubmitHandler}>
         <input
-          className="registration-form__login form-login"
           name="username"
-          placeholder="Укажите логин"
+          placeholder="Придумай себе погоняло"
           type="text"
           onChange={handleChange}
           value={form.username}
         />
         <input
-          className="registration-form__name form-name"
           name="name"
-          placeholder="Ваше имя"
+          placeholder="Как тебя зовут, сынок?"
           type="text"
           onChange={handleChange}
           value={form.name}
         />
         <input
-          className="registration-form__password form-password"
           name="password"
-          placeholder="Укажите пароль"
+          placeholder="Зашифруйся как следует"
           type="password"
           onChange={handleChange}
           value={form.password}
         />
-        <button className="registration-form__btn form-btn" type="submit">
+        <button className="popup-btn_active" type="submit">
           Зарегистрироваться
         </button>
-        <span className="another-form" onClick={onSwitch}>
+        <span className="auth-form__bottom-link" onClick={onSwitch}>
           Уже есть аккаунт
         </span>
       </form>
-    </div>
+    </>
   );
 };
 

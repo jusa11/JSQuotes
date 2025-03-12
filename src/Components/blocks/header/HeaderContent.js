@@ -14,7 +14,6 @@ const HeaderContent = () => {
   const [isLoading, setIsLoading] = useState(false);
   const dispatch = useDispatch();
   const quoteRef = useRef(null);
-  const authorRef = useRef(null);
   const handleLike = useHandleLike();
 
   useEffect(() => {
@@ -93,11 +92,7 @@ const HeaderContent = () => {
 
   useEffect(() => {
     if (currentQuote) {
-      typingQuoteEffect(currentQuote.text, quoteRef, () => {
-        if (currentQuote.author) {
-          typingQuoteEffect(`(Поделился: ${currentQuote.author})`, authorRef);
-        }
-      });
+      typingQuoteEffect(currentQuote.text, quoteRef);
     }
   }, [currentQuote]);
 
@@ -114,7 +109,6 @@ const HeaderContent = () => {
           ) : (
             <>
               <p ref={quoteRef} className="quote__text"></p>
-              <p ref={authorRef} className="quote__author"></p>
             </>
           )}
         </div>

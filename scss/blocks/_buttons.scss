@@ -88,7 +88,7 @@
   height: 50px;
   border-radius: 10px;
   border: 2px solid #4caf50; // Зеленый контур
-	box-shadow: 0 0 10px #4caf4f86;
+  box-shadow: 0 0 10px #4caf4f86;
   background: transparent;
   display: flex;
   align-items: center;
@@ -101,6 +101,36 @@
   &:hover {
     background: #4caf50;
     color: #000;
+  }
+}
+
+.popup-btn_active {
+  padding: 10px;
+  background: $color-hover;
+  border: none;
+  color: $white;
+  font-size: 16px;
+  cursor: pointer;
+  border-radius: 5px;
+  transition: background 0.3s;
+
+  &:hover {
+    background: #0097a7;
+  }
+}
+
+.popup-btn {
+  background: rgba(255, 255, 255, 0.1);
+  color: #fff;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 8px;
+  font-size: 16px;
+  cursor: pointer;
+  margin-left: 10px;
+  transition: background 0.3s ease;
+  &:hover {
+    background: rgba(255, 255, 255, 0.2);
   }
 }
 

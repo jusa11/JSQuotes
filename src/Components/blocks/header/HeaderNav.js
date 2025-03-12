@@ -1,7 +1,6 @@
 import { useState } from 'react';
 import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
-import Popup from 'reactjs-popup';
 import { selectUser } from '../../redux/slices/userSlice';
 import MainMenu from '../../others/MainMenu';
 import Logo from '../../others/Logo';
@@ -11,7 +10,7 @@ import Burger from '../../others/Burger';
 
 const HeaderNav = () => {
   const { isAuth } = useSelector(selectUser);
-  const [isAuthPopupOpen, setAuthPopupOpen] = useState(false);
+  const [isPopup, setPopup] = useState();
 
   return (
     <nav className="header__nav nav-menu">
@@ -30,26 +29,13 @@ const HeaderNav = () => {
           </>
         ) : (
           <>
-            <button
-              onClick={() => setAuthPopupOpen(true)}
-              className="main__btn"
-            >
+            <button onClick={() => setPopup(true)} className="main__btn">
               Присоединиться
             </button>
           </>
         )}
 
-        <Popup
-          open={isAuthPopupOpen}
-          modal
-          overlayStyle={{ background: 'rgba(0, 0, 0, 0.7)' }}
-          onClose={() => setAuthPopupOpen(false)}
-        >
-          <AuthPopup
-            isOpen={isAuthPopupOpen}
-            onClose={() => setAuthPopupOpen(false)}
-          />
-        </Popup>
+        <AuthPopup isPopup={isPopup} setPopup={setPopup} />
       </div>
     </nav>
   );

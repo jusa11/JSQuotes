@@ -26,9 +26,7 @@ class AuthController {
       const { username, password } = req.body;
       const candidate = await User.findOne({ username });
       if (candidate) {
-        return res
-          .status(400)
-          .json({ message: 'Пользователь с таким логином уже существует' });
+        return res.status(400).json({ message: 'Это погоняло уже занято' });
       }
       const hashPassword = bcrypt.hashSync(password, 7);
       let userRole = await Role.findOne({ value: 'user' });
@@ -39,7 +37,7 @@ class AuthController {
         roles: [userRole.value],
       });
       await user.save();
-      return res.json({ message: 'Пользователь был успешно зарегистрирован' });
+      return res.json({ message: 'Ты был зачислен в нашу банду' });
     } catch (error) {
       console.error('Ошибка при регистрации:', error);
       res.status(400).json({ message: 'Registration error' });
@@ -53,11 +51,13 @@ class AuthController {
       if (!user) {
         return res
           .status(400)
-          .json({ message: `Пользователь ${username} не найден` });
+          .json({ message: `${username} не в нашей банде` });
       }
       const validPassword = bcrypt.compareSync(password, user.password);
       if (!validPassword) {
-        return res.status(400).json({ message: 'Введен не верный пароль' });
+        return res
+          .status(400)
+          .json({ message: 'Ты ввел неверный шифр, сынок' });
       }
       const token = generateAccesToken(user._id, user.username, user.roles);
 

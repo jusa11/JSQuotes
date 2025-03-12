@@ -1,22 +1,38 @@
 import { useState } from 'react';
+import Popup from 'reactjs-popup';
 import Registration from './Registration';
 import Login from './Login';
 
-const AuthPopup = ({ isOpen, onClose }) => {
+const AuthPopup = ({ isPopup, setPopup }) => {
   const [isLogin, setIsLogin] = useState(true);
 
   return (
-    <div className="auth-popup-content">
-      {isLogin ? (
-        <>
-          <Login onSwitch={() => setIsLogin(false)} onClose={onClose} />
-        </>
-      ) : (
-        <>
-          <Registration onSwitch={() => setIsLogin(true)} onClose={onClose} />
-        </>
-      )}
-    </div>
+    <>
+      <Popup
+        open={isPopup}
+        modal
+        overlayStyle={{
+          // background: 'rgba(0, 0, 0, 0.7)',
+          backdropFilter: 'blur(10px)',
+        }}
+        onClose={() => setPopup(false)}
+      >
+        <div className="main-popup">
+          {isLogin ? (
+            <>
+              <Login
+                onSwitch={() => setIsLogin(false)}
+                onClose={() => setPopup(false)}
+              />
+            </>
+          ) : (
+            <>
+              <Registration onSwitch={() => setIsLogin(true)} />
+            </>
+          )}
+        </div>
+      </Popup>
+    </>
   );
 };
 
