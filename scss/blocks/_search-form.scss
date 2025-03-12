@@ -34,6 +34,15 @@
   color: black;
 }
 
+.searh-quote__form {
+  display: flex;
+  position: relative;
+}
+
+.searh-quote__form:focus-within .form-reset {
+  color: $white;
+}
+
 .searh-quote__query {
   position: relative;
   resize: none;
@@ -45,12 +54,16 @@
   font-size: 14px;
   color: #fff;
 }
+
 .form-reset {
   position: absolute;
   top: 20%;
-  right: 3%;
+  right: 15px;
   background-color: transparent;
-  font-size: 20px;
+  font-size: 22px;
+  color: $color-main;
+  font-weight: bold;
+  transition: all ease-in 0.3s;
 }
 
 @include mediaSmallMobile {

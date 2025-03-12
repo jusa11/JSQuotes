@@ -23,6 +23,7 @@ const useHandleLike = () => {
     const token = localStorage.getItem('token');
     console.log('like');
     if (!token) {
+      dispatch(setError('Зарегистрируйтесь, чтобы оставлять реакции'));
       console.error('Нет токена! Пользователь не авторизован.');
       return;
     }

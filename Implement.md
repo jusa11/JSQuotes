@@ -13,16 +13,14 @@
 11. При получении левела если ошибка, то все ломается
 12. Удалить цитату
 13. Исправить анимацию в ListQuote чтобы при каждом взаимодействии не дергалась
-14. Укоротить проценты в статистике
-15. добавить крестик в форму поиска в профиле
-16. добавить попап "Вы точно хотите выйти?"
-17. Добавить уведомление для лайка если не авторизован
+14. Доработать Popup выхода с профиля
 
 # Закомитить
 
-1. Кнопки стрелки у слайдера в популярно сделать больше и ближе к центру / Edit the size of the arrow buttons and their position
-2. Анимировал кнопки в headerContent  / Added animation of the buttons of the HeaderContent
-3. Добавил анимацию загрузки цитаты / Added loaning animation for quote
+1.Добавить уведомление для лайка если не авторизован / Added a notification for the like if the user not authorizated
+2.добавить попап "Вы точно хотите выйти?" / Added a popup 'Are you sure you want to leave' 
+1. Укоротить проценты в статистике / Fixed the percentage in the stats profile, reduced the number of decimal places 
+2. добавить крестик в форму поиска в профиле / Added a cross button in the seacrh form
 
 # Выполнено
 

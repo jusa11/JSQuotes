@@ -39,6 +39,7 @@ const searchSlice = createSlice({
     setResult: (state, action) => {
       state.results = action.payload;
     },
+    setReset: () => initialState,
   },
   extraReducers: (builder) => {
     builder.addCase(fetchSearch.pending, (state) => {
@@ -55,7 +56,7 @@ const searchSlice = createSlice({
   },
 });
 
-export const { setQuery, setType, setResult } = searchSlice.actions;
+export const { setQuery, setType, setResult, setReset } = searchSlice.actions;
 
 export const selectQuery = (state) => state.search.query;
 export const selectType = (state) => state.search.type;

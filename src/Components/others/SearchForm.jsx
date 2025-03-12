@@ -2,6 +2,7 @@ import { useState, useEffect, useRef } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { RxCross2 } from 'react-icons/rx';
 import { selectUser } from '../redux/slices/userSlice';
 import {
   selectQuery,
@@ -10,6 +11,7 @@ import {
   setQuery,
   setResult,
   setType,
+  setReset,
 } from '../redux/slices/searchSlice';
 import { fetchSearch } from '../redux/slices/searchSlice';
 import QuotesCard from './QuotesCard';
@@ -112,17 +114,27 @@ const SearchForm = () => {
             Мне понравились
           </button>
         </div>
-
-        <input
-          type="text"
-          name="message"
-          id="yourMessage"
-          className="searh-quote__query"
-          placeholder="Запрос во вселленную"
-          value={query}
-          onChange={(e) => handleSearch(e)}
-        />
-        <button className="form-reset"></button>
+        <form className="searh-quote__form">
+          {' '}
+          <input
+            type="text"
+            name="message"
+            id="yourMessage"
+            className="searh-quote__query"
+            placeholder="Запрос во вселленную"
+            value={query}
+            onChange={(e) => handleSearch(e)}
+          />
+          <button
+            className="form-reset"
+            onClick={(e) => {
+              e.preventDefault();
+              dispatch(setReset());
+            }}
+          >
+            <RxCross2 />
+          </button>
+        </form>
       </div>
 
       {results.map((quote, index) => (

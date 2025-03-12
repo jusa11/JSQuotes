@@ -21,7 +21,7 @@ const MyChart = ({ dataLevel }) => {
   return (
     <>
       <div className="chart-wrapper">
-        <div className="chart-percent">{`${progress}%`}</div>
+        <div className="chart-percent">{`${progress.toFixed(0)}%`}</div>
         <PieChart
           width={200}
           height={200}

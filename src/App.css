@@ -259,7 +259,7 @@ li {
   border-radius: 50%;
   animation: twinkle 2s infinite alternate;
   box-shadow: 0 0 1px 1px rgba(255, 255, 255, 0.3);
-  z-index: 100;
+  z-index: -100;
 }
 
 @keyframes twinkle {
@@ -1305,6 +1305,7 @@ li {
   align-items: center;
   justify-content: center;
   background: rgba(255, 0, 0, 0.1);
+  box-shadow: 0 0 10px rgba(255, 0, 0, 0.5);
   border-radius: 10px;
   border: 2px solid rgba(255, 0, 0, 0.5);
   transition: all 0.3s ease-in-out;
@@ -1324,6 +1325,7 @@ li {
   height: 50px;
   border-radius: 10px;
   border: 2px solid #4caf50;
+  box-shadow: 0 0 10px rgba(76, 175, 79, 0.5254901961);
   background: transparent;
   display: flex;
   align-items: center;
@@ -1348,6 +1350,12 @@ li {
   }
   .join__btn {
     display: none;
+  }
+}
+@media (max-width: 479.98px) {
+  .button-quote {
+    padding: 13px 12px;
+    font-size: 14;
   }
 }
 .authorization {
@@ -1931,6 +1939,15 @@ li {
   color: black;
 }
 
+.searh-quote__form {
+  display: flex;
+  position: relative;
+}
+
+.searh-quote__form:focus-within .form-reset {
+  color: #fff;
+}
+
 .searh-quote__query {
   position: relative;
   resize: none;
@@ -1946,9 +1963,12 @@ li {
 .form-reset {
   position: absolute;
   top: 20%;
-  right: 3%;
+  right: 15px;
   background-color: transparent;
-  font-size: 20px;
+  font-size: 22px;
+  color: #a9a9a9;
+  font-weight: bold;
+  transition: all ease-in 0.3s;
 }
 
 @media (max-width: 479.98px) {
