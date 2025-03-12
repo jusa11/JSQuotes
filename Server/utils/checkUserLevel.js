@@ -1,11 +1,15 @@
 const userLevels = require('./userLevels');
 
 const checkUserLevel = (countQuote) => {
+  let currentLevel;
+  let titleLevel;
+  let nextLevelCount;
+
   for (let i = userLevels.length - 1; i >= 0; i--) {
     if (countQuote >= userLevels[i].amount) {
-      const currentLevel = userLevels.indexOf(userLevels[i]);
-      const titleLevel = userLevels[currentLevel].title;
-      const nextLevelCount = userLevels[i + 1].amount;
+      currentLevel = userLevels.indexOf(userLevels[i]);
+      titleLevel = userLevels[currentLevel].title;
+      nextLevelCount = userLevels[i + 1].amount;
 
       return {
         currentLevel,

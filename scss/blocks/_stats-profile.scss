@@ -12,6 +12,7 @@
   top: 0%;
   left: 11%;
   background-color: #2f847f;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
   transform: rotate(34deg);
   z-index: 1;
   border-radius: 36px;
@@ -24,6 +25,7 @@
   width: 250px;
   height: 205px;
   background-color: #c68e3c;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
   border-radius: 36px;
   z-index: 2;
 }
@@ -33,6 +35,7 @@
   z-index: 3;
   height: 350px;
   background: linear-gradient(138deg, #7b20e2, #2b1043);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
   border-radius: 36px;
 }
 .chart-percent {
@@ -68,7 +71,7 @@
 }
 .stats-user__level {
   font-size: 11px;
-  background-color: linear-gradient(135deg, #f5a623, #f76b1c);
+  background-color: red;
 
   padding: 6px 20px;
   border-radius: 30px;
@@ -168,7 +171,7 @@
   }
   .stats-user__level {
     font-size: 11px;
-    background-color: #e6b76a;
+    background-color: red;
     padding: 6px 20px;
     border-radius: 30px;
     text-align: center;

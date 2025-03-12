@@ -17,6 +17,7 @@ const StatsProfile = () => {
   }, [outletRef]);
 
   const statsInfo = useGetQuotesCount();
+  console.log(statsInfo);
 
   return (
     <div className="stats" ref={ref}>
@@ -24,7 +25,11 @@ const StatsProfile = () => {
         <div className="stats-decor_1"></div>
         <div className="stats-decor_2"></div>
         <div className="stats-decor_3">
-          <MyChart dataLevel={statsInfo} />
+          {!statsInfo?.nextLevelCount ? (
+            <h2>Ты Стетхем</h2>
+          ) : (
+            <MyChart dataLevel={statsInfo} />
+          )}
         </div>
       </div>
       <div className="stats-userinfo">
@@ -43,7 +48,11 @@ const StatsProfile = () => {
               {statsInfo?.currentCountQuotes}
             </div>
           </div>
-          <div className="stats-info__block">
+          <div
+            className={`${
+              !statsInfo?.nextLevelCount ? '' : 'stats-info__block'
+            }`}
+          >
             <div className="stats-total__title">До следующего уровня</div>
             <div className="stats-total__value">
               {statsInfo?.needQuoteForNextLevel}

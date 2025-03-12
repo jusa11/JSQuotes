@@ -23,7 +23,7 @@ const userLevels = [
   },
   {
     title: 'Стэтхэм',
-    amount: 900,
+    amount: 42,
   },
 ];
 
