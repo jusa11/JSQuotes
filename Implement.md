@@ -11,12 +11,11 @@
 6.  В Popular вообше не работают лайки (работают но не обновляются)
 7.  При получении левела если ошибка, то все ломается
 8.  Исправить анимацию в ListQuote чтобы при каждом взаимодействии не дергалась
-9.  Доработать Popup выхода с профиля
+   
 
 # Закомитить
 
-1. Устранил ошибку Invalid prop className supplied to React.Fragment / Fixed the error: "Invalid prop className supplied to React.Fragment"
-2. Доработать Popup входа и выхода с профиля / Improved the login and logout popup
+
 
 
 # Выполнено
@@ -47,6 +46,8 @@
 23. добавить попап "Вы точно хотите выйти?" / Added a popup 'Are you sure you want to leave' 
 24. Укоротить проценты в статистике / Fixed the percentage in the stats profile, reduced the number of decimal places 
 25. добавить крестик в форму поиска в профиле / Added a cross button in the seacrh form
+26. Устранил ошибку Invalid prop className supplied to React.Fragment / Fixed the error: "Invalid prop className supplied to React.Fragment"
+27. Доработать Popup входа и выхода с профиля / Improved the login and logout popup
 
 # На будущее
 
