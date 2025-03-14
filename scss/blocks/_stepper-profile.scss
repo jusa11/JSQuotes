@@ -39,30 +39,35 @@
 .stepper-item__icon_process {
   background-color: rgba(29, 28, 32, 70%);
   border: 12px solid $color-hover;
+  z-index: 3;
 }
 .stepper-item__icon_process::after {
   content: '';
   position: absolute;
   width: 3px;
-  height: 60px;
-  background-color: $color-hover;
-  top: 100%;
+  height: 55px;
+  background-color: $color-main;
+  top: 150%;
   left: 47%;
+  z-index: 2;
 }
 .stepper-item__icon_pending {
   background-color: rgba(29, 28, 32, 70%);
-  border: 12px solid #858585;
+  border: 12px solid $color-main;
 }
 .stepper-item__icon_pending::after {
   content: '';
   position: absolute;
   width: 3px;
   height: 60px;
-  background-color: #858585;
+  background-color: $color-main;
   top: 109%;
   left: 47%;
+  z-index: 1;
 }
-.stepper-list__item:last-child .stepper-item__icon_complete::after {
+.stepper-list__item:last-child .stepper-item__icon_pending::after,
+.stepper-list__item:last-child .stepper-item__icon_complete::after,
+.stepper-list__item:last-child .stepper-item__icon_process::after {
   display: none;
 }
 .stepper-item__body {

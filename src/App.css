@@ -1379,6 +1379,35 @@ li {
   background: rgba(255, 255, 255, 0.2);
 }
 
+.show-more-btn {
+  grid-column: span 2;
+  display: block;
+  margin: 0 auto;
+  padding: 12px 24px;
+  background: linear-gradient(135deg, #444, #222);
+  color: #ddd;
+  font-size: 14px;
+  font-weight: 500;
+  border: 1px solid #666;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+  box-shadow: 0 2px 5px rgba(255, 255, 255, 0.1);
+}
+
+.show-more-btn:hover {
+  background: linear-gradient(135deg, #555, #333);
+  color: #fff;
+  border-color: #888;
+  box-shadow: 0 4px 10px rgba(255, 255, 255, 0.15);
+}
+
+.show-more-btn:active {
+  background: linear-gradient(135deg, #333, #111);
+  border-color: #777;
+  transform: scale(0.98);
+}
+
 @media (max-width: 767.98px) {
   .header-join {
     display: none;
@@ -1782,6 +1811,7 @@ li {
   .stats {
     width: 218px;
     height: 251px;
+    margin: 0;
   }
   .stats-decor_1 {
     position: absolute;
@@ -2009,6 +2039,18 @@ li {
   transition: all ease-in 0.3s;
 }
 
+.search-result__block {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+  margin: 20px 0 30px 0;
+}
+
+@media (max-width: 767.98px) {
+  .search-result__block {
+    grid-template-columns: minmax(250px, 1fr);
+  }
+}
 @media (max-width: 479.98px) {
   .search-filter {
     justify-content: flex-start;
@@ -2146,21 +2188,23 @@ li {
 .stepper-item__icon_process {
   background-color: rgba(29, 28, 32, 0.7);
   border: 12px solid #8d1ea2;
+  z-index: 3;
 }
 
 .stepper-item__icon_process::after {
   content: "";
   position: absolute;
   width: 3px;
-  height: 60px;
-  background-color: #8d1ea2;
-  top: 100%;
+  height: 55px;
+  background-color: #a9a9a9;
+  top: 150%;
   left: 47%;
+  z-index: 2;
 }
 
 .stepper-item__icon_pending {
   background-color: rgba(29, 28, 32, 0.7);
-  border: 12px solid #858585;
+  border: 12px solid #a9a9a9;
 }
 
 .stepper-item__icon_pending::after {
@@ -2168,12 +2212,15 @@ li {
   position: absolute;
   width: 3px;
   height: 60px;
-  background-color: #858585;
+  background-color: #a9a9a9;
   top: 109%;
   left: 47%;
+  z-index: 1;
 }
 
-.stepper-list__item:last-child .stepper-item__icon_complete::after {
+.stepper-list__item:last-child .stepper-item__icon_pending::after,
+.stepper-list__item:last-child .stepper-item__icon_complete::after,
+.stepper-list__item:last-child .stepper-item__icon_process::after {
   display: none;
 }
 

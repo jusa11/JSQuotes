@@ -33,6 +33,17 @@ const Stepper = () => {
 
   const level = data?.currentLevel;
 
+  const defineCurrentStep = (index) => {
+    if (level >= index) {
+      return 'stepper-item__icon_complete';
+    }
+    if (index - level === 1) {
+      return 'stepper-item__icon_process';
+    } else {
+      return 'stepper-item__icon_pending';
+    }
+  };
+
   return (
     <div ref={ref} className="stepper content-right__card card">
       <div className="stepper-wrapper">
@@ -41,11 +52,7 @@ const Stepper = () => {
             return (
               <li className="stepper-list__item" key={index}>
                 <div
-                  className={`stepper-item__icon ${
-                    level >= index
-                      ? 'stepper-item__icon_complete'
-                      : 'stepper-item__icon_pending'
-                  }`}
+                  className={`stepper-item__icon ${defineCurrentStep(index)}`}
                 ></div>
                 <div className="stepper-item__body">
                   <div className="stepper-item__title">{step.title}</div>

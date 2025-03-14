@@ -134,6 +134,33 @@
   }
 }
 
+.show-more-btn {
+  grid-column: span 2;
+  display: block;
+  margin: 0 auto;
+  padding: 12px 24px;
+  background: linear-gradient(135deg, #444, #222);
+  color: #ddd;
+  font-size: 14px;
+  font-weight: 500;
+  border: 1px solid #666;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+  box-shadow: 0 2px 5px rgba(255, 255, 255, 0.1);
+}
+.show-more-btn:hover {
+  background: linear-gradient(135deg, #555, #333);
+  color: #fff;
+  border-color: #888;
+  box-shadow: 0 4px 10px rgba(255, 255, 255, 0.15);
+}
+
+.show-more-btn:active {
+  background: linear-gradient(135deg, #333, #111);
+  border-color: #777;
+  transform: scale(0.98);
+}
 @include mediaBigMobile {
   .header-join {
     display: none;

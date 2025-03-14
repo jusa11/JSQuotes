@@ -247,7 +247,9 @@ app.get('/popular-quotes', async (req, res) => {
 // Поиск
 app.get('/search', async (req, res) => {
   try {
-    const { query, type, username } = req.query;
+    const { query, type, username, page = 1 } = req.query;
+    const limit = 2;
+    const skip = (page - 1) * limit;
 
     if (!query) {
       return res.status(400).json({ error: 'Введите поисковый запрос' });
@@ -273,12 +275,15 @@ app.get('/search', async (req, res) => {
       };
     }
 
-    const quotes = await Quote.find(filter).populate({
+    const quotes = await Quote.find(filter).skip(skip).limit(limit).populate({
       path: 'userId',
       select: 'username level', // Забираем username и level из User
     });
 
-    res.json(quotes);
+    const totalQuotes = await Quote.countDocuments(filter);
+    const hasMore = totalQuotes > skip + limit;
+
+    res.json({ quotes, hasMore });
   } catch (error) {
     res.status(500).json({ error: 'Ошибка сервера' });
   }

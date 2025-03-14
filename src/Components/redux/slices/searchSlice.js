@@ -7,22 +7,19 @@ const initialState = {
   type: 'all',
   results: [],
   status: 'idle',
+  hasMore: true,
+  page: 1,
   error: null,
 };
 
 export const fetchSearch = createAsyncThunk(
   'search/fetchSearch',
-  async ({ query, type, username }) => {
-    try {
-      const res = await axios.get(SEARCH, {
-        params: { query, type, username },
-      });
+  async ({ query, type, username, page }) => {
+    const res = await axios.get(SEARCH, {
+      params: { query, type, username, page },
+    });
 
-      return res.data;
-    } catch (error) {
-      console.error(error);
-      throw error;
-    }
+    return res.data;
   }
 );
 
@@ -51,7 +48,15 @@ const searchSlice = createSlice({
     });
     builder.addCase(fetchSearch.fulfilled, (state, action) => {
       state.status = 'success';
-      state.results = action.payload;
+      state.status = 'success';
+      state.results =
+        action.meta.arg.page === 1
+          ? action.payload.quotes
+          : [...state.results, ...action.payload.quotes];
+      state.hasMore = action.payload.hasMore;
+      state.page = action.meta.arg.page + 1; // Обновляем `page`
+      state.hasMore = action.payload.hasMore;
+      state.page += 1;
     });
   },
 });
@@ -62,6 +67,8 @@ export const selectQuery = (state) => state.search.query;
 export const selectType = (state) => state.search.type;
 export const selectResults = (state) => state.search.results;
 export const selectStatus = (state) => state.search.status;
+export const selectPage = (state) => state.search.page;
+export const selectHasMore = (state) => state.search.hasMore;
 export const selectError = (state) => state.search.error;
 
 export default searchSlice.reducer;

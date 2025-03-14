@@ -17,7 +17,6 @@ const StatsProfile = () => {
   }, [outletRef]);
 
   const statsInfo = useGetQuotesCount();
-  console.log(statsInfo);
 
   return (
     <div className="stats" ref={ref}>
