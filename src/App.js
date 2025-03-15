@@ -1,7 +1,6 @@
 import { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
-import { setUser } from './Components/redux/slices/userSlice';
-import { jwtDecode } from 'jwt-decode';
+import { checkAuth } from './Components/redux/slices/userSlice';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Error from './Components/others/Error';
 import Header from './Components/blocks/header/Header';
@@ -14,7 +13,6 @@ import Profile from './Components/blocks/profile/Profile';
 import FavoritePage from './Components/blocks/profile/FavoritePage';
 import SharePage from './Components/blocks/profile/SharePage';
 import SettingsPage from './Components/blocks/profile/SettingsPage';
-import { setError } from './Components/redux/slices/notificationsSlice';
 import Layout from './Components/others/Layout';
 import { RefProvider } from './Hooks/useOutletRef';
 import ScrollToTopButton from './Components/others/ScrollToTopButton';
@@ -24,16 +22,7 @@ function App() {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    const token = localStorage.getItem('token');
-    if (token) {
-      try {
-        const decode = jwtDecode(token);
-        dispatch(setUser({ username: decode.username, userId: decode._id }));
-      } catch (error) {
-        setError('Ошибка декодирования токена');
-        console.log(error);
-      }
-    }
+    dispatch(checkAuth());
   }, [dispatch]);
 
   return (

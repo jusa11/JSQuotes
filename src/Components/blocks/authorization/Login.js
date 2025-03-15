@@ -15,7 +15,6 @@ const Login = ({ onSwitch, onClose }) => {
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
-
   const handleChange = (e) => {
     setForm({ ...form, [e.target.name]: e.target.value });
   };
@@ -31,11 +30,19 @@ const Login = ({ onSwitch, onClose }) => {
     try {
       const res = await axios.post('http://localhost:5000/auth/login', form);
       const { token } = res.data;
-
       localStorage.setItem('token', token);
       dispatch(setSuccess('Приветствуем тебя, брат!'));
+
       const decode = jwtDecode(token);
-      dispatch(setUser({ username: decode.username, userId: decode._id }));
+      console.log(decode);
+
+      dispatch(
+        setUser({
+          username: decode.username,
+          userId: decode._id,
+          logo: decode.logo,
+        })
+      );
       navigate('/profile');
       onClose();
     } catch (error) {

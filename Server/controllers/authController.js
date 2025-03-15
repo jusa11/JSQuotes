@@ -3,47 +3,42 @@ const bcrypt = require('bcryptjs');
 const User = require('../models/User.js');
 const Role = require('../models/Role.js');
 const jwt = require('jsonwebtoken');
+const multer = require('multer');
+const path = require('path');
 const secret = process.env.JWT_SECRET;
 
-const generateAccesToken = (id, username, roles) => {
+const generateAccesToken = (id, username, roles, logo) => {
   const payload = {
     _id: id,
     username,
     roles,
+    logo,
   };
   return jwt.sign(payload, secret, { expiresIn: '24h' });
 };
 
-class AuthController {
-  async registration(req, res) {
-    try {
-      const errors = validationResult(req);
-      if (!errors.isEmpty()) {
-        return res
-          .status(400)
-          .json({ message: 'Ошибка при регистрации', errors });
-      }
-      const { username, password } = req.body;
-      const candidate = await User.findOne({ username });
-      if (candidate) {
-        return res.status(400).json({ message: 'Это погоняло уже занято' });
-      }
-      const hashPassword = bcrypt.hashSync(password, 7);
-      let userRole = await Role.findOne({ value: 'user' });
+const storage = multer.diskStorage({
+  destination: (req, file, cb) => {
+    cb(null, 'uploads/');
+  },
+  filename: (req, file, cb) => {
+    cb(null, Date.now() + '-' + file.originalname);
+  },
+});
 
-      const user = new User({
-        username,
-        password: hashPassword,
-        roles: [userRole.value],
-      });
-      await user.save();
-      return res.json({ message: 'Ты был зачислен в нашу банду' });
-    } catch (error) {
-      console.error('Ошибка при регистрации:', error);
-      res.status(400).json({ message: 'Registration error' });
+const upload = multer({
+  storage,
+  limits: { fileSize: 2 * 1024 * 1024 },
+  fileFilter: (req, file, cb) => {
+    const allowedTypes = ['image/jpeg', 'image/png', 'image/gif'];
+    if (!allowedTypes.includes(file.mimetype)) {
+      return cb(new Error('Формат файла не поддерживается	'), false);
     }
-  }
+    cb(null, true);
+  },
+});
 
+class AuthController {
   async login(req, res) {
     try {
       const { username, password } = req.body;
@@ -59,12 +54,57 @@ class AuthController {
           .status(400)
           .json({ message: 'Ты ввел неверный шифр, сынок' });
       }
-      const token = generateAccesToken(user._id, user.username, user.roles);
-
+      const token = generateAccesToken(
+        user._id,
+        user.username,
+        user.roles,
+        user.logo
+      );
+      console.log('Авторизуемый пользователь:', user);
       return res.json({ token });
     } catch (error) {
       console.error('Ошибка при авторизации:', error);
       res.status(400).json({ message: 'Login error' });
+    }
+  }
+
+  async registration(req, res) {
+    try {
+      const errors = validationResult(req);
+      if (!errors.isEmpty()) {
+        return res
+          .status(400)
+          .json({ message: 'Ошибка при регистрации', errors });
+      }
+      const { username, password } = req.body;
+      const candidate = await User.findOne({ username });
+
+      if (candidate) {
+        return res.status(400).json({ message: 'Это погоняло уже занято' });
+      }
+      const hashPassword = bcrypt.hashSync(password, 7);
+      let userRole = await Role.findOne({ value: 'user' });
+
+      const logoPath = req.file ? `/uploads/${req.file.filename}` : null;
+
+      const user = new User({
+        username,
+        password: hashPassword,
+        roles: [userRole.value],
+        logo: logoPath,
+      });
+      await user.save();
+      const token = generateAccesToken(
+        user._id,
+        user.username,
+        user.roles,
+        user.logo
+      );
+      console.log('Созданный пользователь:', user);
+      return res.json({ token, message: 'Ты был зачислен в нашу банду' });
+    } catch (error) {
+      console.error('Ошибка при регистрации:', error);
+      res.status(400).json({ message: 'Registration error' });
     }
   }
 
@@ -79,4 +119,6 @@ class AuthController {
   }
 }
 
-module.exports = new AuthController();
+const authController = new AuthController();
+
+module.exports = { authController, upload };

@@ -1,15 +1,21 @@
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { setError } from '../../redux/slices/notificationsSlice';
+import { setError, setSuccess } from '../../redux/slices/notificationsSlice';
 import axios from 'axios';
+import { jwtDecode } from 'jwt-decode';
+import { setUser } from '../../redux/slices/userSlice';
 import Logo from '../../others/Logo';
+import { useNavigate } from 'react-router-dom';
 
-const Registration = ({ onSwitch, onClose }) => {
+const Registration = ({ onSwitch }) => {
   const [form, setForm] = useState({
     username: '',
     name: '',
     password: '',
+    logo: '',
   });
+  const [preview, setPreview] = useState(null);
+  const navigate = useNavigate();
 
   const dispatch = useDispatch();
 
@@ -17,20 +23,51 @@ const Registration = ({ onSwitch, onClose }) => {
     setForm({ ...form, [e.target.name]: e.target.value });
   };
 
+  const handleFileChange = (e) => {
+    const file = e.target.files[0];
+
+    const reader = new FileReader();
+    reader.onloadend = () => setPreview(reader.result);
+    reader.readAsDataURL(file);
+
+    setForm({ ...form, logo: file });
+  };
+
   const onSubmitHandler = async (event) => {
     event.preventDefault();
+
     if (!form.username || !form.password) {
       dispatch(setError('Не заполнены обязательные поля'));
       return;
     }
-    console.log(form);
+
+    const formData = new FormData();
+    formData.append('username', form.username);
+    formData.append('name', form.name);
+    formData.append('password', form.password);
+    if (form.logo) {
+      formData.append('logo', event.target.logo.files[0]);
+    }
+
     try {
       const res = await axios.post(
         'http://localhost:5000/auth/registration/',
-        form
+        formData
       );
-      onClose();
-      console.log('Успешная регистрация пользователя: ', res.data);
+      const { token } = res.data;
+      localStorage.setItem('token', token);
+      const decode = jwtDecode(token);
+      console.log(decode);
+
+      dispatch(
+        setUser({
+          username: decode.username,
+          userId: decode._id,
+          logo: decode.logo,
+        })
+      );
+      navigate('/profile');
+      dispatch(setSuccess('Добро пожаловать в сообщество!'));
     } catch (error) {
       dispatch(
         setError(
@@ -77,6 +114,21 @@ const Registration = ({ onSwitch, onClose }) => {
           onChange={handleChange}
           value={form.password}
         />
+        <input
+          name="logo"
+          type="file"
+          onChange={(e) => {
+            handleFileChange(e);
+            handleChange(e);
+          }}
+        />
+        {preview && (
+          <img
+            src={preview}
+            alt="Лого"
+            style={{ width: '100px', height: '100px' }}
+          />
+        )}
         <button className="popup-btn_active" type="submit">
           Зарегистрироваться
         </button>

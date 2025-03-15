@@ -7,6 +7,7 @@ const User = new Schema({
   likedQuotes: [{ type: Schema.Types.ObjectId, ref: 'Quote' }],
   countQuote: { type: Number, default: 0 },
   level: { type: Number, default: 0 },
+  logo: String,
 });
 
 module.exports = model('User', User);
