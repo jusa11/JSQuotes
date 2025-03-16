@@ -7,7 +7,7 @@ import { setError, setSuccess } from '../../redux/slices/notificationsSlice';
 import { setUser } from '../../redux/slices/userSlice';
 import Logo from '../../others/Logo';
 
-const Login = ({ onSwitch, onClose }) => {
+const Login = ({ onSwitch }) => {
   const [form, setForm] = useState({
     username: '',
     password: '',
@@ -44,7 +44,6 @@ const Login = ({ onSwitch, onClose }) => {
         })
       );
       navigate('/profile');
-      onClose();
     } catch (error) {
       dispatch(
         setError(error.response?.data?.message || 'Ошибка при авторизации')

@@ -10,11 +10,13 @@ import {
   setPopularQuotes,
   selectDisplayPopularQuotes,
 } from '../../redux/slices/displayQuotesSlice';
+// import { selectLikedQuotes } from '../../redux/slices/likedQuotesSlice';
 import { POPULAR_URL } from '../../../config';
 
 const Popular = () => {
   const dispatch = useDispatch();
   const popularQuotes = useSelector(selectDisplayPopularQuotes);
+  // const likedQuptes = useSelector(selectLikedQuotes);
 
   useEffect(() => {
     (async () => {

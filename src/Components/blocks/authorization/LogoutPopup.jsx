@@ -8,31 +8,37 @@ const LogoutPopup = ({ isPopup, setPopup }) => {
   const navigate = useNavigate();
 
   return (
-    <Popup
-      open={isPopup}
-      modal
-      overlayStyle={{
-        backdropFilter: 'blur(10px)',
-      }}
-      onClose={() => setPopup(false)}
-    >
-      <div className="main-popup">
-        <h2 className="loguot-title">Ну, все, погнал?</h2>
-        <div className="loguot-buttons">
-				<button className='popup-btn_active' onClick={() => setPopup(false)}>Остаться</button>
-          <button
-            className="popup-btn"
-            onClick={() => {
-              dispatch(logout());
-              navigate('/');
-            }}
-          >
-            Выйти
-          </button>
-          
+    <>
+      <Popup
+        open={isPopup}
+        modal
+        overlayStyle={{
+          backdropFilter: 'blur(10px)',
+        }}
+        onClose={() => setPopup(false)}
+      >
+        <div className="main-popup">
+          <h2 className="loguot-title">Ну, все, погнал?</h2>
+          <div className="loguot-buttons">
+            <button
+              className="popup-btn_active"
+              onClick={() => setPopup(false)}
+            >
+              Остаться
+            </button>
+            <button
+              className="popup-btn"
+              onClick={() => {
+                dispatch(logout());
+                navigate('/');
+              }}
+            >
+              Выйти
+            </button>
+          </div>
         </div>
-      </div>
-    </Popup>
+      </Popup>
+    </>
   );
 };
 

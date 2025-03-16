@@ -2,7 +2,6 @@ import { useState } from 'react';
 import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import UserCard from '../../others/UserCard';
-import Popup from 'reactjs-popup';
 import { selectUser } from '../../redux/slices/userSlice';
 import AuthPopup from '../authorization/AuthPopup';
 import MainMenu from '../../others/MainMenu';
@@ -11,7 +10,7 @@ import Burger from '../../others/Burger';
 
 const FooterTop = () => {
   const { isAuth } = useSelector(selectUser);
-  const [isAuthPopupOpen, setAuthPopupOpen] = useState(false);
+  const [isPopup, setPopup] = useState();
   return (
     <div className="footer__top">
       <Logo />
@@ -29,26 +28,13 @@ const FooterTop = () => {
           </>
         ) : (
           <>
-            <button
-              onClick={() => setAuthPopupOpen(true)}
-              className="main__btn"
-            >
+            <button onClick={() => setPopup(true)} className="main__btn">
               Присоединиться
             </button>
           </>
         )}
 
-        <Popup
-          open={isAuthPopupOpen}
-          modal
-          overlayStyle={{ background: 'rgba(0, 0, 0, 0.7)' }}
-          onClose={() => setAuthPopupOpen(false)}
-        >
-          <AuthPopup
-            isOpen={isAuthPopupOpen}
-            onClose={() => setAuthPopupOpen(false)}
-          />
-        </Popup>
+        <AuthPopup isPopup={isPopup} setPopup={setPopup} />
       </div>
     </div>
   );
