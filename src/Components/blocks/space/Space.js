@@ -15,6 +15,7 @@ const Space = () => {
   const spaceRef = useRef(null);
   const orbitRef = useRef([]);
   const planetRef = useRef([]);
+  const popupRef = useRef(null);
   const dispatch = useDispatch();
   const [currentQuote, setCurrentQuote] = useState({}); // сделать потом состояние в redux
   const [isPopup, setPopup] = useState(false);
@@ -174,7 +175,12 @@ const Space = () => {
         overlayStyle={{ background: 'rgba(0, 0, 0, 0.7)' }}
         onClose={() => setPopup(false)}
       >
-        <QuotesCard className="card" quote={currentQuote} />
+        <QuotesCard
+          className="card"
+          quote={currentQuote}
+          ref={popupRef}
+          isPopup={isPopup}
+        />
       </Popup>
     </section>
   );

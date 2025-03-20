@@ -38,6 +38,7 @@ const ListQuotes = ({ url, title }) => {
   const userQuotes = useSelector(selectDisplayUserQuotes);
   const likedQuotes = useSelector(selectLikedQuotes);
   const listRef = useRef(null);
+  const popupRef = useRef(null);
   const dispatch = useDispatch();
   const { username } = useSelector(selectUser);
   const ref = useRef(null);
@@ -46,8 +47,6 @@ const ListQuotes = ({ url, title }) => {
   const [isPopup, setPopup] = useState(false);
   const location = useLocation();
   const isChange = useSelector(selectDisplayIsChange);
-
-  console.log(isChange);
 
   const getQuotes = useCallback(() => {
     if (url === 'last-quotes') return lastQuotes;
@@ -197,7 +196,12 @@ const ListQuotes = ({ url, title }) => {
         overlayStyle={{ background: 'rgba(0, 0, 0, 0.7)' }}
         onClose={() => setPopup(false)}
       >
-        <QuotesCard className="card" quote={selectedQuote} />
+        <QuotesCard
+          className="card"
+          quote={selectedQuote}
+          ref={popupRef}
+          isPopup={isPopup}
+        />
       </Popup>
     </>
   );

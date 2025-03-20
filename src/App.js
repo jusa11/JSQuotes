@@ -32,8 +32,9 @@ function App() {
   const { isAuth } = useSelector(selectUser);
   const [loading, setLoading] = useState(true);
   const [isPopup, setPopup] = useState(false); // Состояние для попапа
-
   const [justLoggedOut, setJustLoggedOut] = useState(false); // Состояние для отслеживания выхода
+
+
 
   useEffect(() => {
     dispatch(checkAuth()).finally(() => setLoading(false));

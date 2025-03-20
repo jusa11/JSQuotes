@@ -5,10 +5,11 @@ import { MdFavorite } from 'react-icons/md';
 import { FiShare } from 'react-icons/fi';
 import { ImSwitch } from 'react-icons/im';
 import { IoMdSettings } from 'react-icons/io';
-import { useState } from 'react';
+import { useRef, useState } from 'react';
 
 const Sidebar = () => {
   const [isPopup, setPopup] = useState();
+  const popupRef = useRef(null);
 
   return (
     <>
@@ -46,7 +47,13 @@ const Sidebar = () => {
           </ul>
         </nav>
       </aside>
-      <LogoutPopup isPopup={isPopup} setPopup={setPopup} />
+      {isPopup && (
+        <LogoutPopup
+          isPopup={isPopup}
+          setPopup={setPopup}
+          popupRef={popupRef}
+        />
+      )}
     </>
   );
 };

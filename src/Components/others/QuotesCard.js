@@ -1,11 +1,28 @@
-import { forwardRef } from 'react';
+import { forwardRef, useEffect } from 'react';
+import gsap from 'gsap';
 import { limitTextLength } from '../../utils/limitTextLength.js';
 import HandleIcon from './HandleIcon.jsx';
 import steps from '../../utils/steps.js';
 import { MAX_TEXT_LENGTH } from '../../config.js';
 
-const QuotesCard = forwardRef(({ quote }, ref) => {
+const QuotesCard = forwardRef(({ quote, isPopup }, ref) => {
   const userLevel = quote?.userId?.level;
+
+  useEffect(() => {
+    if (isPopup && ref.current) {
+      gsap.fromTo(
+        ref.current,
+        { opacity: 0, y: 100, scale: 0.8 },
+        {
+          opacity: 1,
+          y: 0,
+          scale: 1,
+          duration: 0.6,
+          ease: 'power1.out',
+        }
+      );
+    }
+  }, [isPopup, ref]);
 
   return (
     <div className="quotes-block__column">

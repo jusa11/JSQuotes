@@ -1,7 +1,6 @@
-import { useState } from 'react';
+import { useState, useRef } from 'react';
 import axios from 'axios';
 import { useSelector, useDispatch } from 'react-redux';
-import Popup from 'reactjs-popup';
 import { FaArrowUp } from 'react-icons/fa6';
 import AuthPopup from '../authorization/AuthPopup';
 import {
@@ -15,8 +14,8 @@ const ShareForm = () => {
   const [message, setMessage] = useState('');
   const dispatch = useDispatch();
   const { username, userId } = useSelector(selectUser);
-  const [isAuthPopupOpen, setAuthPopupOpen] = useState(false);
-  console.log(username, userId);
+  const [isPopup, setPopup] = useState();
+  const popupRef = useRef(null);
 
   const onSubmitHandler = async (event) => {
     event.preventDefault();
@@ -30,7 +29,7 @@ const ShareForm = () => {
         dispatch(
           setError('Для того, чтобы поделиться мыслями, нужно авторизоваться')
         );
-        setAuthPopupOpen(true);
+        setPopup(true);
         return;
       }
       const res = await axios.post('http://localhost:5000/add-quote', {
@@ -93,17 +92,9 @@ const ShareForm = () => {
           </div>
         </div>
       </div>
-      <Popup
-        open={isAuthPopupOpen}
-        modal
-        overlayStyle={{ background: 'rgba(0, 0, 0, 0.7)' }}
-        onClose={() => setAuthPopupOpen(false)}
-      >
-        <AuthPopup
-          isOpen={isAuthPopupOpen}
-          onClose={() => setAuthPopupOpen(false)}
-        />
-      </Popup>
+      {isPopup && (
+        <AuthPopup isPopup={isPopup} setPopup={setPopup} popupRef={popupRef} />
+      )}
     </>
   );
 };

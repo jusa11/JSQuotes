@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { useSelector } from 'react-redux';
 import UserCard from './UserCard';
 import { slide as Menu } from 'react-burger-menu';
@@ -10,6 +10,7 @@ const Burger = () => {
   const { isAuth } = useSelector(selectUser);
   const [isPopup, setPopup] = useState();
   const [isMenuOpen, setMenuOpen] = useState(false);
+  const popupRef = useRef(null);
 
   const closeMenu = () => setMenuOpen(false);
 
@@ -48,7 +49,9 @@ const Burger = () => {
         <MainMenu closeMenu={closeMenu} />
       </Menu>
 
-      <AuthPopup isPopup={isPopup} setPopup={setPopup} />
+      {isPopup && (
+        <AuthPopup isPopup={isPopup} setPopup={setPopup} popupRef={popupRef} />
+      )}
     </>
   );
 };

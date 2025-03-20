@@ -1,4 +1,5 @@
-import { useState } from 'react';
+import { useRef, useState } from 'react';
+
 import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import UserCard from '../../others/UserCard';
@@ -10,7 +11,9 @@ import Burger from '../../others/Burger';
 
 const FooterTop = () => {
   const { isAuth } = useSelector(selectUser);
-  const [isPopup, setPopup] = useState();
+  const [isPopup, setPopup] = useState(false);
+  const popupRef = useRef(null);
+
   return (
     <div className="footer__top">
       <Logo />
@@ -21,20 +24,22 @@ const FooterTop = () => {
 
       <div className="join__btn">
         {isAuth ? (
-          <>
-            <Link to="/profile">
-              <UserCard hidden={true} />
-            </Link>
-          </>
+          <Link to="/profile">
+            <UserCard hidden={true} />
+          </Link>
         ) : (
-          <>
-            <button onClick={() => setPopup(true)} className="main__btn">
-              Присоединиться
-            </button>
-          </>
+          <button onClick={() => setPopup(true)} className="main__btn">
+            Присоединиться
+          </button>
         )}
 
-        <AuthPopup isPopup={isPopup} setPopup={setPopup} />
+        {isPopup && (
+          <AuthPopup
+            isPopup={isPopup}
+            setPopup={setPopup}
+            popupRef={popupRef}
+          />
+        )}
       </div>
     </div>
   );

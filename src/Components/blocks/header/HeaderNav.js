@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useRef, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { selectUser } from '../../redux/slices/userSlice';
@@ -11,6 +11,7 @@ import Burger from '../../others/Burger';
 const HeaderNav = () => {
   const { isAuth } = useSelector(selectUser);
   const [isPopup, setPopup] = useState();
+  const popupRef = useRef(null);
 
   return (
     <nav className="header__nav nav-menu">
@@ -35,7 +36,13 @@ const HeaderNav = () => {
           </>
         )}
 
-        <AuthPopup isPopup={isPopup} setPopup={setPopup} />
+        {isPopup && (
+          <AuthPopup
+            isPopup={isPopup}
+            setPopup={setPopup}
+            popupRef={popupRef}
+          />
+        )}
       </div>
     </nav>
   );

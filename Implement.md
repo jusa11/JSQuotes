@@ -6,15 +6,12 @@
 4. Сделать анимацию для попапов
 5. Добавить поиск на сам сайт
 6. переработать логику выхода с профиля и открытия попапа посел выхода
-7. поправить лого если авторизован
-8. Если лого не добавил, сделать дефолтную
-9.  Опять почему то не работает логика левелов, если достиг последнего, цитаты не получается добавить
-10. Попап авторизации не открывается после отправки формы
+7. Опять почему то не работает логика левелов, если достиг последнего, цитаты не получается добавить
 
 # Закомитить
-1. Fixed and improved the the listQuote animation.
-2. поправить лого если авторизован / Fixed the logo display for authorized users.
-3. Если лого не добавил, сделать дефолтную / Added a default logo if none was chosen during registration
+
+1. Попап авторизации не открывается после отправки формы / Fixed the authorization popup in the ShareForm if the user is not authorized.
+2. Сделать анимацию для попапов / Added animation for all popups.
 
 # Выполнено
 
@@ -56,7 +53,9 @@
 35. Доработал маршруты если пользователь не авторизован и отображение попапа авторизации если пользователь пытается зайти на страницу профиля / Improved the routing logic for unauthorized users and added an auth popup when trying to access the profile page.
 36. Лайк не обновляется по клику в QuotesCard / Fixed the like button update in QuotesCard without page refresh.
 37. 1. Доработана форма регистрации. Добавлена возможность выбора аватарки и ее удаления. Добавлена проверка корректности введенных данных в поля. / Improved the registration form. Added the ability to select and delete an avatar. Implemented validation for the entered data in the form fields.
-38. Исправить анимацию в ListQuote чтобы при каждом взаимодействии не дергалас
+38. Fixed and improved the the listQuote animation.
+39. поправить лого если авторизован / Fixed the logo display for authorized users.
+40. Если лого не добавил, сделать дефолтную / Added a default logo if none was chosen during registration
 
 # На будущее
 
