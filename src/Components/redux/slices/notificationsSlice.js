@@ -10,9 +10,7 @@ const notificationsSlice = createSlice({
   initialState,
   reducers: {
     setError: (state, action) => {
-      console.log('Before:', state);
       state.error = action.payload;
-      console.log('After:', state);
     },
     setSuccess: (state, action) => {
       state.success = action.payload;

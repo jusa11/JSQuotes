@@ -1,32 +1,29 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import { jwtDecode } from 'jwt-decode';
 
-export const checkAuth = createAsyncThunk(
-  'user/checkAuth',
-  async (_, { dispatch }) => {
-    const token = localStorage.getItem('token');
+export const checkAuth = createAsyncThunk('user/checkAuth', async () => {
+  const token = localStorage.getItem('token');
 
-    if (!token) return null;
+  if (!token) return null;
 
-    if (token) {
-      try {
-        const decode = jwtDecode(token);
-        dispatch(
-          setUser({
-            username: decode.username,
-            userId: decode._id,
-            logo: decode.logo,
-            isAuth: true,
-          })
-        );
-        return decode;
-      } catch (error) {
-        console.error(error);
-        localStorage.removeItem('token');
-      }
+  if (token) {
+    try {
+      const decode = jwtDecode(token);
+      console.log(decode._id);
+
+      return {
+        username: decode.username,
+        userId: decode._id,
+        logo: decode.logo,
+        isAuth: true,
+      };
+    } catch (error) {
+      console.error(error);
+      localStorage.removeItem('token');
+      return null;
     }
   }
-);
+});
 
 const initialState = {
   username: null,
@@ -43,6 +40,7 @@ const userSlice = createSlice({
   reducers: {
     setUser: (state, action) => {
       state.username = action.payload.username;
+
       state.userId = action.payload.userId;
       state.logo = action.payload.logo;
       state.isAuth = true;
@@ -54,7 +52,7 @@ const userSlice = createSlice({
       state.isAuth = false;
       state.logo = '';
       state.isLoading = false;
-			
+
       localStorage.removeItem('token');
     },
   },
@@ -69,6 +67,9 @@ const userSlice = createSlice({
           state.userId = action.payload.userId;
           state.logo = action.payload.logo;
           state.isAuth = true;
+          console.log(action.payload.userId);
+        } else {
+          state.isAuth = false; // Завершена проверка
         }
         state.isLoading = false; // Завершена проверка
       })

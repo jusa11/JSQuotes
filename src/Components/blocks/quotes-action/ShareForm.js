@@ -4,7 +4,10 @@ import { useSelector, useDispatch } from 'react-redux';
 import Popup from 'reactjs-popup';
 import { FaArrowUp } from 'react-icons/fa6';
 import AuthPopup from '../authorization/AuthPopup';
-import { setAddQuotes } from '../../redux/slices/displayQuotesSlice';
+import {
+  setAddQuotes,
+  resetIsChange,
+} from '../../redux/slices/displayQuotesSlice';
 import { setError } from '../../redux/slices/notificationsSlice';
 import { selectUser } from '../../redux/slices/userSlice';
 
@@ -13,6 +16,7 @@ const ShareForm = () => {
   const dispatch = useDispatch();
   const { username, userId } = useSelector(selectUser);
   const [isAuthPopupOpen, setAuthPopupOpen] = useState(false);
+  console.log(username, userId);
 
   const onSubmitHandler = async (event) => {
     event.preventDefault();
@@ -34,7 +38,11 @@ const ShareForm = () => {
         author: username,
         userId: userId,
       });
+
       dispatch(setAddQuotes(res.data));
+      setTimeout(() => {
+        dispatch(resetIsChange());
+      }, 0);
     } catch (error) {
       console.error('Ошибка при отправке цитаты:', error);
       dispatch(setError('При отправке произошла ошибка'));

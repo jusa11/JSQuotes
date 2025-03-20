@@ -60,7 +60,7 @@ class AuthController {
         user.roles,
         user.logo
       );
-      console.log('Авторизуемый пользователь:', user);
+
       return res.json({ token });
     } catch (error) {
       console.error('Ошибка при авторизации:', error);
@@ -85,7 +85,9 @@ class AuthController {
       const hashPassword = bcrypt.hashSync(password, 7);
       let userRole = await Role.findOne({ value: 'user' });
 
-      const logoPath = req.file ? `/uploads/${req.file.filename}` : null;
+      const logoPath = req.file
+        ? `/uploads/${req.file.filename}`
+        : '/uploads/default-logo.png';
 
       const user = new User({
         username,
@@ -100,7 +102,7 @@ class AuthController {
         user.roles,
         user.logo
       );
-      console.log('Созданный пользователь:', user);
+
       return res.json({ token, message: 'Ты был зачислен в нашу банду' });
     } catch (error) {
       console.error('Ошибка при регистрации:', error);

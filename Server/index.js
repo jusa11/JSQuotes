@@ -85,6 +85,7 @@ app.post('/add-quote', async (req, res) => {
 
   try {
     const user = await User.findById(userId);
+
     if (!user) {
       return res.status(404).json({ message: 'Пользователь не найден' });
     }
@@ -182,16 +183,16 @@ app.get('/liked-quotes/:username', async (req, res) => {
   try {
     const { username } = req.params;
 
-    const user = await User.findOne({ username }).populate({
-      path: 'likedQuotes',
-      options: { sort: { date: -1 }, limit: 4 },
-    });
+    const user = await User.findOne({ username }).populate('likedQuotes');
 
     if (!user) {
       return res.json({ message: 'Пользователь не найден' });
     }
 
-    res.json(user.likedQuotes);
+    // Берём только последние 4 лайка в порядке добавления
+    const lastLikedQuotes = user.likedQuotes.slice(0, 4);
+
+    res.json(lastLikedQuotes);
   } catch (error) {
     console.error(error);
     res.status(500).send('Server error');

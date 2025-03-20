@@ -17,15 +17,30 @@
 }
 
 .user-card__avatar {
+  overflow: hidden;
+  border-radius: 50%;
+  padding: 0 0 25% 0;
+  position: relative;
+  display: flex;
+  height: 50px;
+  width: 50px;
+  border: 2px solid rgb(168, 168, 168);
+  box-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
+  opacity: 1;
+
   img {
-    width: 50px;
-    height: 50px;
+    flex: 0 0 33.333%;
+    width: 100%;
+    object-fit: cover;
+    position: absolute;
   }
 
   &.user-card__avatar_profile {
     img {
-      width: 40px;
-      height: 40px;
+      flex: 0 0 33.333%;
+      width: 100%;
+      object-fit: cover;
+      position: absolute;
     }
   }
 }

@@ -10,6 +10,7 @@ import {
   setLastQuotes,
   setPopularQuotes,
   setQuotesUser,
+  selectDisplayIsChange,
 } from '../redux/slices/displayQuotesSlice';
 import {
   setLikedQuotes,
@@ -29,6 +30,7 @@ import { limitTextLength } from '../../utils/limitTextLength';
 import { useOutletRef } from '../../Hooks/useOutletRef';
 import QuotesCard from './QuotesCard';
 import HandleIcon from './HandleIcon';
+import { useLocation } from 'react-router-dom';
 
 const ListQuotes = ({ url, title }) => {
   const lastQuotes = useSelector(selectDisplayLastQuotes);
@@ -42,6 +44,10 @@ const ListQuotes = ({ url, title }) => {
   const outletRef = useOutletRef();
   const [selectedQuote, setSelectedQuote] = useState(null);
   const [isPopup, setPopup] = useState(false);
+  const location = useLocation();
+  const isChange = useSelector(selectDisplayIsChange);
+
+  console.log(isChange);
 
   const getQuotes = useCallback(() => {
     if (url === 'last-quotes') return lastQuotes;
@@ -72,6 +78,7 @@ const ListQuotes = ({ url, title }) => {
           if (url === LIKED_QUOTES.replace(':username', username)) {
             if (JSON.stringify(res.data) !== JSON.stringify(likedQuotes)) {
               dispatch(setLikedQuotes(res.data));
+              console.log(res.data);
             }
           }
         }
@@ -83,14 +90,38 @@ const ListQuotes = ({ url, title }) => {
   }, [dispatch, url, username, likedQuotes]);
 
   useEffect(() => {
-    if (listRef.current) {
-      gsap.fromTo(
-        listRef.current,
-        { opacity: 0, x: -100 },
-        { opacity: 1, x: 0, duration: 1, ease: 'power2.out' }
-      );
+    if (location.pathname === '/' && isChange) {
+      if (listRef.current && isChange) {
+        const mm = gsap.matchMedia();
+        mm.add('(min-width: 993px)', () => {
+          gsap.fromTo(
+            listRef.current,
+            { opacity: 0, y: 250, x: -1000 },
+            {
+              opacity: 1,
+              x: 0,
+              y: 0,
+              duration: 1,
+              ease: 'easy.in',
+            }
+          );
+        });
+
+        mm.add('(max-width: 992px)', () => {
+          gsap.fromTo(
+            listRef.current,
+            { opacity: 0, y: -700 },
+            {
+              opacity: 1,
+              y: 0,
+              duration: 1,
+              ease: 'easy.in',
+            }
+          );
+        });
+      }
     }
-  }, [quotes]);
+  }, [location.pathname, isChange]);
 
   useEffect(() => {
     if (ref.current && !outletRef.current.includes(ref.current)) {
