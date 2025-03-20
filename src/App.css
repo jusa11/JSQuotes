@@ -1,6 +1,7 @@
 @charset "UTF-8";
 @import url("https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap");
 html,
 body {
   height: 100%;
@@ -191,7 +192,6 @@ body {
   font-size: 100%;
   line-height: 1;
   font-size: 14px;
-  font-family: "Mulish", sans-serif;
   -ms-text-size-adjust: 100%;
   -moz-text-size-adjust: 100%;
   -webkit-text-size-adjust: 100%;
@@ -1437,6 +1437,15 @@ li {
   line-height: 1.5em;
 }
 
+.auth-form__error {
+  color: red;
+  margin: 0 0 5px 0;
+}
+
+.auth-form__error-field {
+  border-color: #ff0000 !important;
+}
+
 .auth-form {
   display: flex;
   flex-direction: column;
@@ -1471,6 +1480,37 @@ li {
   color: #0097a7;
 }
 
+.logo-file-drop {
+  padding: 40px 0;
+  width: 100%;
+  margin-bottom: 15px;
+  padding: 10px;
+  border: 2px dashed #444;
+  cursor: pointer;
+  border-radius: 5px;
+  background: rgba(42, 42, 42, 0.4784313725);
+  color: #fff;
+  font-size: 14px;
+  transition: border 0.2s ease-in-out;
+  box-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.logo-file-drop p {
+  font-weight: 300;
+  color: #a9a9a9;
+  font-size: 12px;
+  text-align: center;
+}
+.logo-file-drop img {
+  margin: 0 10px 0 0;
+}
+
+.logo-file-drop_active {
+  border-color: #0097a7;
+}
+
 .loguot-title {
   font-size: 22px;
   font-weight: 600;
@@ -1484,6 +1524,59 @@ li {
   gap: 15px;
   padding: 20px 0 0 0;
   width: 200px;
+}
+
+.form-preview__wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.form-preview__img {
+  overflow: hidden;
+  border-radius: 50%;
+  padding: 0 0 35% 0;
+  position: relative;
+  display: flex;
+  height: 80px;
+  width: 80px;
+  border: 2px solid rgb(168, 168, 168);
+  box-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
+  opacity: 1;
+}
+.form-preview__img img {
+  flex: 0 0 33.333%;
+  width: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+  position: absolute;
+}
+.form-preview__img .overlay-delete {
+  position: absolute;
+  opacity: 0;
+  top: 50%;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.508);
+  display: flex;
+  justify-content: center;
+  padding: 11px 0 0 0;
+  font-size: 10px;
+  transition: opacity ease-in 0.1s;
+}
+.form-preview__img:hover .overlay-delete {
+  opacity: 1;
+}
+
+.form-preview__username {
+  color: white;
+  font-size: 14px;
+  font-weight: bold;
+  padding: 10px 0 0 0;
+  display: flex;
+  justify-content: center;
+  text-transform: uppercase;
 }
 
 .popup__card {
