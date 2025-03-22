@@ -12,7 +12,7 @@
   white-space: nowrap;
   scrollbar-width: none;
   -ms-overflow-style: none;
-  padding: 15px 0;
+  padding: 15px 0 0 0;
 }
 
 .search-filter__item {
@@ -37,6 +37,7 @@
 .searh-quote__form {
   display: flex;
   position: relative;
+  padding: 15px 0 0 0;
 }
 
 .searh-quote__form:focus-within .form-reset {
@@ -57,8 +58,8 @@
 
 .form-reset {
   position: absolute;
-  top: 20%;
-  right: 15px;
+  top: 38%;
+  right: 3%;
   background-color: transparent;
   font-size: 22px;
   color: $color-main;

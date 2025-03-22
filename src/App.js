@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import gsap from 'gsap';
 import { checkAuth, selectUser } from './Components/redux/slices/userSlice';
 import {
   BrowserRouter as Router,
@@ -25,6 +26,11 @@ import ScrollToTopButton from './Components/others/ScrollToTopButton';
 import NotFound from './Components/others/NotFound';
 import AuthPage from './Components/others/AuthPage';
 import AuthPopup from './Components/blocks/authorization/AuthPopup';
+import {
+  selectChosedSearch,
+  setReset,
+} from './Components/redux/slices/searchSlice';
+import SearchOverlay from './Components/others/SearchOverlay';
 import './App.css';
 
 function App() {
@@ -33,8 +39,29 @@ function App() {
   const [loading, setLoading] = useState(true);
   const [isPopup, setPopup] = useState(false); // Состояние для попапа
   const [justLoggedOut, setJustLoggedOut] = useState(false); // Состояние для отслеживания выхода
+  const chosedSearch = useSelector(selectChosedSearch);
 
+  useEffect(() => {
+    const body = document.body;
+    if (chosedSearch) {
+      body.classList.add('lock');
 
+      gsap.fromTo(
+        '.search-overlay',
+        {
+          y: '-40%',
+        },
+        {
+          duration: 1,
+          y: 0,
+          ease: 'bounce.out',
+        }
+      );
+    } else {
+      body.classList.remove('lock');
+      dispatch(setReset());
+    }
+  }, [chosedSearch, dispatch]);
 
   useEffect(() => {
     dispatch(checkAuth()).finally(() => setLoading(false));
@@ -104,6 +131,7 @@ function App() {
           )}
           <Error />
         </Router>
+        {chosedSearch && <SearchOverlay />}
       </RefProvider>
     </div>
   );

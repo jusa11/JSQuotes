@@ -7,7 +7,7 @@ import {
   setAddQuotes,
   resetIsChange,
 } from '../../redux/slices/displayQuotesSlice';
-import { setError } from '../../redux/slices/notificationsSlice';
+import { setError, setSuccess } from '../../redux/slices/notificationsSlice';
 import { selectUser } from '../../redux/slices/userSlice';
 
 const ShareForm = () => {
@@ -39,6 +39,7 @@ const ShareForm = () => {
       });
 
       dispatch(setAddQuotes(res.data));
+      dispatch(setSuccess('Твоя мысль принята во вселенную'));
       setTimeout(() => {
         dispatch(resetIsChange());
       }, 0);

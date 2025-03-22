@@ -32,6 +32,7 @@
 .profile-content__main {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
+	
   gap: 20px;
 }
 .profile-content__bottom {
@@ -49,6 +50,7 @@
 .content-main__card_big {
   grid-column: span 2;
   overflow-x: auto;
+	
 }
 .profile-rigth {
   display: grid;

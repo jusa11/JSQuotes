@@ -8,14 +8,15 @@ import {
   QUOTES_URL,
   LIKED_QUOTES,
 } from '../../../config';
+import ShareForm from '../quotes-action/ShareForm';
 
 const Profile = () => {
-  const { username } = useSelector(selectUser);
+  const { username, isAuth } = useSelector(selectUser);
 
   return (
     <>
       <div className="profile-content__main">
-        <SearchForm />
+        <SearchForm isAuth={isAuth} />
         <ListQuotes
           url={QUOTES_URL.replace(':username', username)}
           title={'Я поделился'}
@@ -24,14 +25,17 @@ const Profile = () => {
           url={LIKED_QUOTES.replace(':username', username)}
           title={'Понравившиеся цитаты'}
         />
+        <div className="content-main__card_big">
+          <ShareForm />
+        </div>
       </div>
-      <div className="profile-content__bottom">
+      {/* <div className="profile-content__bottom">
         <ListQuotes
           url={LAST_QUOTES_URL}
           title={'Последние мысли Джейсона Стетхема'}
         />
         <ListQuotes url={POPULAR_URL} title={'Популярные мысли'} />
-      </div>
+      </div> */}
     </>
   );
 };

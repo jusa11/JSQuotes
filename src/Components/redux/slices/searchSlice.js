@@ -8,6 +8,7 @@ const initialState = {
   results: [],
   status: 'idle',
   hasMore: true,
+  isChoosed: false,
   page: 1,
   error: null,
 };
@@ -36,7 +37,13 @@ const searchSlice = createSlice({
     setResult: (state, action) => {
       state.results = action.payload;
     },
-    setReset: () => initialState,
+    setChoosedSearch: (state, action) => {
+      state.isChoosed = action.payload;
+    },
+    setReset: (state) => {
+      state.query = '';
+      state.results = [];
+    },
   },
   extraReducers: (builder) => {
     builder.addCase(fetchSearch.pending, (state) => {
@@ -61,7 +68,8 @@ const searchSlice = createSlice({
   },
 });
 
-export const { setQuery, setType, setResult, setReset } = searchSlice.actions;
+export const { setQuery, setType, setResult, setReset, setChoosedSearch } =
+  searchSlice.actions;
 
 export const selectQuery = (state) => state.search.query;
 export const selectType = (state) => state.search.type;
@@ -69,6 +77,7 @@ export const selectResults = (state) => state.search.results;
 export const selectStatus = (state) => state.search.status;
 export const selectPage = (state) => state.search.page;
 export const selectHasMore = (state) => state.search.hasMore;
+export const selectChosedSearch = (state) => state.search.isChoosed;
 export const selectError = (state) => state.search.error;
 
 export default searchSlice.reducer;

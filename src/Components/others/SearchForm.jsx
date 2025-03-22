@@ -1,6 +1,5 @@
 import { useState, useEffect, useRef, useCallback } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { RxCross2 } from 'react-icons/rx';
@@ -22,7 +21,7 @@ import { useOutletRef } from '../../Hooks/useOutletRef';
 
 gsap.registerPlugin(ScrollTrigger);
 
-const SearchForm = () => {
+const SearchForm = ({ isAuth }) => {
   const { username } = useSelector(selectUser);
   const dispatch = useDispatch();
   const query = useSelector(selectQuery);
@@ -103,35 +102,38 @@ const SearchForm = () => {
       <div className="content-main__card_big  " ref={ref}>
         <div className="search-quote__form search-quote__container card">
           <h3 className="action__card_title card-title">Найти цитату</h3>
-          <div className="search-filter">
-            <button
-              className={`search-filter__item filter-all ${
-                activeFilter === 'all' ? 'filter-active' : ''
-              }`}
-              value="all"
-              onClick={(e) => handleFilter(e)}
-            >
-              Во вселенной
-            </button>
-            <button
-              className={`search-filter__item filter-added ${
-                activeFilter === 'user' ? 'filter-active' : ''
-              }`}
-              value="user"
-              onClick={(e) => handleFilter(e)}
-            >
-              Мои
-            </button>
-            <button
-              className={`search-filter__item filter-liked ${
-                activeFilter === 'liked' ? 'filter-active' : ''
-              }`}
-              value="liked"
-              onClick={(e) => handleFilter(e)}
-            >
-              Мне понравились
-            </button>
-          </div>
+          {isAuth && (
+            <div className="search-filter">
+              <button
+                className={`search-filter__item filter-all ${
+                  activeFilter === 'all' ? 'filter-active' : ''
+                }`}
+                value="all"
+                onClick={(e) => handleFilter(e)}
+              >
+                Во вселенной
+              </button>
+              <button
+                className={`search-filter__item filter-added ${
+                  activeFilter === 'user' ? 'filter-active' : ''
+                }`}
+                value="user"
+                onClick={(e) => handleFilter(e)}
+              >
+                Мои
+              </button>
+              <button
+                className={`search-filter__item filter-liked ${
+                  activeFilter === 'liked' ? 'filter-active' : ''
+                }`}
+                value="liked"
+                onClick={(e) => handleFilter(e)}
+              >
+                Мне понравились
+              </button>
+            </div>
+          )}
+
           <form className="searh-quote__form">
             {' '}
             <input
