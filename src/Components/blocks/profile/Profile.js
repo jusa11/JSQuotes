@@ -3,8 +3,8 @@ import ListQuotes from '../../others/ListQuote';
 import SearchForm from '../../others/SearchForm';
 import { selectUser } from '../../redux/slices/userSlice';
 import {
-  POPULAR_URL,
-  LAST_QUOTES_URL,
+  /* POPULAR_URL,
+  LAST_QUOTES_URL, */
   QUOTES_URL,
   LIKED_QUOTES,
 } from '../../../config';

@@ -19,5 +19,6 @@ router.post(
 );
 router.post('/login', authController.login);
 router.get('/users', roleMiddleware(['admin']), authController.getUsers);
+router.post('/refresh', authController.refresh);
 
 module.exports = router;

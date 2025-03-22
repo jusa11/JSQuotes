@@ -2,14 +2,13 @@ import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import { jwtDecode } from 'jwt-decode';
 
 export const checkAuth = createAsyncThunk('user/checkAuth', async () => {
-  const token = localStorage.getItem('token');
+  let token = localStorage.getItem('token');
 
   if (!token) return null;
 
   if (token) {
     try {
       const decode = jwtDecode(token);
-      console.log(decode._id);
 
       return {
         username: decode.username,
@@ -20,6 +19,7 @@ export const checkAuth = createAsyncThunk('user/checkAuth', async () => {
     } catch (error) {
       console.error(error);
       localStorage.removeItem('token');
+      localStorage.removeItem('refreshToken');
       return null;
     }
   }

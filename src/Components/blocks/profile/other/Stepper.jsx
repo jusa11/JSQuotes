@@ -17,6 +17,7 @@ const Stepper = () => {
     skip: !user?.username,
   });
 
+  console.log(data);
   useEffect(() => {
     if (ref.current && !outletRef.current.includes(ref.current)) {
       outletRef.current.push(ref.current);

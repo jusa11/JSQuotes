@@ -1,11 +1,11 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import axios from 'axios';
 import { jwtDecode } from 'jwt-decode';
 import { useDispatch } from 'react-redux';
 import { setError, setSuccess } from '../../redux/slices/notificationsSlice';
 import { setUser } from '../../redux/slices/userSlice';
 import Logo from '../../others/Logo';
+import api from '../../../utils/axiosInstance';
 
 const Login = ({ onSwitch }) => {
   const [form, setForm] = useState({
@@ -28,12 +28,13 @@ const Login = ({ onSwitch }) => {
     }
 
     try {
-      const res = await axios.post('http://localhost:5000/auth/login', form);
-      const { token } = res.data;
-      localStorage.setItem('token', token);
+      const res = await api.post('http://localhost:5000/auth/login', form);
+      const { accessToken, refreshToken } = res.data;
+      localStorage.setItem('token', accessToken);
+      localStorage.setItem('refreshToken', refreshToken);
       dispatch(setSuccess('Приветствуем тебя, брат!'));
 
-      const decode = jwtDecode(token);
+      const decode = jwtDecode(accessToken);
       console.log(decode);
 
       dispatch(

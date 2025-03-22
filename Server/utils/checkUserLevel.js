@@ -13,7 +13,7 @@ const checkUserLevel = (countQuote) => {
 
       return {
         currentLevel,
-        titleLevel,
+					titleLevel,
         nextLevelCount,
       };
     }
