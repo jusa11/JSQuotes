@@ -49,8 +49,8 @@ const ListQuotes = ({ url, title }) => {
   const isChange = useSelector(selectDisplayIsChange);
 
   const getQuotes = useCallback(() => {
-    if (url === 'last-quotes') return lastQuotes;
-    if (url === 'popular-quotes') return popularQuotes;
+    if (url === 'quotes/last-quotes') return lastQuotes;
+    if (url === 'quotes/popular') return popularQuotes;
     if (url === QUOTES_URL.replace(':username', username)) return userQuotes;
     if (url === LIKED_QUOTES.replace(':username', username)) return likedQuotes;
     return [];
@@ -60,9 +60,13 @@ const ListQuotes = ({ url, title }) => {
   const limitQuotes = quotes.length > 0 ? quotes.slice(0, MAX_QUOTES) : 'Пусто';
 
   useEffect(() => {
+    const token = localStorage.getItem('token');
+
     (async () => {
       try {
-        const res = await axios(`http://localhost:5000/${url}`);
+        const res = await axios(`http://localhost:5000/${url}`, {
+          headers: { Authorization: `Bearer ${token}` },
+        });
 
         if (url === POPULAR_URL) {
           dispatch(setPopularQuotes(res.data));
@@ -77,7 +81,6 @@ const ListQuotes = ({ url, title }) => {
           if (url === LIKED_QUOTES.replace(':username', username)) {
             if (JSON.stringify(res.data) !== JSON.stringify(likedQuotes)) {
               dispatch(setLikedQuotes(res.data));
-              console.log(res.data);
             }
           }
         }

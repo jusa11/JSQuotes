@@ -24,19 +24,26 @@ const ShareForm = () => {
       return;
     }
 
+    const token = localStorage.getItem('token');
+    if (!token) {
+      dispatch(setError('Зарегистрируйтесь, чтобы оставлять реакции'));
+      console.error('Нет токена! Пользователь не авторизован.');
+      return;
+    }
+
     try {
-      if (!username) {
-        dispatch(
-          setError('Для того, чтобы поделиться мыслями, нужно авторизоваться')
-        );
-        setPopup(true);
-        return;
-      }
-      const res = await axios.post('http://localhost:5000/add-quote', {
-        text: message,
-        author: username,
-        userId: userId,
-      });
+      const res = await axios.post(
+        'http://localhost:5000/quotes/add-quote',
+        {
+          text: message,
+          author: username,
+          userId: userId,
+        },
+
+        {
+          headers: { Authorization: `Bearer ${token}` },
+        }
+      );
 
       dispatch(setAddQuotes(res.data));
       dispatch(setSuccess('Твоя мысль принята во вселенную'));

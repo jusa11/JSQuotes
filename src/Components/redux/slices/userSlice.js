@@ -2,7 +2,7 @@ import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import { jwtDecode } from 'jwt-decode';
 
 export const checkAuth = createAsyncThunk('user/checkAuth', async () => {
-  let token = localStorage.getItem('token');
+  const token = localStorage.getItem('token');
 
   if (!token) return null;
 
@@ -19,7 +19,6 @@ export const checkAuth = createAsyncThunk('user/checkAuth', async () => {
     } catch (error) {
       console.error(error);
       localStorage.removeItem('token');
-      localStorage.removeItem('refreshToken');
       return null;
     }
   }
@@ -67,7 +66,6 @@ const userSlice = createSlice({
           state.userId = action.payload.userId;
           state.logo = action.payload.logo;
           state.isAuth = true;
-          console.log(action.payload.userId);
         } else {
           state.isAuth = false; // Завершена проверка
         }

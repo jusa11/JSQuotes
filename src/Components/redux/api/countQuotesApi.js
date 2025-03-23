@@ -5,7 +5,7 @@ export const countQuotesApi = createApi({
   baseQuery: fetchBaseQuery({ baseUrl: 'http://localhost:5000' }),
   endpoints: (builder) => ({
     getQuotesCount: builder.query({
-      query: (username) => `users/level/${username}`,
+      query: (username) => `user/level/${username}`,
     }),
   }),
 });

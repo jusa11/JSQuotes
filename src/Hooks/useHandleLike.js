@@ -1,13 +1,13 @@
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import axios from 'axios';
-
 import { setError } from '../Components/redux/slices/notificationsSlice';
-
 import { toggleLike } from '../Components/redux/slices/likedQuotesSlice';
+import { selectUser } from '../Components/redux/slices/userSlice';
 import { LIKE } from '../config';
 
 const useHandleLike = () => {
   const dispatch = useDispatch();
+  const { userId } = useSelector(selectUser);
 
   const handleLike = async (quoteId) => {
     const token = localStorage.getItem('token');
@@ -21,7 +21,7 @@ const useHandleLike = () => {
     try {
       const res = await axios.post(
         `http://localhost:5000/${LIKE.replace(':quoteId', quoteId)}`,
-        {},
+        { userId, quoteId },
         {
           headers: { Authorization: `Bearer ${token}` },
         }

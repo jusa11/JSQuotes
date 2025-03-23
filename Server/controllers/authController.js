@@ -5,10 +5,7 @@ const Role = require('../models/Role.js');
 const jwt = require('jsonwebtoken');
 const multer = require('multer');
 const path = require('path');
-const secretAccess = process.env.JWT_ACCESS_SECRET;
-const secretResfresh = process.env.JWT_REFRESH_SECRET;
-
-console.log(secretAccess, secretResfresh);
+const secret = process.env.JWT_SECRET;
 
 const generateAccesToken = (id, username, roles, logo) => {
   const payload = {
@@ -17,15 +14,7 @@ const generateAccesToken = (id, username, roles, logo) => {
     roles,
     logo,
   };
-  const accessToken = jwt.sign(payload, secretAccess, { expiresIn: '0.5m' });
-  const refreshToken = jwt.sign({ _id: id }, secretResfresh, {
-    expiresIn: '1m',
-  });
-
-  return {
-    accessToken,
-    refreshToken,
-  };
+  return jwt.sign(payload, secret, { expiresIn: '24h' });
 };
 
 const storage = multer.diskStorage({
@@ -65,17 +54,14 @@ class AuthController {
           .status(400)
           .json({ message: 'Ты ввел неверный шифр, сынок' });
       }
-      const { accessToken, refreshToken } = generateAccesToken(
+      const token = generateAccesToken(
         user._id,
         user.username,
         user.roles,
         user.logo
       );
 
-      user.refreshToken = refreshToken;
-      await user.save();
-
-      return res.json({ accessToken, refreshToken });
+      return res.json({ token });
     } catch (error) {
       console.error('Ошибка при авторизации:', error);
       res.status(400).json({ message: 'Login error' });
@@ -110,15 +96,14 @@ class AuthController {
         logo: logoPath,
       });
       await user.save();
-
-      const { accessToken, refreshToken } = generateAccesToken(
+      const token = generateAccesToken(
         user._id,
         user.username,
         user.roles,
         user.logo
       );
 
-      return res.json({ accessToken, message: 'Ты был зачислен в нашу банду' });
+      return res.json({ token, message: 'Ты был зачислен в нашу банду' });
     } catch (error) {
       console.error('Ошибка при регистрации:', error);
       res.status(400).json({ message: 'Registration error' });
@@ -132,38 +117,6 @@ class AuthController {
     } catch (error) {
       console.error('Ошибка при получении пользователей', error);
       res.status(500).json({ message: error.message });
-    }
-  }
-
-  async refresh(req, res) {
-    try {
-      const { refreshToken } = req.body;
-      if (!refreshToken) {
-        return res.status(403).json({ message: 'Токен не найден' });
-      }
-
-      const user = await User.findOne({ refreshToken });
-      if (!user) {
-        return res.status(403).json({ message: 'Неверный токен' });
-      }
-      const decode = jwt.verify(refreshToken, secretResfresh);
-      if (!decode) {
-        return res.status(403).json({ message: 'Токен не валиден' });
-      }
-
-      const { accessToken, refreshToken: newRefreshToken } = generateAccesToken(
-        user._id,
-        user.username,
-        user.roles,
-        user.logo
-      );
-
-      user.refreshToken = newRefreshToken;
-      await user.save();
-      return res.json({ accessToken, refreshToken: newRefreshToken });
-    } catch (error) {
-      console.error('Ошибка при обновлении токена', error);
-      res.status(400).json({ message: 'Refresh error' });
     }
   }
 }
