@@ -3,16 +3,14 @@
 1. При получении левела если ошибка, то все ломается. В целом везде провести работу по отлавливанию ошибок.
 2. Провести рефакторинг серверной части. Оптимизировать код. Сейчас есть лишние моменты
 3. Написать документацию
-4. сделать лого юзеров нормально, чтобы размеры везде были одинаковые
-5. проверить длину логинов на то чтобы верстка не ломалась
-6. Опять лелевы если максимум почемуто не дают постить цитаты
-7. В ListQuote лого появялется только после обновления
-8. Придумать что показывать если ты Стетхем
+4. проверить длину логинов на то чтобы верстка не ломалась
+5. Придумать что показывать если ты Стетхем
+6. статус отображается предыдущий почему то
 
 # Закомитить
 
-1. как то сделать чтобы результат поиска обнулялся если вышел со страницы / Added the reset of search results when leaving the current page
-2. В ListQuote лого появялется только после обновления / Fixed the ShareForm for displaing the user logo in the ListQuote
+1. Придумать что показывать если ты Стетхем / Added an image if the max level is reached.
+2. статус отображается предыдущий почему то / Fixed checkUserLevel to correctly display the current level title.
 
 # Выполнено
 
@@ -62,6 +60,8 @@
 43. Добавить поиск на сам сайт / Added the search form in the main page of site
 44. Добавить поделиться в профиле / Added the share form in the profile page
 45. Опять почему то не работает логика левелов, если достиг последнего, цитаты не получается добавить / Fixed the levels logic. If the last level is reached, quotes cannot be added.
+46. как то сделать чтобы результат поиска обнулялся если вышел со страницы / Added the reset of search results when leaving the current page
+47. В ListQuote лого появялется только после обновления / Fixed the ShareForm for displaing the user logo in the ListQuote
 
 # На будущее
 

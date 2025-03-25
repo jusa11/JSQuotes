@@ -9,7 +9,7 @@ const checkUserLevel = (countQuote) => {
 
   if (countQuote >= userLevels[userLevels.length - 1].amount) {
     currentLevel = userLevels.length - 1;
-    titleLevel = userLevels[currentLevel - 1].title;
+    titleLevel = userLevels[currentLevel].title;
     nextLevelCount = null;
     needQuoteForNextLevel = 0;
     needQuoteForCurrnetLevel = 0;

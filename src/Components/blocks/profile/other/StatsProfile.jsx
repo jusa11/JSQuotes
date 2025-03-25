@@ -24,10 +24,12 @@ const StatsProfile = () => {
         <div className="stats-decor_1"></div>
         <div className="stats-decor_2"></div>
         <div className="stats-decor_3">
-          {!statsInfo?.nextLevelCount ? (
-            <h2>Ты Стетхем</h2>
-          ) : (
+          {statsInfo?.nextLevelCount ? (
             <MyChart dataLevel={statsInfo} />
+          ) : (
+            <div className="stats-decor__img">
+              <img src="/src/img/stepper-finish.png" alt="Ты Стетхем" />
+            </div>
           )}
         </div>
       </div>
