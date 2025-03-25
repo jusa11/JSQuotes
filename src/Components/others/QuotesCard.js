@@ -7,6 +7,7 @@ import { MAX_TEXT_LENGTH } from '../../config.js';
 
 const QuotesCard = forwardRef(({ quote, isPopup }, ref) => {
   const userLevel = quote?.userId?.level;
+  const userLogo = quote?.userId?.logo;
 
   useEffect(() => {
     if (isPopup && ref.current) {
@@ -29,17 +30,18 @@ const QuotesCard = forwardRef(({ quote, isPopup }, ref) => {
       <div className="quotes-block__card card" ref={ref}>
         <div className="quotes-block__card_person">
           <div className="quotes-block__card_logo">
-            <img src="src/img/profile-logo.png" alt="Logo" />
+            <img src={`http://localhost:5000${userLogo}`} alt={'Лого'} />
           </div>
-
-          <div className="quotes-block__card_rang">
-            <p>
-              {steps[userLevel]?.title ? steps[userLevel]?.title : 'Новичок'}
-            </p>
+          <div className="quotes-block__card_author">
+            <div className="quotes-block__card_name">{quote.author}</div>
+            <div className="quotes-block__card_rang">
+              <p>
+                {steps[userLevel]?.title ? steps[userLevel]?.title : 'Новичок'}
+              </p>
+            </div>
           </div>
         </div>
         <div className="quotes-block__card_content">
-          <div className="quotes-block__card_name">{quote.author}</div>
           <div className="quotes-block__card_text">
             <p>
               <i>{`«${limitTextLength(quote.text, MAX_TEXT_LENGTH)}»`}</i>

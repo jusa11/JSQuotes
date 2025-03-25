@@ -57,6 +57,7 @@ const ListQuotes = ({ url, title }) => {
   }, [url, lastQuotes, popularQuotes, userQuotes, username, likedQuotes]);
 
   const quotes = getQuotes();
+
   const limitQuotes = quotes.length > 0 ? quotes.slice(0, MAX_QUOTES) : 'Пусто';
 
   useEffect(() => {
@@ -165,8 +166,18 @@ const ListQuotes = ({ url, title }) => {
                     <div className="quotes-item__content">
                       <div className="quotes-item__author">
                         <div className="quotes-author__profile">
-                          <div className="profile__logo">
-                            <img src="src/img/profile-logo.png" alt="Logo" />
+                          <div className="profile__logo quotes-block__card_logo">
+                            {quote.userId?.logo ? (
+                              <img
+                                src={`http://localhost:5000${quote.userId.logo}`}
+                                alt={quote.userId?.username || 'Лого'}
+                              />
+                            ) : (
+                              <img
+                                src="/src/img/default-logo.png"
+                                alt={quote.userId?.username || 'Лого'}
+                              />
+                            )}
                           </div>
                         </div>
                       </div>

@@ -97,9 +97,13 @@ const SearchForm = ({ isAuth }) => {
     }
   }, [handleSearch, query, type]); // Вызов при смене фильтра
 
+  useEffect(() => {
+    return () => dispatch(setReset());
+  }, [dispatch]);
+
   return (
     <>
-      <div className="content-main__card_big  " ref={ref}>
+      <div className="content-main__card_big" ref={ref}>
         <div className="search-quote__form search-quote__container card">
           <h3 className="action__card_title card-title">Найти цитату</h3>
           {isAuth && (

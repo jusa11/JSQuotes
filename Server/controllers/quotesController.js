@@ -6,7 +6,10 @@ const checkUserLevel = require('../utils/checkUserLevel');
 // Генерация цитаты
 exports.getRandomQuote = async (req, res) => {
   try {
-    const quotes = await Quote.find().populate('userId');
+    const quotes = await Quote.find().populate({
+      path: 'userId',
+      select: 'username level logo',
+    });
 
     if (!quotes || quotes.length === 0) {
       return res.status(404).json({ msg: 'No quotes found' });
@@ -23,7 +26,10 @@ exports.getRandomQuote = async (req, res) => {
 // Последние цитаты
 exports.getLastQuotes = async (req, res) => {
   try {
-    const lastQuotes = await Quote.find().sort({ date: -1 }).limit(4);
+    const lastQuotes = await Quote.find().sort({ date: -1 }).limit(4).populate({
+      path: 'userId',
+      select: 'username level logo',
+    });
 
     if (!lastQuotes || lastQuotes.length === 0) {
       return res.status(404).json({ msg: 'No quotes found' }); // Если нет цитат, возвращаем ошибку
@@ -37,7 +43,6 @@ exports.getLastQuotes = async (req, res) => {
 
 // добавить цитату
 exports.addQuote = async (req, res) => {
-  console.log(req.body);
   const { text, author, userId } = req.body;
 
   if (!text || !author || !userId) {
@@ -64,7 +69,7 @@ exports.addQuote = async (req, res) => {
     });
     await newQuote.save();
 
-    res.json(newQuote); // отправлять не только цитату а и username, кол-во цитат и level
+    res.json({ newQuote, logo: user.logo }); // отправлять не только цитату а и username, кол-во цитат и level
   } catch (error) {
     console.error(error);
     res.status(500).send('Server Error');
@@ -76,9 +81,14 @@ exports.getUserQuotes = async (req, res) => {
   try {
     const { username } = req.params;
 
-    const userQuotes = await Quote.find({ author: username }).sort({
-      date: -1,
-    });
+    const userQuotes = await Quote.find({ author: username })
+      .sort({
+        date: -1,
+      })
+      .populate({
+        path: 'userId',
+        select: 'username level logo',
+      });
     if (!userQuotes || userQuotes.length === 0) {
       return res.status(200).json(userQuotes);
     }
@@ -94,7 +104,13 @@ exports.getLikedQuotes = async (req, res) => {
   try {
     const { username } = req.params;
 
-    const user = await User.findOne({ username }).populate('likedQuotes');
+    const user = await User.findOne({ username }).populate({
+      path: 'likedQuotes',
+      populate: {
+        path: 'userId',
+        select: 'username level logo',
+      },
+    });
 
     if (!user) {
       return res.json({ message: 'Пользователь не найден' });
@@ -102,7 +118,6 @@ exports.getLikedQuotes = async (req, res) => {
 
     // Берём только последние 4 лайка в порядке добавления
     const lastLikedQuotes = user.likedQuotes.slice(0, 4);
-
     res.json(lastLikedQuotes);
   } catch (error) {
     console.error(error);
@@ -113,7 +128,13 @@ exports.getLikedQuotes = async (req, res) => {
 // Популярные цитаты
 exports.getPopularQuotes = async (req, res) => {
   try {
-    const popularQuotes = await Quote.find().sort({ likes: -1 }).limit(10);
+    const popularQuotes = await Quote.find()
+      .sort({ likes: -1 })
+      .limit(10)
+      .populate({
+        path: 'userId',
+        select: 'username logo level',
+      });
     res.json(popularQuotes);
   } catch (error) {
     console.error(error);
@@ -169,7 +190,7 @@ exports.searchQuotes = async (req, res) => {
 
     const quotes = await Quote.find(filter).skip(skip).limit(limit).populate({
       path: 'userId',
-      select: 'username level', // Забираем username и level из User
+      select: 'username level logo', // Забираем username и level из User
     });
 
     const totalQuotes = await Quote.countDocuments(filter);

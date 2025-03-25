@@ -58,6 +58,7 @@ const Space = () => {
   const catchThink = useCallback(async () => {
     try {
       const newQuote = await generateRandomQuoteAPI();
+      console.log(newQuote);
       if (newQuote) {
         setCurrentQuote(newQuote);
         setPopup(true);

@@ -4,23 +4,38 @@ const checkUserLevel = (countQuote) => {
   let currentLevel;
   let titleLevel;
   let nextLevelCount;
+  let needQuoteForNextLevel;
+  let needQuoteForCurrnetLevel;
 
-  for (let i = userLevels.length - 1; i >= 0; i--) {
-    if (countQuote >= userLevels[i].amount) {
-      currentLevel = userLevels.indexOf(userLevels[i]);
-      titleLevel = userLevels[currentLevel].title;
-      nextLevelCount = userLevels[i + 1].amount;
-
-      return {
-        currentLevel,
-					titleLevel,
-        nextLevelCount,
-      };
+  if (countQuote >= userLevels[userLevels.length - 1].amount) {
+    currentLevel = userLevels.length - 1;
+    titleLevel = userLevels[currentLevel - 1].title;
+    nextLevelCount = null;
+    needQuoteForNextLevel = 0;
+    needQuoteForCurrnetLevel = 0;
+  } else {
+    for (let i = userLevels.length - 1; i >= 0; i--) {
+      if (countQuote >= userLevels[i].amount) {
+        currentLevel = i;
+        nextLevelCount = userLevels[i + 1].amount;
+        titleLevel = userLevels[i].title;
+        needQuoteForNextLevel = nextLevelCount
+          ? nextLevelCount - countQuote
+          : 0;
+        needQuoteForCurrnetLevel = userLevels[currentLevel + 1]
+          ? userLevels[currentLevel + 1].amount - userLevels[i].amount
+          : 0;
+        break;
+      }
     }
   }
+
   return {
-    currentLevel: 0,
-    nextLevelCount: userLevels[1].amount,
+    currentLevel,
+    nextLevelCount,
+    titleLevel,
+    needQuoteForNextLevel,
+    needQuoteForCurrnetLevel,
   };
 };
 

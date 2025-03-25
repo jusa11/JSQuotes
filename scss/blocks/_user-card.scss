@@ -19,7 +19,6 @@
 .user-card__avatar {
   overflow: hidden;
   border-radius: 50%;
-  padding: 0 0 25% 0;
   position: relative;
   display: flex;
   height: 50px;
@@ -29,16 +28,16 @@
   opacity: 1;
 
   img {
-    flex: 0 0 33.333%;
     width: 100%;
+    height: 100%;
     object-fit: cover;
     position: absolute;
   }
 
   &.user-card__avatar_profile {
     img {
-      flex: 0 0 33.333%;
       width: 100%;
+      height: 100%;
       object-fit: cover;
       position: absolute;
     }

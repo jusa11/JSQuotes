@@ -1,20 +1,14 @@
 import { useSelector } from 'react-redux';
 import SearchForm from './SearchForm';
-import { setChoosedSearch, setReset } from '../redux/slices/searchSlice';
+import { setChoosedSearch } from '../redux/slices/searchSlice';
 import { useDispatch } from 'react-redux';
 import { RxCross2 } from 'react-icons/rx';
 import { selectUser } from '../redux/slices/userSlice';
-import { useEffect } from 'react';
 
 const SearchOverlay = () => {
   const dispatch = useDispatch();
   const { isAuth } = useSelector(selectUser);
 
-  useEffect(() => {
-    dispatch(setReset());
-  }, [dispatch]);
-
-  console.log('overlay');
   return (
     <div className="search-overlay">
       <div className="search-overlay__handler">

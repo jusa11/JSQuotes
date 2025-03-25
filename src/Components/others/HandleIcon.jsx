@@ -6,6 +6,7 @@ import { useSelector } from 'react-redux';
 import { selectLikedQuotes } from '../redux/slices/likedQuotesSlice.js';
 
 const HandleIcon = ({ quote }) => {
+
   const handleLike = useHandleLike();
   const likedQuotes = useSelector(selectLikedQuotes);
   const foundQuote = likedQuotes.find((q) => q._id === quote._id);

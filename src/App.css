@@ -843,12 +843,25 @@ li {
 .card {
   display: flex;
   flex-direction: column;
-  background-color: rgba(29, 28, 32, 0.6);
+  background: rgba(9, 11, 17, 0.349);
+  -webkit-backdrop-filter: blur(10px);
+          backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.3);
   background-size: 60%;
   background-repeat: no-repeat;
   border: 1px solid rgba(255, 255, 255, 0.08);
   padding: 30px;
   border-radius: 32px;
+  overflow: hidden;
+}
+.card::after {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+  background: radial-gradient(circle, rgba(80, 40, 150, 0.1) 0%, rgba(0, 0, 0, 0) 80%);
 }
 
 @media (max-width: 479.98px) {
@@ -860,7 +873,9 @@ li {
   border-radius: 80px;
   margin: 70px 0 0 0;
   align-items: center;
-  background: #222222;
+  background: rgba(11, 13, 22, 0.258);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.3);
   padding: 10px 15px;
 }
 
@@ -872,12 +887,16 @@ li {
 .share__qoute-form {
   display: flex;
   align-items: center;
+  justify-content: space-between;
 }
 
 .your-message-wrapper {
   position: relative;
   width: 100%;
   height: 30px;
+  z-index: 2;
+  display: flex;
+  align-items: center;
 }
 
 .your-message-wrapper::before {
@@ -893,8 +912,8 @@ li {
 .your-message {
   resize: none;
   width: 100%;
-  height: 100%;
-  background: #222222;
+  height: 40px;
+  background: transparent;
   font-size: 14px;
   color: #fff;
   padding: 0 35px;
@@ -903,11 +922,7 @@ li {
 .form__handler {
   display: flex;
   align-items: center;
-}
-
-.fa-face-smile {
-  margin: 0 10px 0 9px;
-  font-size: 18px;
+  z-index: 2;
 }
 
 .form-btn {
@@ -916,6 +931,7 @@ li {
   padding: 12px 15px;
   border-radius: 50%;
   transition: all 0.3s ease;
+  z-index: 2;
 }
 .form-btn:hover {
   background-color: rgba(200, 200, 200, 0.4);
@@ -946,6 +962,7 @@ li {
   flex-direction: column;
   gap: 10px;
   max-width: 100%;
+  z-index: 2;
 }
 
 .last__list-qoutes_item {
@@ -1111,25 +1128,46 @@ li {
   align-items: center;
 }
 
+.quotes-block__card_logo {
+  overflow: hidden;
+  border-radius: 50%;
+  position: relative;
+  display: flex;
+  height: 50px;
+  width: 50px;
+  border: 2px solid rgb(168, 168, 168);
+  box-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
+  opacity: 1;
+}
 .quotes-block__card_logo img {
-  max-height: 52px;
+  width: 100%;
+  height: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+  position: absolute;
 }
 
 .quotes-block__card_rang {
   margin: 0 0 0 10px;
   font-size: 12px;
   color: #fff;
-  padding: 10px 15px;
+  padding: 5px 15px;
   background-color: #ff6161;
   border-radius: 24px;
 }
 
 .quotes-block__card_content {
   margin: 15px 0 0;
+  z-index: 2;
 }
 
 .quotes-block__card_name {
   color: #fff;
+  cursor: pointer;
+  z-index: 2;
+}
+.quotes-block__card_name:hover {
+  color: #8d1ea2;
 }
 
 .quotes-block__card_text {
@@ -1141,6 +1179,7 @@ li {
   display: flex;
   gap: 20px;
   align-items: center;
+  z-index: 2;
 }
 
 .card-handler {
@@ -1174,7 +1213,13 @@ li {
   background-position: right bottom;
   width: 100%;
   flex-direction: column;
-  justify-content: space-between;
+}
+
+.quotes-block__card_author {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 5px;
 }
 
 @media (max-width: 767.98px) {
@@ -1644,16 +1689,18 @@ li {
   }
 }
 .profile {
-  margin: 0 15px;
   position: relative;
+  display: flex;
+  justify-content: center;
+  margin: 20px 0 0 0;
 }
 
 .profile-container {
   display: grid;
-  margin: 0 auto;
+  margin: 0 0 20px 0;
   grid-template-rows: auto 1fr;
   max-width: 1200px;
-  background-color: #262525;
+  background: linear-gradient(135deg, rgba(13, 13, 21, 0.9411764706), rgba(26, 18, 42, 0.9137254902), rgba(44, 31, 69, 0.9529411765), rgba(59, 43, 93, 0.937254902));
   padding: 20px;
   border-radius: 24px;
   font-size: 16px;
@@ -1678,6 +1725,7 @@ li {
 .profile-content__main {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
+  grid-auto-rows: min-content;
   gap: 20px;
 }
 
@@ -1696,7 +1744,6 @@ li {
 
 .content-main__card_big {
   grid-column: span 2;
-  overflow-x: auto;
 }
 
 .profile-rigth {
@@ -1709,6 +1756,7 @@ li {
 .person-block {
   display: flex;
   justify-content: space-between;
+  align-items: center;
 }
 
 .dev-yet {
@@ -2071,7 +2119,6 @@ li {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  background-color: rgb(29, 28, 32);
 }
 
 .search-filter {
@@ -2082,7 +2129,8 @@ li {
   white-space: nowrap;
   scrollbar-width: none;
   -ms-overflow-style: none;
-  padding: 15px 0 0 0;
+  padding: 20px 0 0 0;
+  z-index: 2;
 }
 
 .search-filter__item {
@@ -2121,20 +2169,24 @@ li {
   height: 40px;
   border-radius: 12px;
   padding: 0 30px;
-  background: #222222;
+  background: rgba(11, 13, 22, 0.258);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.3);
   font-size: 14px;
   color: #fff;
+  z-index: 2;
 }
 
 .form-reset {
   position: absolute;
-  top: 38%;
+  top: 42%;
   right: 3%;
   background-color: transparent;
-  font-size: 22px;
+  font-size: 23px;
   color: #a9a9a9;
   font-weight: bold;
   transition: all ease-in 0.3s;
+  z-index: 2;
 }
 
 .search-result__block {
@@ -2174,7 +2226,6 @@ li {
 .user-card__avatar {
   overflow: hidden;
   border-radius: 50%;
-  padding: 0 0 25% 0;
   position: relative;
   display: flex;
   height: 50px;
@@ -2184,15 +2235,15 @@ li {
   opacity: 1;
 }
 .user-card__avatar img {
-  flex: 0 0 33.333%;
   width: 100%;
+  height: 100%;
   -o-object-fit: cover;
      object-fit: cover;
   position: absolute;
 }
 .user-card__avatar.user-card__avatar_profile img {
-  flex: 0 0 33.333%;
   width: 100%;
+  height: 100%;
   -o-object-fit: cover;
      object-fit: cover;
   position: absolute;
@@ -2541,7 +2592,7 @@ li {
 }
 .profile-sidebar {
   position: fixed;
-  top: 115px;
+  top: 150px;
 }
 
 .sidebar-navigation__list {

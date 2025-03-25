@@ -13,40 +13,10 @@ exports.getUserLevel = async (req, res) => {
       return res.status(404).json({ message: 'Пользователь не найден' });
     }
     const currentCountQuotes = user.countQuote; // всего циатат у пользователя
-    let currentLevel;
-    let nextLevelCount;
-    let titleLevel;
-    let needQuoteForNextLevel;
-    let needQuoteForCurrnetLevel;
 
-    if (currentCountQuotes >= userLevels[userLevels.length - 1].amount) {
-      currentLevel = userLevels.length - 1;
-      titleLevel = userLevels[userLevels.length - 1].title;
-      nextLevelCount = null;
-      needQuoteForNextLevel = 0;
-      needQuoteForCurrnetLevel = 0;
-    } else {
-      const levels = checkUserLevel(currentCountQuotes);
-      currentLevel = levels.currentLevel; // текущий левел пользователя
-      nextLevelCount = levels.nextLevelCount; // сколько всего цитат нужно для след. левела
-      titleLevel = levels.titleLevel;
-      needQuoteForNextLevel = nextLevelCount - currentCountQuotes; // сколько осталось цитат до след. левела
-      needQuoteForCurrnetLevel =
-        userLevels[currentLevel + 1].amount - userLevels[currentLevel].amount; // сколько цитат на текущем левеле нужно добавить
-    }
+    const levelIfo = checkUserLevel(currentCountQuotes);
 
-    if (!needQuoteForNextLevel) {
-      needQuoteForNextLevel = 0;
-    }
-
-    res.json({
-      currentLevel,
-      nextLevelCount,
-      currentCountQuotes,
-      needQuoteForNextLevel,
-      needQuoteForCurrnetLevel,
-      titleLevel,
-    });
+    res.json({ currentCountQuotes, ...levelIfo });
   } catch (error) {
     console.error(error);
     res.status(500).send('Server error');
@@ -63,7 +33,11 @@ exports.toggleLike = async (req, res) => {
       return res.status(404).json({ message: 'Пользователь не найден' });
     }
 
-    const quote = await Quote.findById(quoteId);
+    let quote = await Quote.findById(quoteId).populate({
+      path: 'userId',
+      select: 'username level logo',
+    });
+
     if (!quote) {
       return res.status(404).json({ message: 'Цитата не найдена' });
     }
@@ -78,12 +52,23 @@ exports.toggleLike = async (req, res) => {
       user.likedQuotes.unshift(quoteId);
       quote.likes += 1;
     }
+
     await user.save();
     await quote.save();
 
-    res.json({ succes: true, liked: !isLiked, quantity: quote.likes });
+    // Загружаем цитату заново с `populate()`, чтобы вернуть все данные
+    quote = await Quote.findById(quoteId).populate({
+      path: 'userId',
+      select: 'username level logo',
+    });
+    res.json({
+      success: true,
+      liked: !isLiked,
+      quantity: quote.likes,
+      quote, // Теперь объект цитаты со всеми нужными полями
+    });
   } catch (error) {
-    res.status(500).json({ message: 'Ошибка сервера' });
     console.error(error);
+    res.status(500).json({ message: 'Ошибка сервера' });
   }
 };

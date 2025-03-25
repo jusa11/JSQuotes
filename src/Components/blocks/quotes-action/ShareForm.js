@@ -13,7 +13,7 @@ import { selectUser } from '../../redux/slices/userSlice';
 const ShareForm = () => {
   const [message, setMessage] = useState('');
   const dispatch = useDispatch();
-  const { username, userId } = useSelector(selectUser);
+  const { username, userId, logo } = useSelector(selectUser);
   const [isPopup, setPopup] = useState();
   const popupRef = useRef(null);
 
@@ -45,7 +45,9 @@ const ShareForm = () => {
         }
       );
 
-      dispatch(setAddQuotes(res.data));
+      console.log(res.data);
+
+      dispatch(setAddQuotes({ ...res.data.newQuote, userId: { logo } }));
       dispatch(setSuccess('Твоя мысль принята во вселенную'));
       setTimeout(() => {
         dispatch(resetIsChange());
@@ -69,9 +71,6 @@ const ShareForm = () => {
         </div>
 
         <div className="share__qoute_form-container">
-          <div className="share__qoute-form-icon icon">
-            <i className="fa-regular fa-lightbulb"></i>
-          </div>
           <form
             className="share__qoute-form"
             action="#"
@@ -89,15 +88,10 @@ const ShareForm = () => {
                 maxLength={200}
               />
             </div>
-
             <button className="form-btn" type="submit">
               <FaArrowUp className="form-btn-icon" />
             </button>
           </form>
-          <div className="form__handler">
-            <i className="fa-regular fa-face-smile icon"></i>
-            <div className="form__button"></div>
-          </div>
         </div>
       </div>
       {isPopup && (
