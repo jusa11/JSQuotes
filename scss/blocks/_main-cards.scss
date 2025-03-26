@@ -11,9 +11,8 @@
   border: 1px solid $color-border;
   padding: 30px;
   border-radius: 32px;
-  overflow: hidden;
 
-  &::after {
+  /* &::after {
     content: '';
     position: absolute;
     width: 100%;
@@ -24,11 +23,11 @@
       rgba(80, 40, 150, 0.1) 0%,
       rgba(0, 0, 0, 0) 80%
     );
-  }
+  } */
 }
 
 @include mediaSmallMobile {
   .card {
-    padding: 30px 15px 30px 15px;
+    padding: 30px 10px 30px 10px;
   }
 }

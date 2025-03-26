@@ -90,4 +90,7 @@
 @include mediaMediumMobile {
 }
 @include mediaSmallMobile {
+  .last-quotes__date_hidden {
+    display: none;
+  }
 }

@@ -24,6 +24,12 @@
   color: $color-hover;
 }
 
+@include mediaFirstBrakePoint {
+  .menu__item {
+    margin: 0 0 0 15px;
+  }
+}
+
 @media (max-width: $big-mobile) {
   .menu__link {
     font-size: 28px;

@@ -41,8 +41,8 @@ const Registration = ({ onSwitch }) => {
       return;
     }
 
-    if (value.length >= 50) {
-      errors.push(`Поле "${fieldName}" не должно быть не длиннее 50 символов`);
+    if (value.length >= 20) {
+      errors.push(`Поле "${fieldName}" не должно быть не длиннее 20 символов`);
       formErrors[name] = true;
     }
     if (fieldName !== 'Имя' && fieldName !== 'Лого') {

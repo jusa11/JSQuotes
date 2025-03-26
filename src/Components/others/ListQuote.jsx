@@ -147,7 +147,7 @@ const ListQuotes = ({ url, title }) => {
 
   return (
     <>
-      <div className="quotes-action__card card right-card">
+      <div className="quotes-action__card card">
         <div className="action__card_text">
           <h3 className="action__card_title card-title">{title}</h3>
         </div>
@@ -189,7 +189,7 @@ const ListQuotes = ({ url, title }) => {
                           <div className="last-quotes__handler">
                             <HandleIcon quote={quote} />
                           </div>
-                          <div className="last-quotes__date">
+                          <div className="quotes-item__date last-quotes__date_hidden">
                             <p>
                               {new Date(quote.date).toLocaleDateString('ru-Ru')}
                             </p>

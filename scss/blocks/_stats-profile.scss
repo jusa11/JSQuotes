@@ -87,11 +87,14 @@
   font-size: 30px;
   font-weight: bold;
   margin: 0 0 10px 0;
+  overflow: hidden;
+  white-space: normal;
+  text-overflow: ellipsis;
 }
 .stats-user__level {
-  font-size: 11px;
+  font-size: 12px;
   background-color: red;
-
+  font-weight: bold;
   padding: 6px 20px;
   border-radius: 30px;
   text-align: center;
@@ -150,6 +153,12 @@
     z-index: 3;
     background: linear-gradient(138deg, #7b20e2, #2b1043);
     border-radius: 36px;
+  }
+
+  .stats-decor__img {
+    margin: 0 0 0 10px;
+    height: 140px;
+    width: 140px;
   }
 
   .chart-stats {
@@ -245,6 +254,11 @@
     height: 350px;
     background: linear-gradient(138deg, #7b20e2, #2b1043);
     border-radius: 36px;
+  }
+  .stats-decor__img {
+    margin: 0 auto;
+    height: 170px;
+    width: 170px;
   }
   .chart-stats {
     height: 200px !important;

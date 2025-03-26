@@ -45,11 +45,6 @@
   margin: 15px 0 0 0;
   padding: 10px 0;
 }
-@include mediaSmallMobile {
-  .card {
-    padding: 30px 15px 30px 15px;
-  }
-}
 
 @include mediaBigMobile {
   .popup__card {

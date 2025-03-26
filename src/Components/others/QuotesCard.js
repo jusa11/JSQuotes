@@ -30,7 +30,17 @@ const QuotesCard = forwardRef(({ quote, isPopup }, ref) => {
       <div className="quotes-block__card card" ref={ref}>
         <div className="quotes-block__card_person">
           <div className="quotes-block__card_logo">
-            <img src={`http://localhost:5000${userLogo}`} alt={'Лого'} />
+            {userLogo ? (
+              <img
+                src={`http://localhost:5000${userLogo}`}
+                alt={quote.userId?.username || 'Лого'}
+              />
+            ) : (
+              <img
+                src="/src/img/default-logo.png"
+                alt={quote.userId?.username || 'Лого'}
+              />
+            )}
           </div>
           <div className="quotes-block__card_author">
             <div className="quotes-block__card_name">{quote.author}</div>
@@ -39,6 +49,9 @@ const QuotesCard = forwardRef(({ quote, isPopup }, ref) => {
                 {steps[userLevel]?.title ? steps[userLevel]?.title : 'Новичок'}
               </p>
             </div>
+          </div>
+          <div className="quotes-item__date">
+            <p>{new Date(quote.date).toLocaleDateString('ru-Ru')}</p>
           </div>
         </div>
         <div className="quotes-block__card_content">

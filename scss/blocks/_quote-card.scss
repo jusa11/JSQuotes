@@ -69,7 +69,7 @@
 
 .quotes-block__column {
   display: flex;
-  min-width: 390px;
+  min-width: 300px;
   height: 100%;
 }
 .quotes-block__card {
@@ -77,6 +77,7 @@
   background-position: right bottom;
   width: 100%;
   flex-direction: column;
+  padding: 20px;
 }
 .quotes-block__card_author {
   display: flex;
@@ -84,14 +85,9 @@
   align-items: center;
   gap: 5px;
 }
-@include mediaBigMobile {
-  .quotes-block__card {
-    max-height: 350px;
-  }
-}
 
-@include mediaSmallMobile {
-  .quotes-block__column {
-    min-width: 250px;
-  }
+.quotes-item__date {
+  color: #fff;
+  margin-left: auto;
+  font-size: 12px;
 }

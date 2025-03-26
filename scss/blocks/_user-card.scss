@@ -60,6 +60,10 @@
   font-size: 20px;
   font-weight: bold;
   color: #fff;
+  max-width: 150px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: normal;
 }
 
 .user-card__notifications {
@@ -78,6 +82,23 @@
 .user-card__logout {
   &.user-card__logout_profile {
     display: none;
+  }
+}
+
+@include mediaTablet {
+  .user-card__name {
+    max-width: 100px;
+  }
+  .user-card__avatar {
+    overflow: hidden;
+    border-radius: 50%;
+    position: relative;
+    display: flex;
+    height: 40px;
+    width: 40px;
+    border: 2px solid rgb(168, 168, 168);
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
+    opacity: 1;
   }
 }
 

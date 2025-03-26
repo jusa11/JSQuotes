@@ -61,7 +61,7 @@ const ShareForm = () => {
 
   return (
     <>
-      <div className="quotes-action__share-quote quotes-action__card card left-card">
+      <div className="quotes-action__share-quote quotes-action__card card">
         <div className="action__card_text">
           <h3 className="action__card_title card-title">Поделись мыслями</h3>
           <p className="action__card_subtitle card-subtitle">

@@ -12,8 +12,9 @@
     height: 25px;
     top: 0;
     left: 0;
+    z-index: 5 !important;
   }
-	
+
   .bm-burger-bars {
     background: #eaeaea;
   }
@@ -28,6 +29,7 @@
   }
   .bm-menu-wrap {
     top: 0;
+    z-index: 6 !important;
   }
 
   .bm-menu {

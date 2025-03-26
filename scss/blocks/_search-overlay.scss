@@ -34,3 +34,9 @@
 .search-overlay__content {
   padding: 50px 0 0 0;
 }
+
+@include mediaFirstBrakePoint {
+  .search-overlay {
+    padding: 20px;
+  }
+}

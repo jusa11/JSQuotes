@@ -102,7 +102,7 @@ const SearchForm = ({ isAuth }) => {
   }, [dispatch]);
 
   return (
-    <>
+    <div className="profile-content__search">
       <div className="content-main__card_big" ref={ref}>
         <div className="search-quote__form search-quote__container card">
           <h3 className="action__card_title card-title">Найти цитату</h3>
@@ -160,27 +160,27 @@ const SearchForm = ({ isAuth }) => {
             </button>
           </form>
         </div>
-        <div className="search-result__block">
-          {results.map((quote, index) => (
-            <QuotesCard
-              ref={(el) => (quotesCardRef.current[index] = el)}
-              className="card"
-              quote={quote}
-              key={quote._id}
-            />
-          ))}
-          {query && hasMore && (
-            <button
-              className="show-more-btn"
-              onClick={handleMore}
-              disabled={loadingMore}
-            >
-              {loadingMore ? 'Загружаю...' : 'Показать ещё'}
-            </button>
-          )}
-        </div>
       </div>
-    </>
+      <div className="search-result__block">
+        {results.map((quote, index) => (
+          <QuotesCard
+            ref={(el) => (quotesCardRef.current[index] = el)}
+            className="card"
+            quote={quote}
+            key={quote._id}
+          />
+        ))}
+        {query && hasMore && (
+          <button
+            className="show-more-btn"
+            onClick={handleMore}
+            disabled={loadingMore}
+          >
+            {loadingMore ? 'Загружаю...' : 'Показать ещё'}
+          </button>
+        )}
+      </div>
+    </div>
   );
 };
 
