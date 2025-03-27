@@ -24,7 +24,6 @@
   font-size: 15px;
   padding: 15px 10px;
   max-width: 100%;
-  overflow: hidden;
 }
 
 .quotes-item__content {
@@ -43,17 +42,14 @@
   word-wrap: break-word;
   word-break: break-word;
   white-space: pre-wrap;
-  overflow: hidden;
   text-overflow: ellipsis;
   max-height: 4em;
   display: -webkit-box;
   -webkit-line-clamp: 3;
   -webkit-box-orient: vertical;
-}
-
-.quotes-item__infavorite {
-  font-size: 20px;
-  margin: 0 0 0 20px;
+  p {
+    font-weight: 200;
+  }
 }
 
 .quotes-author__profile {
@@ -92,5 +88,8 @@
 @include mediaSmallMobile {
   .last-quotes__date_hidden {
     display: none;
+  }
+  .quotes-item {
+    padding: 15px 10px 30px 10px;
   }
 }

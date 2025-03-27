@@ -153,32 +153,39 @@ const Registration = ({ onSwitch }) => {
             </ul>
           );
         })}
+        <div className="auth-form__wrapper form-wrapper__username">
+          <input
+            name="username"
+            placeholder="Придумай себе погоняло"
+            type="text"
+            onChange={handleChange}
+            className={`${formError?.username ? 'auth-form__error-field' : ''}`}
+            value={form.username}
+            maxLength={20}
+          />
+        </div>
+        <div className="auth-form__wrapper form-wrapper__name">
+          <input
+            name="name"
+            placeholder="Как тебя зовут, сынок?"
+            className={`${formError?.name ? 'auth-form__error-field' : ''}`}
+            type="text"
+            onChange={handleChange}
+            value={form.name}
+          />
+        </div>
+        <div className="auth-form__wrapper form-wrapper__password">
+          {' '}
+          <input
+            name="password"
+            placeholder="Зашифруйся как следует"
+            type="password"
+            onChange={handleChange}
+            value={form.password}
+            className={`${formError?.password ? 'auth-form__error-field' : ''}`}
+          />
+        </div>
 
-        <input
-          name="username"
-          placeholder="Придумай себе погоняло"
-          type="text"
-          onChange={handleChange}
-          className={`${formError?.username ? 'auth-form__error-field' : ''}`}
-          value={form.username}
-          maxLength={20}
-        />
-        <input
-          name="name"
-          placeholder="Как тебя зовут, сынок?"
-          className={`${formError?.name ? 'auth-form__error-field' : ''}`}
-          type="text"
-          onChange={handleChange}
-          value={form.name}
-        />
-        <input
-          name="password"
-          placeholder="Зашифруйся как следует"
-          type="password"
-          onChange={handleChange}
-          value={form.password}
-          className={`${formError?.password ? 'auth-form__error-field' : ''}`}
-        />
         <FileDrop username={form.username} onFileSelect={handleFileChange} />
         {/* <label className="logo-file-drop">
           <p>

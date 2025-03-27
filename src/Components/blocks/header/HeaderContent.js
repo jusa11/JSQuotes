@@ -29,7 +29,7 @@ const HeaderContent = () => {
     dispatch(setSuccess('Цитата скопирована!'));
   };
 
-  const likeAnimation = (e) => {
+  const iconAnimation = (e) => {
     gsap.killTweensOf(e);
 
     gsap.set(e, { rotate: 0 });
@@ -124,7 +124,7 @@ const HeaderContent = () => {
           <button
             className="btn-like"
             onClick={(e) => {
-              likeAnimation(e.currentTarget.children[0]);
+              iconAnimation(e.currentTarget.children[0]);
               handleLike(currentQuote._id);
             }}
           >
@@ -134,7 +134,7 @@ const HeaderContent = () => {
             className="btn-copy"
             onClick={(e) => {
               handleCopy();
-              likeAnimation(likeAnimation(e.currentTarget.children[0]));
+              iconAnimation(e.currentTarget.children[0]);
             }}
           >
             <IoCopyOutline />

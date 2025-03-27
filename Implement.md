@@ -3,12 +3,15 @@
 1. При получении левела если ошибка, то все ломается. В целом везде провести работу по отлавливанию ошибок.
 2. Провести рефакторинг серверной части. Оптимизировать код. Сейчас есть лишние моменты
 3. Написать документацию
-
+4. сделать иконку лайка если лайк стоит чтобы был закрашенный
+5. добавить крестик в формах авторизации
 
 # Закомитить
 
-1. добавить дату в quotescard / Added the date of the quote to the QuotesCard.
-2. Проверка и рефакторинг адапатива / Checked and refactored the adaptive part of layout.
+1. добавить кнопку скопировать в QuotesCard / Added a copy button to the QuotesCard
+2. Переработать кнопки в HandleIcon / Refactored the buttons UI/UX in HandleIcon
+3. в блоке популярное иконки сместить вниз / Fixed the HandleIcon position in the Popular section
+4. добавить иконки в поля авторизации и регистрации и форму поиска / Added icons to the Auth and search Forms
 
 # Выполнено
 
@@ -62,6 +65,8 @@
 47. В ListQuote лого появялется только после обновления / Fixed the ShareForm for displaing the user logo in the ListQuote
 48. Придумать что показывать если ты Стетхем / Added an image if the max level is reached.
 49. статус отображается предыдущий почему то / Fixed checkUserLevel to correctly display the current level title.
+50. добавить дату в quotescard / Added the date of the quote to the QuotesCard.
+51. Проверка и рефакторинг адапатива / Checked and refactored the adaptive part of layout.
 
 # На будущее
 

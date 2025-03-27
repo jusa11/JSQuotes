@@ -55,20 +55,26 @@ const Login = ({ onSwitch }) => {
     <>
       <Logo />
       <form className="auth-form" onSubmit={onSubmitHandler}>
-        <input
-          name="username"
-          placeholder="Скажи своё погоняло"
-          type="text"
-          onChange={handleChange}
-          value={form.username}
-        />
-        <input
-          name="password"
-          placeholder="Скажи шифр"
-          type="password"
-          onChange={handleChange}
-          value={form.password}
-        />
+        <div className="auth-form__wrapper form-wrapper__name">
+          {' '}
+          <input
+            name="username"
+            placeholder="Скажи своё погоняло"
+            type="text"
+            onChange={handleChange}
+            value={form.username}
+          />
+        </div>
+        <div className="auth-form__wrapper form-wrapper__password">
+          <input
+            name="password"
+            placeholder="Скажи шифр"
+            type="password"
+            onChange={handleChange}
+            value={form.password}
+          />
+        </div>
+
         <button className="popup-btn_active">Войти</button>
         <span className="auth-form__bottom-link" onClick={onSwitch}>
           Еще нет аккаунта

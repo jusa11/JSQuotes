@@ -140,15 +140,17 @@ const SearchForm = ({ isAuth }) => {
 
           <form className="searh-quote__form">
             {' '}
-            <input
-              type="text"
-              name="message"
-              id="yourMessage"
-              className="searh-quote__query"
-              placeholder="Запрос во вселленную"
-              value={query}
-              onChange={(e) => handleSearch(e)}
-            />
+            <div className="searh-quote__form_wrapper">
+              <input
+                type="text"
+                name="message"
+                id="yourMessage"
+                className="searh-quote__query"
+                placeholder="Запрос во вселленную"
+                value={query}
+                onChange={(e) => handleSearch(e)}
+              />
+            </div>
             <button
               className="form-reset"
               onClick={(e) => {

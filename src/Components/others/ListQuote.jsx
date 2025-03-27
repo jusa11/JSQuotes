@@ -62,7 +62,8 @@ const ListQuotes = ({ url, title }) => {
 
   useEffect(() => {
     const token = localStorage.getItem('token');
-
+    console.log(token);
+		
     (async () => {
       try {
         const res = await axios(`http://localhost:5000/${url}`, {
@@ -183,7 +184,10 @@ const ListQuotes = ({ url, title }) => {
                       </div>
                       <div className="quotes-item__quote">
                         <p onClick={() => showQuote(index)}>
-                          {limitTextLength(quote.text, MAX_TEXT_LENGTH_ITEM)}
+                          <i>{`«${limitTextLength(
+                            quote.text,
+                            MAX_TEXT_LENGTH_ITEM
+                          )}»`}</i>
                         </p>
                         <div className="quotes-item__quote_botom">
                           <div className="last-quotes__handler">

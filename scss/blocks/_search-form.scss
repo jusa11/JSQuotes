@@ -40,6 +40,24 @@
   padding: 5px 0 0 0;
 }
 
+.searh-quote__form_wrapper {
+  position: relative;
+  width: 100%;
+  height: 30px;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  &::before {
+    content: '';
+    background-image: url('/src/img/icon/search.png');
+    position: absolute;
+    height: 20px;
+    width: 20px;
+    top: 13%;
+    left: 3%;
+  }
+}
+
 .searh-quote__form:focus-within .form-reset {
   color: $white;
 }
@@ -50,7 +68,7 @@
   width: 100%;
   height: 40px;
   border-radius: 12px;
-  padding: 0 30px;
+  padding: 0 60px;
   background: rgba(11, 13, 22, 0.258);
   border: 1px solid rgba(255, 255, 255, 0.2);
   box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.3);

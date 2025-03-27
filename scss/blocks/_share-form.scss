@@ -27,6 +27,7 @@
 .your-message-wrapper::before {
   content: '';
   background-image: url('/src/img/icon/share-form-icon.png');
+  background-size: cover;
   position: absolute;
   height: 20px;
   width: 20px;

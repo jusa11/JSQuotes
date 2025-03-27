@@ -101,6 +101,7 @@ exports.getUserQuotes = async (req, res) => {
 
 // Понравившиеся цитаты
 exports.getLikedQuotes = async (req, res) => {
+ 
   try {
     const { username } = req.params;
 
@@ -127,7 +128,15 @@ exports.getLikedQuotes = async (req, res) => {
 
 // Популярные цитаты
 exports.getPopularQuotes = async (req, res) => {
+  console.log('Заголовки запроса:', req.headers);
+
+  const token = req.headers.authorization?.split(' ')[1];
+  console.log('Токен на сервере:', token);
   try {
+    const user = null;
+    const token = req.headers.authorization?.split(' ')[1]; // Убираем "Bearer "
+    console.log(token);
+
     const popularQuotes = await Quote.find()
       .sort({ likes: -1 })
       .limit(10)
