@@ -10,6 +10,7 @@
   display: flex;
   align-items: center;
   position: relative;
+  height: 60px;
 }
 
 .stepper-item__icon {
@@ -22,6 +23,7 @@
   background-repeat: no-repeat;
   background-position: center;
   position: absolute;
+  box-shadow: 0 0 10px rgb(74 81 98);
 }
 
 .stepper-item__icon_complete {
@@ -31,8 +33,9 @@
   content: '';
   position: absolute;
   width: 3px;
-  height: 50px;
+  height: 125%;
   background-color: $color-hover;
+  box-shadow: 0 0 10px rgb(74 81 98);
   top: 100%;
   left: 47%;
 }
@@ -45,11 +48,10 @@
   content: '';
   position: absolute;
   width: 3px;
-  height: 50px;
+  height: 270%;
   background-color: $color-main;
   top: 150%;
   left: 47%;
-  z-index: 2;
 }
 .stepper-item__icon_pending {
   background-color: rgba(29, 28, 32, 70%);
@@ -59,11 +61,10 @@
   content: '';
   position: absolute;
   width: 3px;
-  height: 65px;
+  height: 311%;
   background-color: $color-main;
   top: 109%;
   left: 47%;
-  z-index: 1;
 }
 .stepper-list__item:last-child .stepper-item__icon_pending::after,
 .stepper-list__item:last-child .stepper-item__icon_complete::after,
@@ -107,6 +108,7 @@
     display: flex;
     flex-direction: column;
     width: 100px;
+    height: auto;
   }
 
   .stepper-item__icon {
@@ -163,6 +165,7 @@
     align-items: center;
     position: relative;
     width: 100%;
+    height: 60px;
   }
 
   .stepper-item__icon {
@@ -184,7 +187,7 @@
     content: '';
     position: absolute;
     width: 3px;
-    height: 100%;
+    height: 125%;
     background-color: $color-hover;
     top: 100%;
     left: 47%;
@@ -197,7 +200,7 @@
     content: '';
     position: absolute;
     width: 3px;
-    height: 60px;
+    height: 321%;
     background-color: $color-hover;
     top: 100%;
     left: 47%;
@@ -210,7 +213,7 @@
     content: '';
     position: absolute;
     width: 3px;
-    height: 60px;
+    height: 311%;
     background-color: #858585;
     top: 109%;
     left: 47%;
