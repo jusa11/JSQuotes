@@ -100,7 +100,7 @@ const SearchForm = ({ isAuth }) => {
   useEffect(() => {
     return () => dispatch(setReset());
   }, [dispatch]);
-
+  console.log(results);
   return (
     <div className="profile-content__search">
       <div className="content-main__card_big" ref={ref}>

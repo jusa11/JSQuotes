@@ -72,11 +72,6 @@
   transition: all 0.3s ease-in-out;
   font-size: 22px;
 
-  svg {
-    fill: rgba(255, 0, 0, 0.8);
-    transition: all 0.2s ease;
-  }
-
   &:hover {
     background: rgba(255, 0, 0, 0.2);
     box-shadow: 0 0 8px rgba(255, 0, 0, 0.8);

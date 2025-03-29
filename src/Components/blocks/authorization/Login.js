@@ -6,18 +6,22 @@ import { useDispatch } from 'react-redux';
 import { setError, setSuccess } from '../../redux/slices/notificationsSlice';
 import { setUser } from '../../redux/slices/userSlice';
 import Logo from '../../others/Logo';
+import { RxCross2 } from 'react-icons/rx';
 
 const Login = ({ onSwitch }) => {
   const [form, setForm] = useState({
     username: '',
     password: '',
   });
-
+  const [activeField, setActiveField] = useState(null);
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const handleChange = (e) => {
     setForm({ ...form, [e.target.name]: e.target.value });
   };
+
+  const handleFocus = (field) => setActiveField(field);
+  const handleBlur = () => setActiveField(null);
 
   const onSubmitHandler = async (event) => {
     event.preventDefault();
@@ -61,18 +65,44 @@ const Login = ({ onSwitch }) => {
             name="username"
             placeholder="Скажи своё погоняло"
             type="text"
+            onFocus={() => handleFocus('username')}
+            onBlur={handleBlur}
             onChange={handleChange}
             value={form.username}
           />
+          {activeField === 'username' && (
+            <button
+              className="form-reset"
+              type="button"
+              onMouseDown={() => {
+                setForm((prev) => ({ ...prev, username: '' }));
+              }}
+            >
+              <RxCross2 />
+            </button>
+          )}
         </div>
         <div className="auth-form__wrapper form-wrapper__password">
           <input
             name="password"
             placeholder="Скажи шифр"
             type="password"
+            onFocus={() => handleFocus('password')}
+            onBlur={handleBlur}
             onChange={handleChange}
             value={form.password}
           />
+          {activeField === 'password' && (
+            <button
+              className="form-reset"
+              type="button"
+              onMouseDown={() => {
+                setForm((prev) => ({ ...prev, password: '' }));
+              }}
+            >
+              <RxCross2 />
+            </button>
+          )}
         </div>
 
         <button className="popup-btn_active">Войти</button>

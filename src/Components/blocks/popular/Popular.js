@@ -17,18 +17,21 @@ const Popular = () => {
   const dispatch = useDispatch();
   const popularQuotes = useSelector(selectDisplayPopularQuotes);
   // const likedQuptes = useSelector(selectLikedQuotes);
+  const token = localStorage.getItem('token');
 
   useEffect(() => {
     (async () => {
       try {
-        const res = await axios(`http://localhost:5000/${POPULAR_URL}`);
+        const res = await axios(`http://localhost:5000/${POPULAR_URL}`, {
+          headers: { Authorization: `Bearer ${token}` },
+        });
         dispatch(setPopularQuotes(res.data));
       } catch (error) {
         console.error('Ошибка при загрузке цитат', error);
         dispatch(setError('Ошибка при загрузке цитат'));
       }
     })();
-  }, [dispatch]);
+  }, [dispatch, token]);
 
   return (
     <section id="popular">

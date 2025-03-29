@@ -27,9 +27,9 @@ const useHandleLike = () => {
         }
       );
 
-      const { quantity } = res.data;
+      const { quantity, liked } = res.data;
 
-      dispatch(toggleLike({ _id: quoteId, likes: quantity }));
+      dispatch(toggleLike({ _id: quoteId, likes: quantity, isLiked: liked }));
     } catch (error) {
       dispatch(setError('Ошибка при лайке цитаты'));
       console.error('Ошибка при лайке цитаты:', error);

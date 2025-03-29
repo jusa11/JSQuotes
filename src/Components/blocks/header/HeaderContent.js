@@ -1,6 +1,5 @@
 import { useCallback, useEffect, useRef, useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { FaRegHeart } from 'react-icons/fa';
 import { IoCopyOutline } from 'react-icons/io5';
 import { FaQuoteLeft } from 'react-icons/fa6';
 import { gsap } from 'gsap';
@@ -8,6 +7,8 @@ import { setError, setSuccess } from '../../redux/slices/notificationsSlice';
 import { generateRandomQuoteAPI } from '../../../utils/generateRandomQuoteAPI.js';
 import useHandleLike from '../../../Hooks/useHandleLike';
 import RetroLoading from './RetroLoading.js';
+import { selectLikedQuotes } from '../../redux/slices/likedQuotesSlice.js';
+import { useSelector } from 'react-redux';
 
 const HeaderContent = () => {
   const [currentQuote, setCurrentQuote] = useState(null);
@@ -15,6 +16,9 @@ const HeaderContent = () => {
   const dispatch = useDispatch();
   const quoteRef = useRef(null);
   const handleLike = useHandleLike();
+  const likedQuotes = useSelector(selectLikedQuotes);
+  const foundQuote = likedQuotes.find((q) => q._id === currentQuote?._id);
+  const isLiked = foundQuote ? foundQuote.isLiked : currentQuote?.isLiked;
 
   useEffect(() => {
     gsap.from('.header__content', {
@@ -124,11 +128,26 @@ const HeaderContent = () => {
           <button
             className="btn-like"
             onClick={(e) => {
-              iconAnimation(e.currentTarget.children[0]);
+              const icon = e.currentTarget.querySelector('*');
+              if (icon) {
+                console.log(icon);
+                iconAnimation(icon);
+              }
               handleLike(currentQuote._id);
             }}
           >
-            <FaRegHeart />
+            <svg
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              fill={isLiked ? 'rgba(255, 0, 0, 0.8)' : 'none'}
+              stroke="rgba(255, 0, 0, 0.8)"
+              strokeWidth="1"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            >
+              <path d="M12 21s-6-4.35-9-8a5.5 5.5 0 0 1 0-7C5.2 3.2 8.5 4.5 12 8c3.5-3.5 6.8-4.8 9-2a5.5 5.5 0 0 1 0 7c-3 3.65-9 8-9 8z" />
+            </svg>
           </button>
           <button
             className="btn-copy"

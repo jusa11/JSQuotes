@@ -4,14 +4,11 @@
 2. Провести рефакторинг серверной части. Оптимизировать код. Сейчас есть лишние моменты
 3. Написать документацию
 4. сделать иконку лайка если лайк стоит чтобы был закрашенный
-5. добавить крестик в формах авторизации
 
 # Закомитить
 
-1. добавить кнопку скопировать в QuotesCard / Added a copy button to the QuotesCard
-2. Переработать кнопки в HandleIcon / Refactored the buttons UI/UX in HandleIcon
-3. в блоке популярное иконки сместить вниз / Fixed the HandleIcon position in the Popular section
-4. добавить иконки в поля авторизации и регистрации и форму поиска / Added icons to the Auth and search Forms
+1. добавить крестик в формах авторизации / Added a close button to the authorization forms
+2. сделать иконку лайка если лайк стоит чтобы был закрашенный / Implemented the like button logic: the icon is filled if liked
 
 # Выполнено
 
@@ -67,6 +64,10 @@
 49. статус отображается предыдущий почему то / Fixed checkUserLevel to correctly display the current level title.
 50. добавить дату в quotescard / Added the date of the quote to the QuotesCard.
 51. Проверка и рефакторинг адапатива / Checked and refactored the adaptive part of layout.
+52. добавить кнопку скопировать в QuotesCard / Added a copy button to the QuotesCard
+53. Переработать кнопки в HandleIcon / Refactored the buttons UI/UX in HandleIcon
+54. в блоке популярное иконки сместить вниз / Fixed the HandleIcon position in the Popular section
+55. добавить иконки в поля авторизации и регистрации и форму поиска / Added icons to the Auth and search Forms
 
 # На будущее
 

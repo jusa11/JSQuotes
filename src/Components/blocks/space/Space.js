@@ -58,7 +58,7 @@ const Space = () => {
   const catchThink = useCallback(async () => {
     try {
       const newQuote = await generateRandomQuoteAPI();
-      console.log(newQuote);
+
       if (newQuote) {
         setCurrentQuote(newQuote);
         setPopup(true);
@@ -173,7 +173,10 @@ const Space = () => {
       <Popup
         open={isPopup}
         modal
-        overlayStyle={{ background: 'rgba(0, 0, 0, 0.7)' }}
+        overlayStyle={{
+          background: 'rgba(0, 0, 0, 0.3)',
+          backdropFilter: 'blur(10px)',
+        }}
         onClose={() => setPopup(false)}
       >
         <QuotesCard

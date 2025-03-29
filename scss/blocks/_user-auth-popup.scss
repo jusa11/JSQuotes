@@ -41,6 +41,7 @@
     font-size: 14px;
     transition: border 0.2s ease-in-out;
     box-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
+    appearance: none;
 
     &:focus {
       outline: none;

@@ -8,13 +8,14 @@ const likedQuotesSlice = createSlice({
   reducers: {
     setLikedQuotes: (state, action) => action.payload,
     toggleLike: (state, action) => {
-      const { _id, likes } = action.payload;
+      const { _id, likes, isLiked } = action.payload;
       const index = state.findIndex((quote) => quote._id === _id);
 
       if (index === -1) {
-        state.push({ _id, likes });
+        state.push({ _id, likes, isLiked });
       } else {
         state[index].likes = likes; // Просто обновляем свойство likes
+        state[index].isLiked = isLiked; // Просто обновляем свойство likes
       }
     },
   },

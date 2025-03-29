@@ -43,14 +43,19 @@ exports.toggleLike = async (req, res) => {
     }
 
     const isLiked = user.likedQuotes.includes(quoteId);
+
     if (isLiked) {
       user.likedQuotes = user.likedQuotes.filter(
         (id) => id.toString() !== quoteId.toString()
+      );
+      quote.likeBy = quote.likeBy.filter(
+        (id) => id.toString() !== userId.toString()
       );
       quote.likes -= 1;
     } else {
       user.likedQuotes.unshift(quoteId);
       quote.likes += 1;
+      quote.likeBy.push(user._id);
     }
 
     await user.save();

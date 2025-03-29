@@ -7,6 +7,7 @@ import { setUser } from '../../redux/slices/userSlice';
 import Logo from '../../others/Logo';
 import { useNavigate } from 'react-router-dom';
 import FileDrop from './FileDrop';
+import { RxCross2 } from 'react-icons/rx';
 
 const Registration = ({ onSwitch }) => {
   const [form, setForm] = useState({
@@ -19,6 +20,10 @@ const Registration = ({ onSwitch }) => {
   const dispatch = useDispatch();
   const [fieldError, setFieldError] = useState([]);
   const [formError, setFormError] = useState({});
+  const [activeField, setActiveField] = useState(null);
+
+  const handleFocus = (field) => setActiveField(field);
+  const handleBlur = () => setActiveField(null);
 
   const checkFields = (name, value) => {
     const fieldNames = {
@@ -161,8 +166,21 @@ const Registration = ({ onSwitch }) => {
             onChange={handleChange}
             className={`${formError?.username ? 'auth-form__error-field' : ''}`}
             value={form.username}
+            onFocus={() => handleFocus('username')}
+            onBlur={handleBlur}
             maxLength={20}
           />
+          {activeField === 'username' && (
+            <button
+              type="button"
+              className="form-reset"
+              onMouseDown={() => {
+                setForm((prev) => ({ ...prev, username: '' }));
+              }}
+            >
+              <RxCross2 />
+            </button>
+          )}
         </div>
         <div className="auth-form__wrapper form-wrapper__name">
           <input
@@ -171,9 +189,23 @@ const Registration = ({ onSwitch }) => {
             className={`${formError?.name ? 'auth-form__error-field' : ''}`}
             type="text"
             onChange={handleChange}
+            onFocus={() => handleFocus('name')}
+            onBlur={handleBlur}
             value={form.name}
           />
+          {activeField === 'name' && (
+            <button
+              className="form-reset"
+              type="button"
+              onMouseDown={() => {
+                setForm((prev) => ({ ...prev, name: '' }));
+              }}
+            >
+              <RxCross2 />
+            </button>
+          )}
         </div>
+
         <div className="auth-form__wrapper form-wrapper__password">
           {' '}
           <input
@@ -182,37 +214,24 @@ const Registration = ({ onSwitch }) => {
             type="password"
             onChange={handleChange}
             value={form.password}
+            onFocus={() => handleFocus('password')}
+            onBlur={handleBlur}
             className={`${formError?.password ? 'auth-form__error-field' : ''}`}
           />
+          {activeField === 'password' && (
+            <button
+              type="button"
+              className="form-reset"
+              onMouseDown={() => {
+                setForm((prev) => ({ ...prev, password: '' }));
+              }}
+            >
+              <RxCross2 />
+            </button>
+          )}
         </div>
 
         <FileDrop username={form.username} onFileSelect={handleFileChange} />
-        {/* <label className="logo-file-drop">
-          <p>
-            <img src="src/img/icon/drop-file.png" alt="logo" />
-            Загрузи своё лого <br /> <br />
-            можешь просто перетащить
-          </p>
-          <input
-            name="logo"
-            type="file"
-            className="logo-file-drop-input"
-            onChange={(e) => {
-              handleFileChange(e);
-              handleChange(e);
-            }}
-          />
-        </label> */}
-
-        {/* <input
-          name="logo"
-          type="file"
-          className={`${fieldError ? 'auth-form__error' : 'logo-file-drop'}`}
-          onChange={(e) => {
-            handleFileChange(e);
-            handleChange(e);
-          }}
-        /> */}
 
         <button className="popup-btn_active" type="submit">
           Зарегистрироваться

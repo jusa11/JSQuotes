@@ -1215,7 +1215,6 @@ li {
 }
 
 .handler-icon svg path {
-  fill: #c9c9c9;
   transition: fill 0.3 ease-in;
 }
 
@@ -1404,10 +1403,6 @@ li {
   transition: all 0.3s ease-in-out;
   font-size: 22px;
 }
-.btn-like svg {
-  fill: rgba(255, 0, 0, 0.8);
-  transition: all 0.2s ease;
-}
 .btn-like:hover {
   background: rgba(255, 0, 0, 0.2);
   box-shadow: 0 0 8px rgba(255, 0, 0, 0.8);
@@ -1554,6 +1549,9 @@ li {
   font-size: 14px;
   transition: border 0.2s ease-in-out;
   box-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
+  -webkit-appearance: none;
+     -moz-appearance: none;
+          appearance: none;
 }
 .auth-form input:focus {
   outline: none;
@@ -2312,7 +2310,7 @@ li {
 
 .form-reset {
   position: absolute;
-  top: 30%;
+  top: 10%;
   right: 3%;
   background-color: transparent;
   font-size: 23px;
@@ -2403,6 +2401,10 @@ li {
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: normal;
+  transition: color 0.1s ease;
+}
+.user-card__name:hover {
+  color: #8d1ea2;
 }
 
 .user-card__notifications {

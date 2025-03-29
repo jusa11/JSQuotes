@@ -8,7 +8,6 @@ import {
   selectDisplayPopularQuotes,
   selectDisplayUserQuotes,
   setLastQuotes,
-  setPopularQuotes,
   setQuotesUser,
   selectDisplayIsChange,
 } from '../redux/slices/displayQuotesSlice';
@@ -20,7 +19,6 @@ import { selectUser } from '../redux/slices/userSlice';
 import { setError } from '../redux/slices/notificationsSlice';
 import {
   MAX_QUOTES,
-  POPULAR_URL,
   LAST_QUOTES_URL,
   QUOTES_URL,
   LIKED_QUOTES,
@@ -62,17 +60,13 @@ const ListQuotes = ({ url, title }) => {
 
   useEffect(() => {
     const token = localStorage.getItem('token');
-    console.log(token);
-		
+
     (async () => {
       try {
         const res = await axios(`http://localhost:5000/${url}`, {
           headers: { Authorization: `Bearer ${token}` },
         });
 
-        if (url === POPULAR_URL) {
-          dispatch(setPopularQuotes(res.data));
-        }
         if (url === LAST_QUOTES_URL) {
           dispatch(setLastQuotes(res.data));
         }
@@ -211,7 +205,10 @@ const ListQuotes = ({ url, title }) => {
       <Popup
         open={isPopup}
         modal
-        overlayStyle={{ background: 'rgba(0, 0, 0, 0.7)' }}
+        overlayStyle={{
+          background: 'rgba(0, 0, 0, 0.3)',
+          backdropFilter: 'blur(10px)',
+        }}
         onClose={() => setPopup(false)}
       >
         <QuotesCard
