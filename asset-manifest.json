@@ -1,15 +1,15 @@
 {
   "files": {
     "main.css": "/JSQuotes/static/css/main.28565592.css",
-    "main.js": "/JSQuotes/static/js/main.9ee0d525.js",
+    "main.js": "/JSQuotes/static/js/main.e5521b97.js",
     "static/media/bg-cards-quote_action.png": "/JSQuotes/static/media/bg-cards-quote_action.79036f006c0cb5ff1137.png",
     "static/media/bg-cards-popular.png": "/JSQuotes/static/media/bg-cards-popular.8e1efccbdda12c6acb80.png",
     "index.html": "/JSQuotes/index.html",
     "main.28565592.css.map": "/JSQuotes/static/css/main.28565592.css.map",
-    "main.9ee0d525.js.map": "/JSQuotes/static/js/main.9ee0d525.js.map"
+    "main.e5521b97.js.map": "/JSQuotes/static/js/main.e5521b97.js.map"
   },
   "entrypoints": [
     "static/css/main.28565592.css",
-    "static/js/main.9ee0d525.js"
+    "static/js/main.e5521b97.js"
   ]
 }
