@@ -2,11 +2,14 @@
 
 1. Написать документацию
 2. После размещения на сервере еще раз все протестировать, а также проверить адаптив
-
+3. сделать задержку с генерацией цитат с учетом запроса на сервер
+4. Проверить наименование файлов и компонентов
+5. проверить еще раз файл с env на github
+6. Провести все таки рефакторинг scss (mobile first ?)
+7. очищать историю инпутов
+8. возможно подумать над анимацией слайдера популярного
 
 # Закомитить
-
-1. Разобраться со степпером / Implemented the stepper layout and adjusted the colors of some elements.
 
 # Выполнено
 
@@ -68,6 +71,7 @@
 55. добавить иконки в поля авторизации и регистрации и форму поиска / Added icons to the Auth and search Forms
 56. добавить крестик в формах авторизации / Added a close button to the authorization forms
 57. сделать иконку лайка если лайк стоит чтобы был закрашенный / Implemented the like button logic: the icon is filled if liked
+58. Разобраться со степпером / Implemented the stepper layout and adjusted the colors of some elements.
 
 # На будущее
 

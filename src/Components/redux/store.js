@@ -7,7 +7,6 @@ import likedQuotesSlice from './slices/likedQuotesSlice';
 import searchSlice from './slices/searchSlice';
 import statsBarSlice from './slices/statsBarSlice';
 import activePageSlice from './slices/activePageSlice';
-import popupSlice from './slices/popupSlice';
 import { countQuotesApi } from './api/countQuotesApi';
 
 export default configureStore({
@@ -21,7 +20,6 @@ export default configureStore({
     search: searchSlice,
     statsBar: statsBarSlice,
     activePage: activePageSlice,
-    popup: popupSlice,
   },
   middleware: (getDefaultMiddleWare) =>
     getDefaultMiddleWare().concat(countQuotesApi.middleware),
