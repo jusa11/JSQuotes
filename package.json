@@ -29,7 +29,7 @@
     "uuid": "^11.0.3"
   },
   "scripts": {
-    "start": "node server.js",
+    "start": "node --max-old-space-size=512 server.js",
     "build": "react-scripts build",
     "install-client": "cd server && npm install",
     "install": "npm install && npm run install-client"
