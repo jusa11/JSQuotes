@@ -2402,9 +2402,7 @@ li {
   text-overflow: ellipsis;
   white-space: normal;
   transition: color 0.1s ease;
-}
-.user-card__name:hover {
-  color: #8d1ea2;
+  cursor: pointer;
 }
 
 .user-card__notifications {
