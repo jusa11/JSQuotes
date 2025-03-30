@@ -1,4 +1,4 @@
-require('v8').setFlagsFromString('--max-old-space-size=512');
+require('v8').setFlagsFromString('--max-old-space-size=2048');
 console.log('🚀 Memory limit increased to 1024MB');
 
 require('dotenv').config();
