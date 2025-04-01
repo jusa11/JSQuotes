@@ -32,12 +32,12 @@ const QuotesCard = forwardRef(({ quote, isPopup }, ref) => {
           <div className="quotes-block__card_logo">
             {userLogo ? (
               <img
-                src={`http://localhost:5000${userLogo}`}
+                src={`https://server-quotes-production-ebef.up.railway.app${userLogo}`}
                 alt={quote.userId?.username || 'Лого'}
               />
             ) : (
               <img
-                src="/src/img/default-logo.png"
+                src="src/img/default-logo.png"
                 alt={quote.userId?.username || 'Лого'}
               />
             )}

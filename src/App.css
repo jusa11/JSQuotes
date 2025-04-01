@@ -50,17 +50,32 @@ body.lock {
   font-size: 50px;
 }
 
+.form-reset {
+  position: absolute;
+  top: 10%;
+  right: 3%;
+  background-color: transparent;
+  font-size: 23px;
+  color: #e0e0e0;
+  font-weight: bold;
+  transition: all ease-in 0.3s;
+  z-index: 2;
+}
+
 .scroll-to-top:hover {
   background: #555;
 }
 
 .main-popup {
-  background: rgba(0, 0, 0, 0.833); /* Чуть темнее фон */
-  border-radius: 30px;
-  border: 2px solid rgba(255, 255, 255, 0.2); /* Светлая граница */
+  background: rgba(9, 11, 17, 0.81);
+  -webkit-backdrop-filter: blur(10px);
+          backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.3);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 32px;
   max-width: 500px;
-  padding: 40px 60px;
-  box-shadow: 0px 0px 50px rgba(181, 181, 181, 0.1);
+  padding: 40px 40px;
   min-width: 300px; /* Увеличить минимальную ширину */
 }
 
@@ -406,7 +421,7 @@ li {
   font-size: 20px;
   font-weight: medium;
   text-align: center;
-  max-width: 700px;
+  max-width: 100%;
   margin: 0 auto;
   word-wrap: break-word;
   overflow-wrap: break-word;
@@ -417,6 +432,9 @@ li {
   align-items: center;
   position: relative;
   padding: 70px 0 30px 0;
+}
+.header__quote_content p {
+  max-width: 100%;
 }
 
 .quote__text,
@@ -505,6 +523,9 @@ li {
   }
 }
 @media (max-width: 479.98px) {
+  .header {
+    min-height: 0;
+  }
   .main-title {
     font-size: 26px;
     padding: 50px 0 0 0;
@@ -515,6 +536,7 @@ li {
     font-size: 16px;
   }
   .header__quote_btn {
+    padding: 60px 0 0 0;
     gap: 10px;
   }
   .button-quote__btn_icon {
@@ -678,6 +700,7 @@ li {
   }
 }
 .planet__quote {
+  will-change: transform;
   cursor: pointer;
 }
 .planet__quote img {
@@ -692,7 +715,7 @@ li {
 }
 @media (max-width: 992.98px) {
   .space {
-    height: 60vh;
+    height: 80vh;
     margin: 50px 0 100px 0;
   }
   .orbit-1 svg {
@@ -841,6 +864,11 @@ li {
   background-position: center;
 }
 
+@media (max-width: 1153px) {
+  .quotes-action__row {
+    margin: 250px 0 0 0;
+  }
+}
 @media (max-width: 992.98px) {
   .quotes-action__column {
     gap: 40px;
@@ -861,18 +889,6 @@ li {
   border: 1px solid rgba(255, 255, 255, 0.08);
   padding: 30px;
   border-radius: 32px;
-  /* &::after {
-    content: '';
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    z-index: 0;
-    background: radial-gradient(
-      circle,
-      rgba(80, 40, 150, 0.1) 0%,
-      rgba(0, 0, 0, 0) 80%
-    );
-  } */
 }
 
 @media (max-width: 479.98px) {
@@ -963,9 +979,6 @@ li {
   }
   .fa-face-smile {
     font-size: 15px;
-  }
-  .form-btn {
-    padding: 8px 13px;
   }
 }
 .last__list-qoutes {
@@ -1195,6 +1208,9 @@ li {
   font-size: 16px;
   margin: 15px 0 20px 0;
 }
+.quotes-block__card_text p {
+  word-wrap: break-word;
+}
 
 .quotes-block__card_handler {
   display: flex;
@@ -1237,7 +1253,7 @@ li {
 }
 
 .popup-content {
-  max-width: 500px;
+  max-width: 479px;
 }
 
 .quotes-block__column {
@@ -1268,6 +1284,11 @@ li {
   font-size: 12px;
 }
 
+@media (max-width: 479.98px) {
+  .popup-content {
+    max-width: 310px;
+  }
+}
 .footer {
   margin: 80px 0 0 0;
 }
@@ -1326,7 +1347,7 @@ li {
   .footer__bottom {
     flex-direction: column;
     align-items: center;
-    padding: 0 0 20px 20px;
+    padding: 0;
   }
   .footer-bottom__copyright {
     text-align: center;
@@ -1890,6 +1911,7 @@ li {
     opacity: 0;
     visibility: hidden;
     justify-items: center;
+    overflow: hidden;
   }
   .stats-active {
     transform: translateX(0);
@@ -2242,7 +2264,8 @@ li {
   white-space: nowrap;
   scrollbar-width: none;
   -ms-overflow-style: none;
-  padding: 20px 0 5px 0;
+  padding: 20px 0 0px 0;
+  margin: 0 0 -20px 0;
   z-index: 2;
 }
 
@@ -2268,7 +2291,7 @@ li {
 .searh-quote__form {
   display: flex;
   position: relative;
-  padding: 5px 0 0 0;
+  padding: 30px 0 0 0;
 }
 
 .searh-quote__form_wrapper {
@@ -2308,9 +2331,9 @@ li {
   z-index: 2;
 }
 
-.form-reset {
+.form-search__reset {
   position: absolute;
-  top: 10%;
+  top: 58%;
   right: 3%;
   background-color: transparent;
   font-size: 23px;
@@ -2336,6 +2359,10 @@ li {
 @media (max-width: 479.98px) {
   .search-filter {
     justify-content: flex-start;
+    margin: 0 0 -10px 0;
+  }
+  .search-filter__item {
+    padding: 4px 7px;
   }
 }
 .user-card {

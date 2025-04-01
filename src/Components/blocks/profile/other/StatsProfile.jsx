@@ -28,7 +28,7 @@ const StatsProfile = () => {
             <MyChart dataLevel={statsInfo} />
           ) : (
             <div className="stats-decor__img">
-              <img src="/src/img/stepper-finish.png" alt="Ты Стетхем" />
+              <img src="src/img/stepper-finish.png" alt="Ты Стетхем" />
             </div>
           )}
         </div>

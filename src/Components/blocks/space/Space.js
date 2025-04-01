@@ -95,48 +95,49 @@ const Space = () => {
   }, []);
 
   useEffect(() => {
-    const ctx = gsap.context(() => {
-      planetRef.current.forEach((planet, index) => {
-        const path = orbitRef.current[index];
-        if (path && planet) {
-          const handleMouseEnter = () => {
-            gsap.to(planet, {
-              scale: 0.9,
-              filter: 'drop-shadow(0px 0px 10px rgba(255, 255, 255, 0.8))',
-              duration: 0.3,
-            });
-          };
-          const handleMouseLeave = () => {
-            gsap.to(planet, {
-              scale: 0.7,
-              filter: 'drop-shadow(0px 0px 0px rgba(255, 255, 255, 0))',
-              duration: 0.3,
-            });
-          };
+    setTimeout(() => {
+      const ctx = gsap.context(() => {
+        planetRef.current.forEach((planet, index) => {
+          const path = orbitRef.current[index];
+          if (path && planet) {
+            const handleMouseEnter = () => {
+              gsap.to(planet, {
+                scale: 0.9,
+                filter: 'drop-shadow(0px 0px 10px rgba(255, 255, 255, 0.8))',
+                duration: 0.3,
+              });
+            };
+            const handleMouseLeave = () => {
+              gsap.to(planet, {
+                scale: 0.7,
+                filter: 'drop-shadow(0px 0px 0px rgba(255, 255, 255, 0))',
+                duration: 0.3,
+              });
+            };
 
-          planet.addEventListener('click', catchThink);
-          planet.addEventListener('mouseenter', handleMouseEnter);
-          planet.addEventListener('mouseleave', handleMouseLeave);
+            planet.addEventListener('click', catchThink);
+            planet.addEventListener('mouseenter', handleMouseEnter);
+            planet.addEventListener('mouseleave', handleMouseLeave);
 
-          gsap
-            .to(planet, {
-              duration: randomSpeed(),
-              repeat: -1,
-              ease: 'linear',
-              rotation: 360,
-              force3D: true,
-              motionPath: {
-                path: path,
-                align: path,
-                alignOrigin: [0.5, 0.5],
-              },
-            })
-            .progress(randomPosition());
-        }
+            gsap
+              .to(planet, {
+                duration: randomSpeed(),
+                repeat: -1,
+                ease: 'linear',
+                rotation: 360,
+                force3D: true,
+                motionPath: {
+                  path: path,
+                  align: path,
+                  alignOrigin: [0.5, 0.5],
+                },
+              })
+              .progress(randomPosition());
+          }
+        });
+        return () => ctx.revert();
       });
-    });
-
-    return () => ctx.revert();
+    }, 100);
   }, [catchThink]);
 
   return (

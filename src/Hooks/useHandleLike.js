@@ -20,7 +20,10 @@ const useHandleLike = () => {
 
     try {
       const res = await axios.post(
-        `http://localhost:5000/${LIKE.replace(':quoteId', quoteId)}`,
+        `https://server-quotes-production-ebef.up.railway.app/${LIKE.replace(
+          ':quoteId',
+          quoteId
+        )}`,
         { userId, quoteId },
         {
           headers: { Authorization: `Bearer ${token}` },

@@ -79,6 +79,7 @@ const Registration = ({ onSwitch }) => {
 
   const handleFileChange = useCallback((file) => {
     setForm((prevForm) => ({ ...prevForm, logo: file }));
+    console.log('Форма ' + form);
   }, []);
 
   const onSubmitHandler = async (event) => {
@@ -101,17 +102,17 @@ const Registration = ({ onSwitch }) => {
     if (form.logo) {
       formData.append('logo', form.logo);
     }
-
+    console.log('Внутри onsubmit ' + formData);
     try {
       const res = await axios.post(
-        'http://localhost:5000/auth/registration/',
+        'https://server-quotes-production-ebef.up.railway.app/auth/registration/',
         formData
       );
+      console.log(formData);
       const { token } = res.data;
       localStorage.setItem('token', token);
       try {
         const decode = jwtDecode(token);
-        console.log(decode);
         dispatch(
           setUser({
             username: decode.username,

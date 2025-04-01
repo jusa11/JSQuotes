@@ -33,7 +33,7 @@ const ShareForm = () => {
 
     try {
       const res = await axios.post(
-        'http://localhost:5000/quotes/add-quote',
+        'https://server-quotes-production-ebef.up.railway.app/quotes/add-quote',
         {
           text: message,
           author: username,

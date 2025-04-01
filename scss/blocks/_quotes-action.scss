@@ -8,7 +8,6 @@
 }
 .quotes-action__card {
   flex: 1 1 55%;
-  
 }
 .quotes-action__column {
   display: flex;
@@ -17,6 +16,12 @@
 .quotes-action__card {
   background-image: url('./img/bg-cards-quote_action.png');
   background-position: center;
+}
+
+@include mediaFirstBrakePoint {
+  .quotes-action__row {
+    margin: 250px 0 0 0;
+  }
 }
 
 @include mediaTablet {

@@ -1,17 +1,17 @@
 const { validationResult } = require('express-validator');
 const bcrypt = require('bcryptjs');
 const User = require('../models/User.js');
-const Role = require('../models/Role.js');
+
 const jwt = require('jsonwebtoken');
 const multer = require('multer');
 const path = require('path');
 const secret = process.env.JWT_SECRET;
 
-const generateAccesToken = (id, username, roles, logo) => {
+const generateAccesToken = (id, username, logo) => {
   const payload = {
     _id: id,
     username,
-    roles,
+
     logo,
   };
   return jwt.sign(payload, secret, { expiresIn: '24h' });
@@ -57,7 +57,6 @@ class AuthController {
       const token = generateAccesToken(
         user._id,
         user.username,
-        user.roles,
         user.logo
       );
 
@@ -83,7 +82,7 @@ class AuthController {
         return res.status(400).json({ message: 'Это погоняло уже занято' });
       }
       const hashPassword = bcrypt.hashSync(password, 7);
-      let userRole = await Role.findOne({ value: 'user' });
+      
 
       const logoPath = req.file
         ? `/uploads/${req.file.filename}`
@@ -92,14 +91,12 @@ class AuthController {
       const user = new User({
         username,
         password: hashPassword,
-        roles: [userRole.value],
         logo: logoPath,
       });
       await user.save();
       const token = generateAccesToken(
         user._id,
         user.username,
-        user.roles,
         user.logo
       );
 

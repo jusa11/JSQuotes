@@ -152,7 +152,7 @@ const SearchForm = ({ isAuth }) => {
               />
             </div>
             <button
-              className="form-reset"
+              className="form-search__reset"
               onClick={(e) => {
                 e.preventDefault();
                 dispatch(setReset());

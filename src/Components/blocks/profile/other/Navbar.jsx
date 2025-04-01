@@ -2,6 +2,7 @@ import { useState, useRef } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { IoMdHome } from 'react-icons/io';
+import { CgProfile } from 'react-icons/cg';
 import { MdFavorite } from 'react-icons/md';
 import { FiShare } from 'react-icons/fi';
 import { ImSwitch } from 'react-icons/im';
@@ -32,13 +33,28 @@ const Sidebar = () => {
               />
             </li>
             <li className="navbar-navigation__item">
-              <MdFavorite className="navigation__item-icon" />
+              <CgProfile
+                className="navigation__item-icon"
+                onClick={() => navigate('/profile')}
+              />
             </li>
             <li className="navbar-navigation__item">
-              <FiShare className="navigation__item-icon" />
+              <MdFavorite
+                className="navigation__item-icon"
+                onClick={() => navigate('/profile/favorite')}
+              />
             </li>
             <li className="navbar-navigation__item">
-              <IoMdSettings className="navigation__item-icon" />
+              <FiShare
+                className="navigation__item-icon"
+                onClick={() => navigate('/profile/share')}
+              />
+            </li>
+            <li className="navbar-navigation__item">
+              <IoMdSettings
+                className="navigation__item-icon"
+                onClick={() => navigate('/profile/settings')}
+              />
             </li>
 
             <li className="navbar-navigation__item navbar-stats">

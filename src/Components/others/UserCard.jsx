@@ -21,7 +21,7 @@ const UserCard = ({ menuOpen }) => {
           menuOpen ? '' : 'user-card__avatar_profile'
         }`}
       >
-        <img src={`http://localhost:5000${user.logo}`} alt={user.username} />
+        <img src={`https://server-quotes-production-ebef.up.railway.app${user.logo}`} alt={user.username} />
       </div>
       <div className="user-card__info">
         <div

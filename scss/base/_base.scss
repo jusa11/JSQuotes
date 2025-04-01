@@ -50,17 +50,31 @@ body.lock {
   font-size: 50px;
 }
 
+.form-reset {
+  position: absolute;
+  top: 10%;
+  right: 3%;
+  background-color: transparent;
+  font-size: 23px;
+  color: $color-main;
+  font-weight: bold;
+  transition: all ease-in 0.3s;
+  z-index: 2;
+}
+
 .scroll-to-top:hover {
   background: #555;
 }
 
 .main-popup {
-  background: rgba(0, 0, 0, 0.833); /* Чуть темнее фон */
-  border-radius: 30px;
-  border: 2px solid rgba(255, 255, 255, 0.2); /* Светлая граница */
+  background: rgba(9, 11, 17, 0.81);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.3);
+  border: 1px solid $color-border;
+  border-radius: 32px;
   max-width: 500px;
-  padding: 40px 60px;
-  box-shadow: 0px 0px 50px rgba(181, 181, 181, 0.1);
+  padding: 40px 40px;
   min-width: 300px; /* Увеличить минимальную ширину */
 }
 

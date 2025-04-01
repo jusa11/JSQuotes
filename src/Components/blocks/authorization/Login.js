@@ -32,7 +32,7 @@ const Login = ({ onSwitch }) => {
     }
 
     try {
-      const res = await axios.post('http://localhost:5000/auth/login', form);
+      const res = await axios.post('https://server-quotes-production-ebef.up.railway.app/auth/login', form);
       const { token } = res.data;
       localStorage.setItem('token', token);
       dispatch(setSuccess('Приветствуем тебя, брат!'));

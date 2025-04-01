@@ -22,7 +22,7 @@ const Popular = () => {
   useEffect(() => {
     (async () => {
       try {
-        const res = await axios(`http://localhost:5000/${POPULAR_URL}`, {
+        const res = await axios(`https://server-quotes-production-ebef.up.railway.app/${POPULAR_URL}`, {
           headers: { Authorization: `Bearer ${token}` },
         });
         dispatch(setPopularQuotes(res.data));

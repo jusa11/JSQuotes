@@ -1,6 +1,7 @@
 import { NavLink } from 'react-router-dom';
 import LogoutPopup from '../../authorization/LogoutPopup';
 import { IoMdHome } from 'react-icons/io';
+import { CgProfile } from 'react-icons/cg';
 import { MdFavorite } from 'react-icons/md';
 import { FiShare } from 'react-icons/fi';
 import { ImSwitch } from 'react-icons/im';
@@ -17,8 +18,13 @@ const Sidebar = () => {
         <nav className="profile-sidebar__navigation">
           <ul className="sidebar-navigation__list">
             <li className="sidebar-navigation__item">
-              <NavLink to="/profile" end>
+              <NavLink to="/" end>
                 <IoMdHome className="navigation__item-icon" />
+              </NavLink>
+            </li>
+            <li className="sidebar-navigation__item">
+              <NavLink to="/profile" end>
+                <CgProfile className="navigation__item-icon" />
               </NavLink>
             </li>
             <li className="sidebar-navigation__item">

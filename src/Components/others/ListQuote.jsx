@@ -63,7 +63,7 @@ const ListQuotes = ({ url, title }) => {
 
     (async () => {
       try {
-        const res = await axios(`http://localhost:5000/${url}`, {
+        const res = await axios(`https://server-quotes-production-ebef.up.railway.app/${url}`, {
           headers: { Authorization: `Bearer ${token}` },
         });
 
@@ -164,12 +164,12 @@ const ListQuotes = ({ url, title }) => {
                           <div className="profile__logo quotes-block__card_logo">
                             {quote.userId?.logo ? (
                               <img
-                                src={`http://localhost:5000${quote.userId.logo}`}
+                                src={`https://server-quotes-production-ebef.up.railway.app${quote.userId.logo}`}
                                 alt={quote.userId?.username || 'Лого'}
                               />
                             ) : (
                               <img
-                                src="/src/img/default-logo.png"
+                                src="src/img/default-logo.png"
                                 alt={quote.userId?.username || 'Лого'}
                               />
                             )}

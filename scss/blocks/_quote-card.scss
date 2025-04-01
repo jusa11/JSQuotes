@@ -49,6 +49,9 @@
   font-weight: 200;
   font-size: 16px;
   margin: 15px 0 20px 0;
+  p {
+    word-wrap: break-word;
+  }
 }
 .quotes-block__card_handler {
   display: flex;
@@ -87,7 +90,7 @@
   }
 }
 .popup-content {
-  max-width: 500px;
+  max-width: 479px;
 }
 
 .quotes-block__column {
@@ -114,4 +117,10 @@
   margin-left: auto;
   font-weight: 200;
   font-size: 12px;
+}
+
+@include mediaSmallMobile {
+  .popup-content {
+    max-width: 310px;
+  }
 }
