@@ -9,6 +9,7 @@ import {
 } from '../../redux/slices/displayQuotesSlice';
 import { setError, setSuccess } from '../../redux/slices/notificationsSlice';
 import { selectUser } from '../../redux/slices/userSlice';
+import { URL, ADD_QUOTE } from '../../../config';
 
 const ShareForm = () => {
   const [message, setMessage] = useState('');
@@ -33,7 +34,7 @@ const ShareForm = () => {
 
     try {
       const res = await axios.post(
-        'https://server-quotes-production-ebef.up.railway.app/quotes/add-quote',
+        `${URL}${ADD_QUOTE}`,
         {
           text: message,
           author: username,

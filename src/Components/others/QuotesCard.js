@@ -3,7 +3,7 @@ import gsap from 'gsap';
 import { limitTextLength } from '../../utils/limitTextLength.js';
 import HandleIcon from './HandleIcon.jsx';
 import steps from '../../utils/steps.js';
-import { MAX_TEXT_LENGTH } from '../../config.js';
+import { MAX_TEXT_LENGTH, URL } from '../../config.js';
 
 const QuotesCard = forwardRef(({ quote, isPopup }, ref) => {
   const userLevel = quote?.userId?.level;
@@ -32,7 +32,7 @@ const QuotesCard = forwardRef(({ quote, isPopup }, ref) => {
           <div className="quotes-block__card_logo">
             {userLogo ? (
               <img
-                src={`https://server-quotes-production-ebef.up.railway.app${userLogo}`}
+                src={`${URL}${userLogo}`}
                 alt={quote.userId?.username || 'Лого'}
               />
             ) : (

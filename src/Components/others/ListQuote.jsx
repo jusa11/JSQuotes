@@ -23,6 +23,7 @@ import {
   QUOTES_URL,
   LIKED_QUOTES,
   MAX_TEXT_LENGTH_ITEM,
+  URL,
 } from '../../config';
 import { limitTextLength } from '../../utils/limitTextLength';
 import { useOutletRef } from '../../Hooks/useOutletRef';
@@ -63,7 +64,7 @@ const ListQuotes = ({ url, title }) => {
 
     (async () => {
       try {
-        const res = await axios(`https://server-quotes-production-ebef.up.railway.app/${url}`, {
+        const res = await axios(`${URL}${url}`, {
           headers: { Authorization: `Bearer ${token}` },
         });
 
@@ -164,7 +165,7 @@ const ListQuotes = ({ url, title }) => {
                           <div className="profile__logo quotes-block__card_logo">
                             {quote.userId?.logo ? (
                               <img
-                                src={`https://server-quotes-production-ebef.up.railway.app${quote.userId.logo}`}
+                                src={`${URL}${quote.userId.logo}`}
                                 alt={quote.userId?.username || 'Лого'}
                               />
                             ) : (

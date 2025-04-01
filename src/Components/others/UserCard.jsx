@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import { IoIosNotifications } from 'react-icons/io';
 import { selectUser, logout } from '../redux/slices/userSlice';
 import useGetQuotesCount from '../../Hooks/useGetQuotesCount';
+import { URL } from '../../config';
 
 const UserCard = ({ menuOpen }) => {
   const user = useSelector(selectUser);
@@ -21,7 +22,7 @@ const UserCard = ({ menuOpen }) => {
           menuOpen ? '' : 'user-card__avatar_profile'
         }`}
       >
-        <img src={`https://server-quotes-production-ebef.up.railway.app${user.logo}`} alt={user.username} />
+        <img src={`${URL}${user.logo}`} alt={user.username} />
       </div>
       <div className="user-card__info">
         <div

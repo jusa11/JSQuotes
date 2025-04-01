@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import gsap from 'gsap';
 import { checkAuth, selectUser } from './Components/redux/slices/userSlice';
 import {
-  HashRouter  as Router,
+  BrowserRouter as Router,
   Routes,
   Route,
   Navigate,

@@ -8,6 +8,7 @@ import Logo from '../../others/Logo';
 import { useNavigate } from 'react-router-dom';
 import FileDrop from './FileDrop';
 import { RxCross2 } from 'react-icons/rx';
+import { URL, REGISTRATION } from '../../../config';
 
 const Registration = ({ onSwitch }) => {
   const [form, setForm] = useState({
@@ -79,7 +80,6 @@ const Registration = ({ onSwitch }) => {
 
   const handleFileChange = useCallback((file) => {
     setForm((prevForm) => ({ ...prevForm, logo: file }));
-    console.log('Форма ' + form);
   }, []);
 
   const onSubmitHandler = async (event) => {
@@ -104,10 +104,7 @@ const Registration = ({ onSwitch }) => {
     }
     console.log('Внутри onsubmit ' + formData);
     try {
-      const res = await axios.post(
-        'https://server-quotes-production-ebef.up.railway.app/auth/registration/',
-        formData
-      );
+      const res = await axios.post(`${URL}${REGISTRATION}`, formData);
       console.log(formData);
       const { token } = res.data;
       localStorage.setItem('token', token);

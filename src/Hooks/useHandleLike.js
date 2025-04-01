@@ -3,7 +3,7 @@ import axios from 'axios';
 import { setError } from '../Components/redux/slices/notificationsSlice';
 import { toggleLike } from '../Components/redux/slices/likedQuotesSlice';
 import { selectUser } from '../Components/redux/slices/userSlice';
-import { LIKE } from '../config';
+import { URL, LIKE } from '../config';
 
 const useHandleLike = () => {
   const dispatch = useDispatch();
@@ -20,10 +20,7 @@ const useHandleLike = () => {
 
     try {
       const res = await axios.post(
-        `https://server-quotes-production-ebef.up.railway.app/${LIKE.replace(
-          ':quoteId',
-          quoteId
-        )}`,
+        `${URL}${LIKE.replace(':quoteId', quoteId)}`,
         { userId, quoteId },
         {
           headers: { Authorization: `Bearer ${token}` },

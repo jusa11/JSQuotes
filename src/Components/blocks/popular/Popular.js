@@ -11,7 +11,7 @@ import {
   selectDisplayPopularQuotes,
 } from '../../redux/slices/displayQuotesSlice';
 // import { selectLikedQuotes } from '../../redux/slices/likedQuotesSlice';
-import { POPULAR_URL } from '../../../config';
+import { POPULAR_URL, URL } from '../../../config';
 
 const Popular = () => {
   const dispatch = useDispatch();
@@ -22,7 +22,7 @@ const Popular = () => {
   useEffect(() => {
     (async () => {
       try {
-        const res = await axios(`https://server-quotes-production-ebef.up.railway.app/${POPULAR_URL}`, {
+        const res = await axios(`${URL}${POPULAR_URL}`, {
           headers: { Authorization: `Bearer ${token}` },
         });
         dispatch(setPopularQuotes(res.data));

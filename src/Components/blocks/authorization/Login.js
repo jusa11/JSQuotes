@@ -7,6 +7,7 @@ import { setError, setSuccess } from '../../redux/slices/notificationsSlice';
 import { setUser } from '../../redux/slices/userSlice';
 import Logo from '../../others/Logo';
 import { RxCross2 } from 'react-icons/rx';
+import { URL, LOGIN } from '../../../config';
 
 const Login = ({ onSwitch }) => {
   const [form, setForm] = useState({
@@ -32,7 +33,7 @@ const Login = ({ onSwitch }) => {
     }
 
     try {
-      const res = await axios.post('https://server-quotes-production-ebef.up.railway.app/auth/login', form);
+      const res = await axios.post(`${URL}${LOGIN}`, form);
       const { token } = res.data;
       localStorage.setItem('token', token);
       dispatch(setSuccess('Приветствуем тебя, брат!'));
