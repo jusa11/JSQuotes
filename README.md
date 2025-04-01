@@ -1,70 +1,43 @@
-# :fire: Getting Started with Create React App
+# :fire: Проект: Цитаты Джейсона Стетхема
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## О проекте
 
-## Available Scripts
+Этот проект разрабатывается как личный пет-проект с целью практики в веб-разработке и изучения современных технологий. Здесь можно генерировать случайные цитаты, зарегистрироваться и добавлять свои цитаты, оценивать чужие и делиться с ними со своими братанами. Проект носит исключительно юмористический характер и создается для практики создания веб-приложений на React + Node.js (Express) + MongoDB.
 
-In the project directory, you can run:
+## :hammer: Используемый стек технологий
 
-### `npm start`
+### :pushpin: Frontend
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+- React
+- Redux
+- Gsap (для анимаций)
+- Axios (для работы с API)
+- Версктка на чистом SCSS без использования UI-библиотек
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+### :pushpin: Backend
 
-### `npm test`
+- Node.js, Express.js
+- MongoDB
+- JWT (для аутентификации)
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## :rocket: Запуск проекта
 
-### `npm run build`
+### Локальный запуск в режиме разработки
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+1.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+## :open_file_folder: Структура проекта
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## :balloon: Возможности приложения
 
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+- Генерация случайных цитат
+- Анимированные планеты, которые движутся по свом орбитам, на которые можно нажать и также получить случайную цитату
+- Возможность зарегистрироваться и войти в личный профиль
+- Возможность ставить лайки
+- Можно делиться своими мыслями
+- Отображение недавно добавленных мыслей
+- Отображение популярных цитат
+- Поиск цитат, с выставлением фильтров
+- Есть страница профиля с отображением личной статистики пользователя по цитатам, а также отображение понравившихся цитат и добавленных пользователем цитат
+- Создана система уровней (левелов) для пользователей. Левел пользователя зависит от количества добавленных им цитат. Текущий уровень отображается под логином пользователя и в статистике. В статистике указавается количество цитат, которыми поделился пользователь, а также сколько осталось добавить, чтобы повысить левел.
+- Также добавлен прогресс-бар уровней, который показывает текущий уровень, какие пройдены, какие остались.
