@@ -20,6 +20,7 @@ import { setError } from '../redux/slices/notificationsSlice';
 import {
   MAX_QUOTES,
   LAST_QUOTES_URL,
+  POPULAR_URL,
   QUOTES_URL,
   LIKED_QUOTES,
   MAX_TEXT_LENGTH_ITEM,
@@ -48,8 +49,8 @@ const ListQuotes = ({ url, title }) => {
   const isChange = useSelector(selectDisplayIsChange);
 
   const getQuotes = useCallback(() => {
-    if (url === 'quotes/last-quotes') return lastQuotes;
-    if (url === 'quotes/popular') return popularQuotes;
+    if (url === LAST_QUOTES_URL) return lastQuotes;
+    if (url === POPULAR_URL) return popularQuotes;
     if (url === QUOTES_URL.replace(':username', username)) return userQuotes;
     if (url === LIKED_QUOTES.replace(':username', username)) return likedQuotes;
     return [];
@@ -170,7 +171,10 @@ const ListQuotes = ({ url, title }) => {
                               />
                             ) : (
                               <img
-                                src="src/img/default-logo.png"
+                                src={
+                                  process.env.PUBLIC_URL +
+                                  '/img/default-logo.png'
+                                }
                                 alt={quote.userId?.username || 'Лого'}
                               />
                             )}

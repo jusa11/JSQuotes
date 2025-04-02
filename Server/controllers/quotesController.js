@@ -35,7 +35,6 @@ exports.getRandomQuote = async (req, res) => {
       return res.status(404).json({ msg: 'No quote found' });
     }
     const user = await User.findById(userId);
-    console.log(user);
 
     if (userId) {
       // Получаем только ID лайкнутых цитат пользователем
@@ -47,7 +46,6 @@ exports.getRandomQuote = async (req, res) => {
       const likedSet = new Set(likedQuotes.map((q) => q._id.toString()));
 
       quote.isLiked = likedSet.has(quote._id.toString());
-      console.log(quote);
     }
 
     res.json(quote);
@@ -364,9 +362,6 @@ exports.searchQuotes = async (req, res) => {
       q.isLiked = likedSet.has(q._id.toString());
     });
 
-    console.log(
-      `totalQuotes: ${totalQuotes}, skip: ${skip}, limit: ${limit}, hasMore: ${hasMore}`
-    );
     res.json({ quotes, hasMore });
   } catch (error) {
     console.error(error);

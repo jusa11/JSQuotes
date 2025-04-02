@@ -72,7 +72,10 @@ const FileDrop = ({ username, onFileSelect }) => {
           >
             <input {...getInputProps()} />
             <p>
-              <img src="/img/icon/drop-file.png" alt="logo" />
+              <img
+                src={process.env.PUBLIC_URL + '/img/icon/drop-file.png'}
+                alt="logo"
+              />
               Загрузи своё лого <br /> <br />
               можешь просто перетащить
             </p>

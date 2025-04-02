@@ -37,7 +37,7 @@ const QuotesCard = forwardRef(({ quote, isPopup }, ref) => {
               />
             ) : (
               <img
-                src="src/img/default-logo.png"
+                src={process.env.PUBLIC_URL +"/img/default-logo.png"}
                 alt={quote.userId?.username || 'Лого'}
               />
             )}

@@ -155,7 +155,7 @@ const Space = () => {
             );
           })}
           <div className="orbit-center">
-            <img src="src/img/space-content/spase-center.png" alt="" />
+            <img src={process.env.PUBLIC_URL + "/img/space-content/spase-center.png"} alt="" />
           </div>
         </div>
 

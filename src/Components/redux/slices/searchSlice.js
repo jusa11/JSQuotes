@@ -1,6 +1,6 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
-import { SEARCH } from '../../../config';
+import { URL, SEARCH } from '../../../config';
 
 const initialState = {
   query: '',
@@ -16,7 +16,7 @@ const initialState = {
 export const fetchSearch = createAsyncThunk(
   'search/fetchSearch',
   async ({ query, type, username, page }) => {
-    const res = await axios.get(SEARCH, {
+    const res = await axios.get(`${URL}${SEARCH}`, {
       params: { query, type, username, page },
     });
 
