@@ -1,4 +1,4 @@
-export const URL = 'http:// localhost:5000';
+export const URL = 'http://localhost:5000';
 export const MAX_TEXT_LENGTH = 200;
 export const MAX_TEXT_LENGTH_ITEM = 50;
 export const MAX_QUOTES = 4;
