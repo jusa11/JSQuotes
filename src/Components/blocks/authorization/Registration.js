@@ -1,13 +1,13 @@
 import { useCallback, useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { setError, setSuccess } from '../../redux/slices/notificationsSlice';
+import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { jwtDecode } from 'jwt-decode';
+import { RxCross2 } from 'react-icons/rx';
 import { setUser } from '../../redux/slices/userSlice';
 import Logo from '../../others/Logo';
-import { useNavigate } from 'react-router-dom';
 import FileDrop from './FileDrop';
-import { RxCross2 } from 'react-icons/rx';
+import { setError, setSuccess } from '../../redux/slices/notificationsSlice';
 import { URL, REGISTRATION } from '../../../config';
 
 const Registration = ({ onSwitch }) => {
@@ -102,10 +102,8 @@ const Registration = ({ onSwitch }) => {
     if (form.logo) {
       formData.append('logo', form.logo);
     }
-    console.log('Внутри onsubmit ' + formData);
     try {
       const res = await axios.post(`${URL}${REGISTRATION}`, formData);
-      console.log(formData);
       const { token } = res.data;
       localStorage.setItem('token', token);
       try {
@@ -137,7 +135,7 @@ const Registration = ({ onSwitch }) => {
   return (
     <>
       <Logo />
-      {/* <p className="auth-form__text">
+      <p className="auth-form__text">
         Присоединяйся к сообществу ценителей пацанских цитат Джейсона Стетхэма!
         Если у тебя есть мудрые мысли или жизненные принципы, которыми ты хочешь
         поделиться — добро пожаловать. Здесь каждый может внести свою лепту в
@@ -147,7 +145,7 @@ const Registration = ({ onSwitch }) => {
         самого бывалого мужика. 🔥 Оценивай и сохраняй лучшие изречения. 💬
         Делись мудростью с единомышленниками. Войди в круг избранных —
         регистрируйся прямо сейчас! 🚀
-      </p> */}
+      </p>
       <form className="auth-form " onSubmit={onSubmitHandler}>
         {fieldError.map((error, index) => {
           return (

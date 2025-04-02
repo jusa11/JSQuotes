@@ -1,8 +1,8 @@
 import { useEffect } from 'react';
-import { gsap } from 'gsap';
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { useSelector } from 'react-redux';
 import { Outlet } from 'react-router-dom';
+import { gsap } from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import Navbar from '../blocks/profile/other/Navbar';
 import Sidebar from '../blocks/profile/other/Sidebar';
 import PersonBlock from '../blocks/profile/other/PersonBlock';

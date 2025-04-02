@@ -1,7 +1,6 @@
 import { useState, useEffect } from 'react';
 import gsap from 'gsap';
 import Popup from 'reactjs-popup';
-
 import Registration from './Registration';
 import Login from './Login';
 
@@ -30,7 +29,6 @@ const AuthPopup = ({ isPopup, setPopup, popupRef }) => {
         open={isPopup}
         modal
         overlayStyle={{
-          // background: 'rgba(0, 0, 0, 0.7)',
           backdropFilter: 'blur(10px)',
         }}
         onClose={() => setPopup(false)}

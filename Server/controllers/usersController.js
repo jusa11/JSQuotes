@@ -1,7 +1,6 @@
 const Quote = require('../models/Quote');
 const User = require('../models/User');
 const checkUserLevel = require('../utils/checkUserLevel');
-const userLevels = require('../utils/userLevels');
 
 // Левел пользователя
 exports.getUserLevel = async (req, res) => {
@@ -61,7 +60,6 @@ exports.toggleLike = async (req, res) => {
     await user.save();
     await quote.save();
 
-    // Загружаем цитату заново с `populate()`, чтобы вернуть все данные
     quote = await Quote.findById(quoteId).populate({
       path: 'userId',
       select: 'username level logo',
@@ -70,7 +68,7 @@ exports.toggleLike = async (req, res) => {
       success: true,
       liked: !isLiked,
       quantity: quote.likes,
-      quote, // Теперь объект цитаты со всеми нужными полями
+      quote,
     });
   } catch (error) {
     console.error(error);

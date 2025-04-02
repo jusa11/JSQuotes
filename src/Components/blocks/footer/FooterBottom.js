@@ -5,7 +5,7 @@ const FooterBottom = () => {
   return (
     <div className="footer__bottom">
       <div className="footer-bottom__copyright">
-        © 2025 цитаты-джейсона-стейтема.рф
+        © 2025 цитаты-джейсона-стейтема
         <br />
         Данный проект носит исключительно юмористический характер
       </div>

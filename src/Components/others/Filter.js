@@ -1,3 +1,4 @@
+import { useDispatch, useSelector } from 'react-redux';
 import {
   setTextFilter,
   setAuthorFilter,
@@ -5,7 +6,6 @@ import {
   selectTextFilter,
   selectAuthorFilter,
 } from './redux/slices/filterSlice';
-import { useDispatch, useSelector } from 'react-redux';
 
 const Filter = () => {
   const dispatch = useDispatch();

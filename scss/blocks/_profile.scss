@@ -151,7 +151,7 @@
     width: 310px;
     height: 100vh;
     transition: transform 0.3s ease, opacity 0.3s ease;
-    transform: translateX(100%); // Скрываем справа
+    transform: translateX(100%); 
     opacity: 0;
     visibility: hidden;
     justify-items: center;
@@ -159,7 +159,7 @@
   }
 
   .stats-active {
-    transform: translateX(0); // Показываем
+    transform: translateX(0);
     opacity: 1;
     visibility: visible;
     height: 100%;

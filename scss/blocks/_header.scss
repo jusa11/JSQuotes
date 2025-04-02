@@ -3,7 +3,7 @@
   min-height: 100vh;
   display: flex;
   flex-direction: column;
-  justify-content: space-between; // Убедимся, что контент равномерно распределяется
+  justify-content: space-between; 
 }
 
 // header__nav
@@ -30,7 +30,7 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
-  min-height: 250px; // Минимальная высота, чтобы кнопки не поднимались
+  min-height: 250px; 
   position: relative;
 }
 .header__quote_content {
@@ -42,7 +42,7 @@
   margin: 0 auto;
   word-wrap: break-word;
   overflow-wrap: break-word;
-  min-height: 90px; // Минимальная высота для предотвращения скачков
+  min-height: 90px; 
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -79,7 +79,7 @@
   display: flex;
   justify-content: center;
   gap: 30px;
-  margin-top: auto; // Гарантированно прижимаем к низу
+  margin-top: auto;
 }
 
 .button-quote {

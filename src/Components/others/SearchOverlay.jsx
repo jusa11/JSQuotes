@@ -1,9 +1,8 @@
-import { useSelector } from 'react-redux';
-import SearchForm from './SearchForm';
-import { setChoosedSearch } from '../redux/slices/searchSlice';
-import { useDispatch } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import { RxCross2 } from 'react-icons/rx';
 import { selectUser } from '../redux/slices/userSlice';
+import SearchForm from './SearchForm';
+import { setChoosedSearch } from '../redux/slices/searchSlice';
 
 const SearchOverlay = () => {
   const dispatch = useDispatch();

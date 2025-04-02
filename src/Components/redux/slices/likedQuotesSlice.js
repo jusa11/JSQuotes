@@ -14,8 +14,8 @@ const likedQuotesSlice = createSlice({
       if (index === -1) {
         state.push({ _id, likes, isLiked });
       } else {
-        state[index].likes = likes; // Просто обновляем свойство likes
-        state[index].isLiked = isLiked; // Просто обновляем свойство likes
+        state[index].likes = likes; 
+        state[index].isLiked = isLiked; 
       }
     },
   },

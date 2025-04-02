@@ -1,9 +1,9 @@
+import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-scroll';
 import {
   setChoosedSearch,
   selectChosedSearch,
 } from '../redux/slices/searchSlice';
-import { useDispatch, useSelector } from 'react-redux';
 
 const MainMenu = ({ closeMenu }) => {
   const dispatch = useDispatch();

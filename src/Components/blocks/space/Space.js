@@ -17,7 +17,7 @@ const Space = () => {
   const planetRef = useRef([]);
   const popupRef = useRef(null);
   const dispatch = useDispatch();
-  const [currentQuote, setCurrentQuote] = useState({}); // сделать потом состояние в redux
+  const [currentQuote, setCurrentQuote] = useState({}); 
   const [isPopup, setPopup] = useState(false);
 
   const orbitData = [
@@ -170,7 +170,7 @@ const Space = () => {
           );
         })}
       </div>
-      {/* Popup */}
+
       <Popup
         open={isPopup}
         modal

@@ -1,5 +1,4 @@
-import { useSelector } from 'react-redux';
-import { useDispatch } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { IoIosNotifications } from 'react-icons/io';
 import { selectUser, logout } from '../redux/slices/userSlice';

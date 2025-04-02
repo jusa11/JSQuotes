@@ -1,3 +1,4 @@
+import { useRef, useState } from 'react';
 import { NavLink } from 'react-router-dom';
 import LogoutPopup from '../../authorization/LogoutPopup';
 import { IoMdHome } from 'react-icons/io';
@@ -6,7 +7,6 @@ import { MdFavorite } from 'react-icons/md';
 import { FiShare } from 'react-icons/fi';
 import { ImSwitch } from 'react-icons/im';
 import { IoMdSettings } from 'react-icons/io';
-import { useRef, useState } from 'react';
 
 const Sidebar = () => {
   const [isPopup, setPopup] = useState();

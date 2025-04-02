@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
+import { useDispatch } from 'react-redux';
 import { useDropzone } from 'react-dropzone';
 import { setError } from '../../redux/slices/notificationsSlice';
-import { useDispatch } from 'react-redux';
 
 const FileDrop = ({ username, onFileSelect }) => {
   const [logo, setLogo] = useState([]);

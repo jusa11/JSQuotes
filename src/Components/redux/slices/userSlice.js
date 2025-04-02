@@ -58,7 +58,7 @@ const userSlice = createSlice({
   extraReducers: (builder) => {
     builder
       .addCase(checkAuth.pending, (state) => {
-        state.isLoading = true; // Началась проверка токена
+        state.isLoading = true; 
       })
       .addCase(checkAuth.fulfilled, (state, action) => {
         if (action.payload) {
@@ -67,14 +67,14 @@ const userSlice = createSlice({
           state.logo = action.payload.logo;
           state.isAuth = true;
         } else {
-          state.isAuth = false; // Завершена проверка
+          state.isAuth = false; 
         }
-        state.isLoading = false; // Завершена проверка
+        state.isLoading = false;
       })
 
       .addCase(checkAuth.rejected, (state) => {
         state.isAuth = false;
-        state.isLoading = false; // Ошибка - завершена проверка
+        state.isLoading = false; 
       });
   },
 });

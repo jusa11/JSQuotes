@@ -1,14 +1,14 @@
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import gsap from 'gsap';
-import { checkAuth, selectUser } from './Components/redux/slices/userSlice';
 import {
-  HashRouter as Router,
+  BrowserRouter as Router,
   Routes,
   Route,
   Navigate,
   useLocation,
 } from 'react-router-dom';
+import gsap from 'gsap';
+import { checkAuth, selectUser } from './Components/redux/slices/userSlice';
 import Error from './Components/others/Error';
 import Header from './Components/blocks/header/Header';
 import Stars from './Components/others/Stars';
@@ -37,8 +37,8 @@ function App() {
   const dispatch = useDispatch();
   const { isAuth } = useSelector(selectUser);
   const [loading, setLoading] = useState(true);
-  const [isPopup, setPopup] = useState(false); // Состояние для попапа
-  const [justLoggedOut, setJustLoggedOut] = useState(false); // Состояние для отслеживания выхода
+  const [isPopup, setPopup] = useState(false);
+  const [justLoggedOut, setJustLoggedOut] = useState(false);
   const chosedSearch = useSelector(selectChosedSearch);
 
   useEffect(() => {
@@ -68,14 +68,13 @@ function App() {
   }, [dispatch]);
 
   useEffect(() => {
-    // Когда пользователь выходит, устанавливаем флаг
     if (!isAuth) {
       setJustLoggedOut(true);
     }
   }, [isAuth]);
 
   if (loading) {
-    return <div>Загрузка...</div>; // Ждём проверки авторизации
+    return <div>Загрузка...</div>;
   }
 
   return (
@@ -90,8 +89,8 @@ function App() {
                 <ProfileRedirect
                   isAuth={isAuth}
                   setPopup={setPopup}
-                  justLoggedOut={justLoggedOut} // Передаем состояние о выходе
-                  setJustLoggedOut={setJustLoggedOut} // Для сброса состояния после редиректа
+                  justLoggedOut={justLoggedOut}
+                  setJustLoggedOut={setJustLoggedOut}
                 />
               }
             >
@@ -125,7 +124,7 @@ function App() {
           </Routes>
 
           <ScrollToTopButton />
-          {/* Показываем попап только если это не выход из профиля */}
+
           {!justLoggedOut && isPopup && (
             <AuthPopup isPopup={isPopup} setPopup={setPopup} />
           )}
@@ -143,17 +142,17 @@ function ProfileRedirect({
   justLoggedOut,
   setJustLoggedOut,
 }) {
-  const location = useLocation(); // Теперь используем внутри компонента, обернутого в Router
+  const location = useLocation();
 
   useEffect(() => {
     if (!isAuth && location.pathname === '/profile') {
-      setPopup(true); // Открываем попап, если не авторизован и пытаемся попасть на /profile
+      setPopup(true);
     }
   }, [isAuth, location.pathname, setPopup]);
 
   useEffect(() => {
     if (!isAuth && justLoggedOut) {
-      setJustLoggedOut(false); // Сбрасываем флаг после редиректа
+      setJustLoggedOut(false);
     }
     if (isAuth) {
       setPopup(false);

@@ -28,7 +28,6 @@ const MyChart = ({ dataLevel }) => {
           style={{ filter: 'drop-shadow(3px 3px 8px rgba(0, 0, 0, 0.3))' }}
           className="chart-stats"
         >
-          {/* Объявляем градиенты */}
           <defs>
             <linearGradient
               id="lightGoldGrad"
@@ -41,7 +40,6 @@ const MyChart = ({ dataLevel }) => {
               <stop offset="100%" stopColor="#C68E3C" stopOpacity={1} />
             </linearGradient>
 
-            {/* Градиент светло-бирюзовый */}
             <linearGradient
               id="lightTealGrad"
               x1="0%"

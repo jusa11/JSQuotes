@@ -1,10 +1,9 @@
+import { useSelector, useDispatch } from 'react-redux';
+import { gsap } from 'gsap';
 import { IoCopyOutline } from 'react-icons/io5';
 import useHandleLike from '../../Hooks/useHandleLike.js';
-import { useSelector } from 'react-redux';
 import { selectLikedQuotes } from '../redux/slices/likedQuotesSlice.js';
-import { useDispatch } from 'react-redux';
 import { setSuccess } from '../redux/slices/notificationsSlice.js';
-import { gsap } from 'gsap';
 
 const HandleIcon = ({ quote }) => {
   const handleLike = useHandleLike();

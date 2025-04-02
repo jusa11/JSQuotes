@@ -1,10 +1,8 @@
 const { validationResult } = require('express-validator');
 const bcrypt = require('bcryptjs');
 const User = require('../models/User.js');
-
 const jwt = require('jsonwebtoken');
 const multer = require('multer');
-const path = require('path');
 const secret = process.env.JWT_SECRET;
 
 const generateAccesToken = (id, username, logo) => {

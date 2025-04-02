@@ -1,5 +1,6 @@
 import { useCallback, useEffect, useRef, useState } from 'react';
 import { useDispatch } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { IoCopyOutline } from 'react-icons/io5';
 import { FaQuoteLeft } from 'react-icons/fa6';
 import { gsap } from 'gsap';
@@ -8,7 +9,6 @@ import { generateRandomQuoteAPI } from '../../../utils/generateRandomQuoteAPI.js
 import useHandleLike from '../../../Hooks/useHandleLike';
 import RetroLoading from './RetroLoading.js';
 import { selectLikedQuotes } from '../../redux/slices/likedQuotesSlice.js';
-import { useSelector } from 'react-redux';
 
 const HeaderContent = () => {
   const [currentQuote, setCurrentQuote] = useState(null);
@@ -130,7 +130,6 @@ const HeaderContent = () => {
             onClick={(e) => {
               const icon = e.currentTarget.querySelector('*');
               if (icon) {
-                console.log(icon);
                 iconAnimation(icon);
               }
               handleLike(currentQuote._id);

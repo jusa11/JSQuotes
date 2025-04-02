@@ -61,7 +61,7 @@ const searchSlice = createSlice({
           ? action.payload.quotes
           : [...state.results, ...action.payload.quotes];
       state.hasMore = action.payload.hasMore;
-      state.page = action.meta.arg.page + 1; // Обновляем `page`
+      state.page = action.meta.arg.page + 1; 
       state.hasMore = action.payload.hasMore;
       state.page += 1;
     });

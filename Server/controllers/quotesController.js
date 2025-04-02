@@ -34,15 +34,12 @@ exports.getRandomQuote = async (req, res) => {
     if (!quote) {
       return res.status(404).json({ msg: 'No quote found' });
     }
-    const user = await User.findById(userId);
 
     if (userId) {
-      // Получаем только ID лайкнутых цитат пользователем
       const likedQuotes = await Quote.find({ likeBy: userId })
         .select('_id')
         .lean();
 
-      // Создаём Set для быстрого поиска
       const likedSet = new Set(likedQuotes.map((q) => q._id.toString()));
 
       quote.isLiked = likedSet.has(quote._id.toString());
@@ -78,22 +75,19 @@ exports.getLastQuotes = async (req, res) => {
         path: 'userId',
         select: 'username level logo',
       })
-      .lean(); // Преобразуем в обычные объекты для удобства работы
+      .lean();
 
     if (!lastQuotes.length) {
       return res.status(404).json({ msg: 'No quotes found' });
     }
 
     if (userId) {
-      // Получаем только ID лайкнутых цитат пользователем
       const likedQuotes = await Quote.find({ likeBy: userId })
         .select('_id')
         .lean();
 
-      // Создаём Set для быстрого поиска
       const likedSet = new Set(likedQuotes.map((q) => q._id.toString()));
 
-      // Добавляем isLiked в каждую цитату
       lastQuotes.forEach((q) => {
         q.isLiked = likedSet.has(q._id.toString());
       });
@@ -121,8 +115,8 @@ exports.addQuote = async (req, res) => {
       return res.status(404).json({ message: 'Пользователь не найден' });
     }
     user.countQuote += 1;
-    const levels = checkUserLevel(user.countQuote); // Считаем новый уровень
-    user.level = levels.currentLevel; // Обновляем уровень в БД
+    const levels = checkUserLevel(user.countQuote);
+    user.level = levels.currentLevel; 
 
     await user.save();
 
@@ -134,7 +128,7 @@ exports.addQuote = async (req, res) => {
     });
     await newQuote.save();
 
-    res.json({ newQuote, logo: user.logo }); // отправлять не только цитату а и username, кол-во цитат и level
+    res.json({ newQuote, logo: user.logo });
   } catch (error) {
     console.error(error);
     res.status(500).send('Server Error');
@@ -146,7 +140,6 @@ exports.getUserQuotes = async (req, res) => {
   try {
     const { username } = req.params;
 
-    // Находим цитаты пользователя
     const userQuotes = await Quote.find({ author: username })
       .sort({ date: -1 })
       .limit(3)
@@ -154,13 +147,12 @@ exports.getUserQuotes = async (req, res) => {
         path: 'userId',
         select: 'username level logo',
       })
-      .lean(); // Преобразуем в обычные объекты
+      .lean();
 
     if (!userQuotes.length) {
       return res.status(200).json(userQuotes);
     }
 
-    // Ищем пользователя и его ID
     const user = await User.findOne({ username: username })
       .select('_id')
       .lean();
@@ -170,15 +162,12 @@ exports.getUserQuotes = async (req, res) => {
 
     const userId = user._id;
 
-    // Получаем ID лайкнутых цитат пользователем
     const likedQuotes = await Quote.find({ likeBy: userId })
       .select('_id')
       .lean();
 
-    // Создаём Set для быстрого поиска
     const likedSet = new Set(likedQuotes.map((q) => q._id.toString()));
 
-    // Добавляем isLiked в каждую цитату
     userQuotes.forEach((q) => {
       q.isLiked = likedSet.has(q._id.toString());
     });
@@ -209,22 +198,16 @@ exports.getLikedQuotes = async (req, res) => {
       return res.json({ message: 'Пользователь не найден' });
     }
 
-    // Берём только последние 4 лайка в порядке добавления
     const lastLikedQuotes = user.likedQuotes.slice(0, 4);
-
-    // Ищем пользователя и его ID
 
     const userId = user._id;
 
-    // Получаем ID лайкнутых цитат пользователем
     const likedQuotes = await Quote.find({ likeBy: userId })
       .select('_id')
       .lean();
 
-    // Создаём Set для быстрого поиска
     const likedSet = new Set(likedQuotes.map((q) => q._id.toString()));
 
-    // Добавляем isLiked в каждую цитату
     lastLikedQuotes.forEach((q) => {
       q.isLiked = likedSet.has(q._id.toString());
     });
@@ -265,15 +248,12 @@ exports.getPopularQuotes = async (req, res) => {
     }
 
     if (userId) {
-      // Получаем только ID лайкнутых цитат пользователем
       const likedQuotes = await Quote.find({ likeBy: userId })
         .select('_id')
         .lean();
 
-      // Создаём Set для быстрого поиска
       const likedSet = new Set(likedQuotes.map((q) => q._id.toString()));
 
-      // Добавляем isLiked в каждую цитату
       popularQuotes.forEach((q) => {
         q.isLiked = likedSet.has(q._id.toString());
       });
@@ -292,7 +272,7 @@ exports.getAllQuotes = async (req, res) => {
     const lastQuotes = await Quote.find();
 
     if (!lastQuotes || lastQuotes.length === 0) {
-      return res.status(404).json({ msg: 'No quotes found' }); // Если нет цитат, возвращаем ошибку
+      return res.status(404).json({ msg: 'No quotes found' });
     }
     res.json(lastQuotes);
   } catch (error) {
@@ -305,13 +285,12 @@ exports.getAllQuotes = async (req, res) => {
 exports.searchQuotes = async (req, res) => {
   try {
     const { query, type, username, page = 1 } = req.query;
-    const limit = 3;
+    const limit = 2;
     const skip = (page - 1) * limit;
 
     if (!query) {
       return res.status(400).json({ error: 'Введите поисковый запрос' });
     }
-
     let filter = {};
 
     if (type === 'all') {
@@ -322,49 +301,27 @@ exports.searchQuotes = async (req, res) => {
       filter = { author: username, text: { $regex: query, $options: 'i' } };
     }
 
-    if (type === 'liked') {
-      if (!username) {
-        return res.status(400).json({
-          error: 'Требуется имя пользователя для поиска лайкнутых цитат',
-        });
-      }
-
-      const user = await User.findOne({ username }).lean();
+    if (type === 'liked' && username) {
+      const user = await User.findOne({ username }).populate('likedQuotes');
       if (!user) {
         return res.status(404).json({ error: 'Пользователь не найден' });
       }
-
       filter = {
         _id: { $in: user.likedQuotes },
         text: { $regex: query, $options: 'i' },
       };
     }
 
-    const quotes = await Quote.find(filter)
-      .skip(skip)
-      .limit(limit)
-      .populate({ path: 'userId', select: 'username level logo' })
-      .lean();
+    const quotes = await Quote.find(filter).skip(skip).limit(limit).populate({
+      path: 'userId',
+      select: 'username logo level', 
+    });
 
     const totalQuotes = await Quote.countDocuments(filter);
     const hasMore = totalQuotes > skip + limit;
 
-    const user = username ? await User.findOne({ username }).lean() : null;
-    const userId = user ? user._id : null;
-
-    const likedQuotes = userId
-      ? await Quote.find({ likeBy: userId }).select('_id').lean()
-      : [];
-
-    const likedSet = new Set(likedQuotes.map((q) => q._id.toString()));
-
-    quotes.forEach((q) => {
-      q.isLiked = likedSet.has(q._id.toString());
-    });
-
     res.json({ quotes, hasMore });
   } catch (error) {
-    console.error(error);
     res.status(500).json({ error: 'Ошибка сервера' });
   }
 };

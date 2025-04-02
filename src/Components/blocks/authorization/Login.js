@@ -2,11 +2,11 @@ import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { jwtDecode } from 'jwt-decode';
+import { RxCross2 } from 'react-icons/rx';
 import { useDispatch } from 'react-redux';
 import { setError, setSuccess } from '../../redux/slices/notificationsSlice';
 import { setUser } from '../../redux/slices/userSlice';
 import Logo from '../../others/Logo';
-import { RxCross2 } from 'react-icons/rx';
 import { URL, LOGIN } from '../../../config';
 
 const Login = ({ onSwitch }) => {

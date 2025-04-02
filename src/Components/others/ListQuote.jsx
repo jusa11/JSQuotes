@@ -1,7 +1,8 @@
-import { useSelector, useDispatch } from 'react-redux';
 import { useEffect, useRef, useCallback, useState } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
 import axios from 'axios';
 import { gsap } from 'gsap';
+import { useLocation } from 'react-router-dom';
 import Popup from 'reactjs-popup';
 import {
   selectDisplayLastQuotes,
@@ -30,7 +31,6 @@ import { limitTextLength } from '../../utils/limitTextLength';
 import { useOutletRef } from '../../Hooks/useOutletRef';
 import QuotesCard from './QuotesCard';
 import HandleIcon from './HandleIcon';
-import { useLocation } from 'react-router-dom';
 
 const ListQuotes = ({ url, title }) => {
   const lastQuotes = useSelector(selectDisplayLastQuotes);

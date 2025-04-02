@@ -1,5 +1,4 @@
 import { useRef, useState } from 'react';
-
 import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import UserCard from '../../others/UserCard';

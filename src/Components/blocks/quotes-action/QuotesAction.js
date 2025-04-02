@@ -1,9 +1,9 @@
 import { useRef, useEffect } from 'react';
+import gsap from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import ShareForm from './ShareForm';
 import ListQuotes from '../../others/ListQuote';
 import { LAST_QUOTES_URL } from '../../../config';
-import gsap from 'gsap';
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
 gsap.registerPlugin(ScrollTrigger);
 

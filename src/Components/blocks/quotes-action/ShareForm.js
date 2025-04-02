@@ -46,7 +46,6 @@ const ShareForm = () => {
         }
       );
 
-      console.log(res.data);
 
       dispatch(setAddQuotes({ ...res.data.newQuote, userId: { logo } }));
       dispatch(setSuccess('Твоя мысль принята во вселенную'));

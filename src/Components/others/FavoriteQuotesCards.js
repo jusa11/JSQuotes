@@ -1,5 +1,4 @@
 import { useSelector, useDispatch } from 'react-redux';
-// import { deleteAllQuote, deleteQuote } from './redux/Quotes/actionCreators';
 import {
   setdeleteAllQuote,
   setDeleteQuote,
